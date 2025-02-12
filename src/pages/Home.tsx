@@ -1,4 +1,5 @@
 import Layout from "../layout/Layout";
+import HeroBackground from "../components/HeroBackground";
 
 export default function Home() {
   return (
@@ -13,6 +14,8 @@ export default function Home() {
         <p className="text-lg text-muted max-w-xl">
           Crafting frontend experiences with design, performance and purpose.
         </p>
+
+        <HeroBackground />
       </main>
     </Layout>
   );
