@@ -20,11 +20,11 @@ export default function Home() {
         aria-label="Homepage greeting"
         className="flex flex-col items-center justify-center min-h-screen px-6 text-center relative"
       >
-        <h1 className="text-4xl font-bold text-brand mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
           {greeting}, welcome to my portfolio.
         </h1>
-        <p className="text-lg text-muted max-w-xl">
-          Crafting frontend experiences with design, performance and purpose.
+        <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+          I build modern interfaces with React, motion and detail.
         </p>
 
         <HeroBackground />
