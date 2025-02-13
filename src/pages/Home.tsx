@@ -1,8 +1,11 @@
 import Layout from "../layout/Layout";
 import HeroBackground from "../components/HeroBackground";
+import LanguageToggle from "../components/LanguageToggle";
+
 import { useGreeting } from "../hooks/useGreeting";
-import { t } from "../i18n/translations";
 import { useLanguage } from "../hooks/LanguageProvider";
+
+import { t } from "../i18n/translations";
 
 export default function Home() {
   const greeting = useGreeting();
@@ -16,6 +19,10 @@ export default function Home() {
         aria-label="Homepage hero section"
         className="relative min-h-screen flex items-center justify-center px-6 text-center bg-light dark:bg-dark text-text-base dark:text-text-light"
       >
+        <div className="absolute top-6 right-6">
+          <LanguageToggle />
+        </div>
+        
         <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
           {greeting}, {t("home", "title", lang)}
         </h1>
