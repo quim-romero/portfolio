@@ -48,6 +48,42 @@ export default function ProjectDetail() {
             />
           )}
         </div>
+
+        {project.highlights?.length ? (
+          <>
+            <h2 className="text-xl font-semibold mb-3">Key Features</h2>
+            <ul className="list-disc list-inside text-muted mb-6 space-y-2">
+              {project.highlights.map((point, i) => (
+                <li key={i}>{point}</li>
+              ))}
+            </ul>
+          </>
+        ) : null}
+
+        {project.liveUrl || project.githubUrl ? (
+          <div className="flex flex-wrap gap-4 mt-6">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-brand text-white px-5 py-2.5 rounded-full font-medium shadow"
+              >
+                Live Site
+              </a>
+            )}
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-brand text-brand px-5 py-2.5 rounded-full font-medium hover:bg-brand/10"
+              >
+                GitHub
+              </a>
+            )}
+          </div>
+        ) : null}
       </section>
     </Layout>
   );
