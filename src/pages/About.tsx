@@ -16,6 +16,28 @@ export default function About() {
           — all crafted with performance and personality in mind. I move fast,
           write scalable code, and care about the little things.
         </p>
+        <h2 className="text-2xl font-semibold mb-4 mt-10">How I Work</h2>
+        <ul className="list-disc list-inside text-muted space-y-3">
+          <li>
+            Quick and focused cycles — I deliver a working version early and
+            polish fast.
+          </li>
+          <li>
+            Detail-obsessed: from spacing to keyboard UX to microinteractions.
+          </li>
+          <li>
+            Clear communication: I give updates, ask early, and avoid
+            overpromising.
+          </li>
+          <li>
+            I work solo or with teams — always bringing structure and
+            product-thinking.
+          </li>
+          <li>
+            User experience is a priority — the interface should feel as good as
+            it looks.
+          </li>
+        </ul>
       </section>
     </Layout>
   );
