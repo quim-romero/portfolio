@@ -1,7 +1,8 @@
 import Layout from "../layout/Layout";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup"; 
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required."),
@@ -18,7 +19,14 @@ export default function Contact() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const onSubmit = async (data: any) => {
+    setLoading(true);
+    await new Promise((res) => setTimeout(res, 1500));
+    setLoading(false);
+    setSuccess(true);
     console.log(data);
   };
 
@@ -71,10 +79,17 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="w-full bg-brand text-white px-6 py-3 rounded-full font-semibold hover:brightness-110 transition"
+            className="w-full bg-brand text-white px-6 py-3 rounded-full font-semibold transition disabled:opacity-50"
+            disabled={loading}
           >
-            Send Message
+            {loading ? "Sending..." : "Send Message"}
           </button>
+
+          {success && (
+            <p className="text-green-500 text-sm mt-4">
+              Message sent successfully!
+            </p>
+          )}
         </form>
       </section>
     </Layout>
