@@ -1,8 +1,22 @@
 import Layout from "../layout/Layout";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup"; 
+
+const schema = yup.object().shape({
+  name: yup.string().required("Name is required."),
+  email: yup.string().email("Invalid email").required("Email is required."),
+  message: yup.string().required("Message is required."),
+});
 
 export default function Contact() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -24,6 +38,9 @@ export default function Contact() {
               {...register("name")}
               className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
             />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+            )}
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">Email</label>
@@ -32,6 +49,11 @@ export default function Contact() {
               {...register("email")}
               className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">Message</label>
@@ -40,6 +62,11 @@ export default function Contact() {
               {...register("message")}
               className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
             />
+            {errors.message && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.message.message}
+              </p>
+            )}
           </div>
 
           <button
