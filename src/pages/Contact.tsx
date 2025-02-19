@@ -17,13 +17,16 @@ export default function Contact() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
   const onSubmit = async (data: any) => {
+    if (loading) return;
     setLoading(true);
     setError(false);
     try {
@@ -75,7 +78,9 @@ export default function Contact() {
               className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
             />
             {errors.email && (
-              <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
             )}
           </div>
           <div>
@@ -86,7 +91,9 @@ export default function Contact() {
               className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
             />
             {errors.message && (
-              <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.message.message}
+              </p>
             )}
           </div>
 
