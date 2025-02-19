@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { sendEmail } from "../utils/sendEmail";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required."),
@@ -40,6 +41,7 @@ export default function Contact() {
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
+      await sendEmail(data);
       setSuccess(true);
       reset();
     } catch (error) {
