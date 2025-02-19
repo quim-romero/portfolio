@@ -16,9 +16,8 @@ export default function Contact() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+    reset,
+  } = useForm({ resolver: yupResolver(schema) });
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -26,6 +25,7 @@ export default function Contact() {
 
   const onSubmit = async (data: any) => {
     setLoading(true);
+    setError(false);
     try {
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -38,8 +38,10 @@ export default function Contact() {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
       setSuccess(true);
+      reset();
     } catch (error) {
       setError(true);
+      setSuccess(false);
     } finally {
       setLoading(false);
     }
@@ -73,9 +75,7 @@ export default function Contact() {
               className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
             />
             {errors.email && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.email.message}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
             )}
           </div>
           <div>
@@ -86,9 +86,7 @@ export default function Contact() {
               className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
             />
             {errors.message && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.message.message}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
             )}
           </div>
 
@@ -103,6 +101,11 @@ export default function Contact() {
           {success && (
             <p className="text-green-500 text-sm mt-4">
               Message sent successfully!
+            </p>
+          )}
+          {error && (
+            <p className="text-red-500 text-sm mt-4">
+              Something went wrong. Please try again later.
             </p>
           )}
         </form>
