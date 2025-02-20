@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { sendEmail } from "../utils/sendEmail";
+import { t } from "../i18n/translations";
+import { useLanguage } from "../hooks/LanguageProvider";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required."),
@@ -21,6 +23,8 @@ export default function Contact() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const { lang } = useLanguage();
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -55,14 +59,18 @@ export default function Contact() {
   return (
     <Layout>
       <section className="px-6 py-24 max-w-xl mx-auto text-center">
-        <h1 className="text-4xl font-bold mb-6">Contact</h1>
+        <h1 className="text-4xl font-bold mb-6 text-center">
+          {t("contact", "heading", lang)}
+        </h1>
         <p className="text-lg text-muted">
           Let’s get in touch — I’ll reply fast.
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-10">
           <div>
-            <label className="block text-sm font-medium mb-1">Name</label>
+            <label className="block text-sm font-medium mb-1">
+              {t("contact", "name", lang)}
+            </label>
             <input
               type="text"
               {...register("name")}
@@ -73,7 +81,9 @@ export default function Contact() {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
+            <label className="block text-sm font-medium mb-1">
+              {t("contact", "email", lang)}
+            </label>
             <input
               type="email"
               {...register("email")}
@@ -86,7 +96,9 @@ export default function Contact() {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Message</label>
+            <label className="block text-sm font-medium mb-1">
+              {t("contact", "message", lang)}
+            </label>
             <textarea
               rows={5}
               {...register("message")}
@@ -104,7 +116,9 @@ export default function Contact() {
             className="w-full bg-brand text-white px-6 py-3 rounded-full font-semibold transition disabled:opacity-50"
             disabled={loading}
           >
-            {loading ? "Sending..." : "Send Message"}
+            {loading
+              ? t("contact", "sending", lang)
+              : t("contact", "submit", lang)}
           </button>
 
           {success && (
