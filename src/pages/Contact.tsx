@@ -8,23 +8,29 @@ import { sendEmail } from "../utils/sendEmail";
 import { t } from "../i18n/translations";
 import { useLanguage } from "../hooks/LanguageProvider";
 
-const schema = yup.object().shape({
-  name: yup.string().required("Name is required."),
-  email: yup.string().email("Invalid email").required("Email is required."),
-  message: yup.string().required("Message is required."),
-});
+const createSchema = (lang: string) =>
+  yup.object().shape({
+    name: yup.string().required(t("contact", "nameRequired", lang)),
+    email: yup
+      .string()
+      .email(t("contact", "invalidEmail", lang))
+      .required(t("contact", "emailRequired", lang)),
+    message: yup.string().required(t("contact", "messageRequired", lang)),
+  });
 
 export default function Contact() {
+  const { lang } = useLanguage();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(
+      createSchema(lang)
+    )
   });
-
-  const { lang } = useLanguage();
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
