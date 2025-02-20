@@ -27,9 +27,7 @@ export default function Contact() {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(
-      createSchema(lang)
-    )
+    resolver: yupResolver(createSchema(lang)),
   });
 
   const [loading, setLoading] = useState(false);
@@ -74,26 +72,28 @@ export default function Contact() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-10">
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label htmlFor="name" className="block text-sm font-medium mb-1">
               {t("contact", "name", lang)}
             </label>
             <input
+              id="name"
               type="text"
               {...register("name")}
-              className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
+              className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-brand dark:focus:ring-brand-light" /* mejora: accesibilidad + focus ring */
             />
             {errors.name && (
               <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label htmlFor="email" className="block text-sm font-medium mb-1">
               {t("contact", "email", lang)}
             </label>
             <input
+              id="email"
               type="email"
               {...register("email")}
-              className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
+              className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-brand dark:focus:ring-brand-light" /* mejora: accesibilidad + focus ring */
             />
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
@@ -102,13 +102,14 @@ export default function Contact() {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label htmlFor="message" className="block text-sm font-medium mb-1">
               {t("contact", "message", lang)}
             </label>
             <textarea
+              id="message"
               rows={5}
               {...register("message")}
-              className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
+              className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-brand dark:focus:ring-brand-light" /* mejora: accesibilidad + focus ring */
             />
             {errors.message && (
               <p className="text-red-500 text-sm mt-1">
@@ -129,12 +130,12 @@ export default function Contact() {
 
           {success && (
             <p className="text-green-500 text-sm mt-4">
-              Message sent successfully!
+              {t("contact", "success", lang)}
             </p>
           )}
           {error && (
             <p className="text-red-500 text-sm mt-4">
-              Something went wrong. Please try again later.
+              {t("contact", "error", lang)}
             </p>
           )}
         </form>
