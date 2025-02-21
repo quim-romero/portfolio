@@ -5,6 +5,7 @@ import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
+import Post from './pages/Post';
 
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<Post />} />
       </Routes>
     </Router>
   );
