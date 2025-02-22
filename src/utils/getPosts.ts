@@ -1,4 +1,5 @@
 import matter from 'gray-matter';
+import { Language } from '../hooks/LanguageProvider';
 
 export type Post = {
   slug: string;
@@ -7,8 +8,9 @@ export type Post = {
   date: string;
 };
 
-export async function getPosts(): Promise<Post[]> {
-  const files = import.meta.glob('/src/posts/en/*.md', { as: 'raw', eager: true });
+export async function getPosts(lang: Language): Promise<Post[]> {
+  const files = import.meta.glob(`/src/posts/${lang}/*.md`, { as: 'raw', eager: true });
+
   return Object.entries(files).map(([path, content]) => {
     const slug = path.split('/').pop()?.replace('.md', '') || '';
     const { data } = matter(content as string);
