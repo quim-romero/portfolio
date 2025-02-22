@@ -1,19 +1,20 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
-import matter from 'gray-matter';
-import { marked } from 'marked';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import matter from "gray-matter";
+import { marked } from "marked";
 
-import Layout from '../layout/Layout';
-import LanguageTransition from '../components/LanguageTransition';
-import { useLanguage } from '../hooks/LanguageProvider';
+import Layout from "../layout/Layout";
+import LanguageTransition from "../components/LanguageTransition";
+import { useLanguage } from "../hooks/LanguageProvider";
 
 export default function Post() {
   const { slug } = useParams<{ slug: string }>();
   const { lang } = useLanguage();
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     if (!slug) return;
@@ -21,13 +22,21 @@ export default function Post() {
       .then((mod) => {
         const parsed = matter(mod.default);
         setTitle(parsed.data.title);
+        setDate(parsed.data.date || "");
         setContent(marked.parse(parsed.content));
       })
       .catch(() => {
-        setTitle('Post not found');
-        setContent('# 404');
+        setTitle("Post not found");
+        setContent("# 404");
       });
   }, [slug, lang]);
+
+  const formatDate = (dateStr: string) =>
+    new Date(dateStr).toLocaleDateString(lang, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
 
   return (
     <Layout>
@@ -43,6 +52,9 @@ export default function Post() {
             className="prose dark:prose-invert max-w-none"
           >
             <h1>{title}</h1>
+            {date && (
+              <p className="text-sm text-muted mb-1">{formatDate(date)}</p>
+            )}
             <div dangerouslySetInnerHTML={{ __html: content }} />
           </motion.article>
         </LanguageTransition>

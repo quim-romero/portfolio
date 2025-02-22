@@ -1,32 +1,64 @@
-import { useParams } from 'react-router-dom';
-import Layout from '../layout/Layout';
-import { useEffect, useState } from 'react';
-import matter from 'gray-matter';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import matter from "gray-matter";
+import { marked } from "marked";
+
+import Layout from "../layout/Layout";
+import LanguageTransition from "../components/LanguageTransition";
+import { useLanguage } from "../hooks/LanguageProvider";
 
 export default function Post() {
-  const { slug } = useParams();
-  const [content, setContent] = useState('');
-  const [title, setTitle] = useState('');
+  const { slug } = useParams<{ slug: string }>();
+  const { lang } = useLanguage();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [date, setDate] = useState("");
 
   useEffect(() => {
-    import(`../posts/en/${slug}.md?raw`)
-      .then((module) => {
-        const raw = module.default;
-        const parsed = matter(raw);
+    if (!slug) return;
+    import(`../posts/${lang}/${slug}.md?raw`)
+      .then((mod) => {
+        const parsed = matter(mod.default);
         setTitle(parsed.data.title);
-        setContent(parsed.content);
+        setDate(parsed.data.date || "");
+        setContent(marked.parse(parsed.content));
       })
       .catch(() => {
-        setContent('# Not found');
+        setTitle("Post not found");
+        setContent("# 404");
       });
-  }, [slug]);
+  }, [slug, lang]);
+
+  const formatDate = (dateStr: string) =>
+    new Date(dateStr).toLocaleDateString(lang, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
 
   return (
     <Layout>
-      <section className="px-6 py-24 max-w-3xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6">{title}</h1>
-        <article className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
-      </section>
+      <Helmet>
+        <title>{title} | Blog</title>
+      </Helmet>
+      <main id="main" className="py-24 px-6 max-w-3xl mx-auto">
+        <LanguageTransition>
+          <motion.article
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="prose dark:prose-invert max-w-none"
+          >
+            <h1>{title}</h1>
+            {date && (
+              <p className="text-sm text-muted mb-1">{formatDate(date)}</p>
+            )}
+            <div dangerouslySetInnerHTML={{ __html: content }} />
+          </motion.article>
+        </LanguageTransition>
+      </main>
     </Layout>
   );
 }
