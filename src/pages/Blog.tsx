@@ -43,15 +43,22 @@ export default function Post() {
       <Helmet>
         <title>{title} | Blog</title>
       </Helmet>
-      <main id="main" className="py-24 px-6 max-w-3xl mx-auto">
+
+      <main
+        id="main"
+        role="main"
+        aria-label={`Blog post: ${title}`}
+        className="py-24 px-6 max-w-3xl mx-auto"
+      >
         <LanguageTransition>
           <motion.article
+            aria-labelledby="post-heading"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="prose dark:prose-invert max-w-none"
           >
-            <h1>{title}</h1>
+            <h1 id="post-heading">{title}</h1>
             {date && (
               <p className="text-sm text-muted mb-1">{formatDate(date)}</p>
             )}

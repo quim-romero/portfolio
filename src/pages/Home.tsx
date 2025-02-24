@@ -19,16 +19,21 @@ export default function Home() {
         aria-label="Homepage hero section"
         className="relative min-h-screen flex items-center justify-center px-6 text-center bg-light dark:bg-dark text-text-base dark:text-text-light"
       >
-        <div className="absolute top-6 right-6">
-          <LanguageToggle />
-        </div>
-        
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-          {greeting}, {t("home", "title", lang)}
-        </h1>
-        <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-          {t("home", "subtitle", lang)}
-        </p>
+        <section aria-labelledby="home-title">
+          <div className="absolute top-6 right-6">
+            <LanguageToggle />
+          </div>
+
+          <h1
+            id="home-title"
+            className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white"
+          >
+            {greeting}, {t("home", "title", lang)}
+          </h1>
+          <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+            {t("home", "subtitle", lang)}
+          </p>
+        </section>
 
         <HeroBackground />
       </main>
