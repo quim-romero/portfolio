@@ -24,7 +24,11 @@ export default function Header() {
           Quim Romero
         </Link>
 
-        <nav className="flex items-center space-x-4 md:space-x-6 text-xs md:text-sm font-medium">
+        <nav
+          aria-label="Primary Navigation"
+          role="navigation"
+          className="flex items-center space-x-4 md:space-x-6 text-xs md:text-sm font-medium"
+        >
           {navItems.map(({ key, path }) => (
             <NavLink
               key={key}
