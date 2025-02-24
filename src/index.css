@@ -10,3 +10,15 @@ html {
   background-color: #4cceba;
   color: #ffffff;
 }
+
+:focus-visible {
+  outline: 2px solid #4cceba;
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  box-shadow: 0 0 0 2px #4cceba;
+}
