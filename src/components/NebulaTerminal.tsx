@@ -1,18 +1,18 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from "react";
 
 export default function NebulaTerminal() {
   const [booting, setBooting] = useState(true);
   const [log, setLog] = useState<string[]>([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const bootMessages = [
-      'booting nebulaOS...',
-      'loading modules...',
-      'mounting personality core...',
-      'establishing interface...',
-      'ready.',
+      "booting nebulaOS...",
+      "loading modules...",
+      "mounting personality core...",
+      "establishing interface...",
+      "ready.",
     ];
 
     bootMessages.forEach((msg, i) => {
@@ -33,12 +33,18 @@ export default function NebulaTerminal() {
     const trimmed = cmd.trim().toLowerCase();
     setLog((prev) => [...prev, `nebula> ${cmd}`]);
 
-    if (trimmed === 'help') {
-      setLog((prev) => [...prev, 'Available commands: about, projects, contact, clear']);
-    } else if (trimmed === 'clear') {
+    if (trimmed === "help") {
+      setLog((prev) => [
+        ...prev,
+        "Available commands: about, projects, contact, clear",
+      ]);
+    } else if (trimmed === "clear") {
       setLog([]);
     } else {
-      setLog((prev) => [...prev, `Unknown command: "${trimmed}" (type 'help')`]);
+      setLog((prev) => [
+        ...prev,
+        `Unknown command: "${trimmed}" (type 'help')`,
+      ]);
     }
   }
 
@@ -51,7 +57,8 @@ export default function NebulaTerminal() {
       ))}
       {!booting && (
         <p className="mt-4">
-          nebula&gt; <span className="text-white">{input}_</span>
+          nebula&gt; <span className="text-white">{input}</span>
+          <span className="animate-pulse">█</span>{" "}
         </p>
       )}
       <input
@@ -59,9 +66,9 @@ export default function NebulaTerminal() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={(e) => {
-          if (e.key === 'Enter') {
+          if (e.key === "Enter") {
             handleCommand(input);
-            setInput('');
+            setInput("");
           }
         }}
         className="absolute opacity-0 pointer-events-none"
