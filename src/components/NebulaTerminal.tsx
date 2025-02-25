@@ -1,18 +1,18 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from 'react';
 
 export default function NebulaTerminal() {
   const [booting, setBooting] = useState(true);
   const [log, setLog] = useState<string[]>([]);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const bootMessages = [
-      "booting nebulaOS...",
-      "loading modules...",
-      "mounting personality core...",
-      "establishing interface...",
-      "ready.",
+      'booting nebulaOS...',
+      'loading modules...',
+      'mounting personality core...',
+      'establishing interface...',
+      'ready.',
     ];
 
     bootMessages.forEach((msg, i) => {
@@ -29,9 +29,18 @@ export default function NebulaTerminal() {
     }
   }, [booting]);
 
-  const handleCommand = (command: string) => {
-    setLog((prev) => [...prev, `nebula> ${command}`]);
-  };
+  function handleCommand(cmd: string) {
+    const trimmed = cmd.trim().toLowerCase();
+    setLog((prev) => [...prev, `nebula> ${cmd}`]);
+
+    if (trimmed === 'help') {
+      setLog((prev) => [...prev, 'Available commands: about, projects, contact, clear']);
+    } else if (trimmed === 'clear') {
+      setLog([]);
+    } else {
+      setLog((prev) => [...prev, `Unknown command: "${trimmed}" (type 'help')`]);
+    }
+  }
 
   return (
     <div className="bg-black text-green-400 font-mono p-6 rounded-xl shadow-inner min-h-[400px] relative">
@@ -50,9 +59,9 @@ export default function NebulaTerminal() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === 'Enter') {
             handleCommand(input);
-            setInput("");
+            setInput('');
           }
         }}
         className="absolute opacity-0 pointer-events-none"
