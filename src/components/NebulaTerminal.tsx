@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function NebulaTerminal() {
   const [booting, setBooting] = useState(true);
   const [log, setLog] = useState<string[]>([]);
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const bootMessages = [
@@ -33,13 +35,19 @@ export default function NebulaTerminal() {
     const trimmed = cmd.trim().toLowerCase();
     setLog((prev) => [...prev, `nebula> ${cmd}`]);
 
-    if (trimmed === "help") {
-      setLog((prev) => [
-        ...prev,
-        "Available commands: about, projects, contact, clear",
-      ]);
-    } else if (trimmed === "clear") {
-      setLog([]);
+    const commands: Record<string, () => void> = {
+      help: () =>
+        setLog((prev) => [
+          ...prev,
+          "Available commands: about, projects, contact, clear",
+        ]),
+      clear: () => setLog([]),
+      about: () => navigate("/about"),
+      contact: () => navigate("/contact"),
+    };
+
+    if (commands[trimmed]) {
+      commands[trimmed]();
     } else {
       setLog((prev) => [
         ...prev,
@@ -58,7 +66,7 @@ export default function NebulaTerminal() {
       {!booting && (
         <p className="mt-4">
           nebula&gt; <span className="text-white">{input}</span>
-          <span className="animate-pulse">█</span>{" "}
+          <span className="animate-pulse">█</span>
         </p>
       )}
       <input
