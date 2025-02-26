@@ -1,12 +1,52 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
+type CommandMap = Record<string, () => void>;
+
+const createCommands = (
+  setLog: React.Dispatch<React.SetStateAction<string[]>>,
+  navigate: ReturnType<typeof useNavigate>
+): CommandMap => ({
+  help: () =>
+    setLog((prev) => [
+      ...prev,
+      "Available commands:",
+      "- about",
+      "- projects",
+      "- contact",
+      "- clear",
+      "- ascii",
+      "- sudo",
+    ]),
+  clear: () => setLog([]),
+  about: () => navigate("/about"),
+  projects: () => navigate("/projects"),
+  contact: () => navigate("/contact"),
+  sudo: () =>
+    setLog((prev) => [
+      ...prev,
+      "Nice try. That only works in real terminals 🫠",
+    ]),
+  ascii: () => {
+    const art = [
+      " _   _      _          _           ",
+      "| \\ | | ___| |__   ___| | ___  ___ ",
+      "|  \\| |/ _ \\ '_ \\ / _ \\ |/ _ \\/ __|",
+      "| |\\  |  __/ |_) |  __/ |  __/\\__ \\",
+      "|_| \\_|\\___|_.__/ \\___|_|\\___||___/",
+    ];
+    setLog((prev) => [...prev, ...art]);
+  },
+});
+
 export default function NebulaTerminal() {
   const [booting, setBooting] = useState(true);
   const [log, setLog] = useState<string[]>([]);
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+
+  const commands = createCommands(setLog, navigate);
 
   useEffect(() => {
     const bootMessages = [
@@ -34,39 +74,6 @@ export default function NebulaTerminal() {
   function handleCommand(cmd: string) {
     const trimmed = cmd.trim().toLowerCase();
     setLog((prev) => [...prev, `nebula> ${cmd}`]);
-
-    const commands: Record<string, () => void> = {
-      help: () =>
-        setLog((prev) => [
-          ...prev,
-          "Available commands:",
-          "- about",
-          "- projects",
-          "- contact",
-          "- clear",
-          "- ascii",
-          "- sudo",
-        ]),
-      clear: () => setLog([]),
-      about: () => navigate("/about"),
-      projects: () => navigate("/projects"),
-      contact: () => navigate("/contact"),
-      sudo: () =>
-        setLog((prev) => [
-          ...prev,
-          "Nice try. That only works in real terminals 🫠",
-        ]),
-      ascii: () => {
-        const art = [
-          " _   _      _          _           ",
-          "| \\ | | ___| |__   ___| | ___  ___ ",
-          "|  \\| |/ _ \\ '_ \\ / _ \\ |/ _ \\/ __|",
-          "| |\\  |  __/ |_) |  __/ |  __/\\__ \\",
-          "|_| \\_|\\___|_.__/ \\___|_|\\___||___/",
-        ];
-        setLog((prev) => [...prev, ...art]);
-      },
-    };
 
     if (commands[trimmed]) {
       commands[trimmed]();
