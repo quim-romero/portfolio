@@ -51,6 +51,11 @@ export default function NebulaTerminal() {
       about: () => navigate("/about"),
       projects: () => navigate("/projects"),
       contact: () => navigate("/contact"),
+      sudo: () =>
+        setLog((prev) => [
+          ...prev,
+          "Nice try. That only works in real terminals 🫠",
+        ]),
     };
 
     if (commands[trimmed]) {
