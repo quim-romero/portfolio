@@ -39,10 +39,17 @@ export default function NebulaTerminal() {
       help: () =>
         setLog((prev) => [
           ...prev,
-          "Available commands: about, projects, contact, clear",
+          "Available commands:",
+          "- about",
+          "- projects",
+          "- contact",
+          "- clear",
+          "- ascii",
+          "- sudo",
         ]),
       clear: () => setLog([]),
       about: () => navigate("/about"),
+      projects: () => navigate("/projects"),
       contact: () => navigate("/contact"),
     };
 
