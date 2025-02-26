@@ -56,6 +56,16 @@ export default function NebulaTerminal() {
           ...prev,
           "Nice try. That only works in real terminals 🫠",
         ]),
+      ascii: () => {
+        const art = [
+          " _   _      _          _           ",
+          "| \\ | | ___| |__   ___| | ___  ___ ",
+          "|  \\| |/ _ \\ '_ \\ / _ \\ |/ _ \\/ __|",
+          "| |\\  |  __/ |_) |  __/ |  __/\\__ \\",
+          "|_| \\_|\\___|_.__/ \\___|_|\\___||___/",
+        ];
+        setLog((prev) => [...prev, ...art]);
+      },
     };
 
     if (commands[trimmed]) {
