@@ -1,16 +1,19 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../hooks/LanguageProvider";
+import { t } from "../i18n/translations";
 
 type CommandMap = Record<string, () => void>;
 
 const createCommands = (
   setLog: React.Dispatch<React.SetStateAction<string[]>>,
-  navigate: ReturnType<typeof useNavigate>
+  navigate: ReturnType<typeof useNavigate>,
+  lang: string
 ): CommandMap => ({
   help: () =>
     setLog((prev) => [
       ...prev,
-      "Available commands:",
+      t("terminal", "helpIntro", lang),
       "- about",
       "- projects",
       "- contact",
@@ -45,8 +48,9 @@ export default function NebulaTerminal() {
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const { lang } = useLanguage();
 
-  const commands = createCommands(setLog, navigate);
+  const commands = createCommands(setLog, navigate, lang);
 
   useEffect(() => {
     const bootMessages = [
