@@ -20,6 +20,7 @@ const createCommands = (
       "- clear",
       "- ascii",
       "- sudo",
+      "- whoami",
     ]),
   clear: () => setLog([]),
   about: () => navigate("/about"),
@@ -40,6 +41,7 @@ const createCommands = (
     ];
     setLog((prev) => [...prev, ...art]);
   },
+  whoami: () => setLog((prev) => [...prev, t("terminal", "whoami", lang)]),
 });
 
 export default function NebulaTerminal() {
