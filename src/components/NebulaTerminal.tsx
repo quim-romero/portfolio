@@ -48,6 +48,7 @@ export default function NebulaTerminal() {
   const [booting, setBooting] = useState(true);
   const [log, setLog] = useState<string[]>([]);
   const [input, setInput] = useState("");
+  const [theme, setTheme] = useState<"default" | "hacker">("default");
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { lang } = useLanguage();
@@ -92,7 +93,13 @@ export default function NebulaTerminal() {
   }
 
   return (
-    <div className="bg-black text-green-400 font-mono p-6 rounded-xl shadow-inner min-h-[400px] relative">
+    <div
+      className={`font-mono p-6 rounded-xl shadow-inner min-h-[400px] overflow-y-auto ${
+        theme === "hacker"
+          ? "bg-black text-green-400"
+          : "bg-zinc-900 text-white border border-zinc-700"
+      }`}
+    >
       {log.map((line, i) => (
         <p key={i} className="leading-relaxed">
           {line}
