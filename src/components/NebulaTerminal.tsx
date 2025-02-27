@@ -33,14 +33,12 @@ const createCommands = (
       "Nice try. That only works in real terminals 🫠",
     ]),
   ascii: () => {
-    const art = [
-      " _   _      _          _           ",
-      "| \\ | | ___| |__   ___| | ___  ___ ",
-      "|  \\| |/ _ \\ '_ \\ / _ \\ |/ _ \\/ __|",
-      "| |\\  |  __/ |_) |  __/ |  __/\\__ \\",
-      "|_| \\_|\\___|_.__/ \\___|_|\\___||___/",
-    ];
-    setLog((prev) => [...prev, ...art]);
+    const art = t("terminal", "ascii", lang) as string[];
+    art.forEach((line, i) => {
+      setTimeout(() => {
+        setLog((prev) => [...prev, line]);
+      }, i * 100);
+    });
   },
   whoami: () => setLog((prev) => [...prev, t("terminal", "whoami", lang)]),
 });
