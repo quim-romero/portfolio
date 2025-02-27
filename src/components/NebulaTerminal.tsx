@@ -21,6 +21,7 @@ const createCommands = (
       "- ascii",
       "- sudo",
       "- whoami",
+      "- theme [default|hacker]",
     ]),
   clear: () => setLog([]),
   about: () => navigate("/about"),
@@ -81,6 +82,20 @@ export default function NebulaTerminal() {
   function handleCommand(cmd: string) {
     const trimmed = cmd.trim().toLowerCase();
     setLog((prev) => [...prev, `nebula> ${cmd}`]);
+
+    if (trimmed.startsWith("theme ")) {
+      const mode = trimmed.split(" ")[1];
+      if (mode === "hacker" || mode === "default") {
+        setTheme(mode);
+        setLog((prev) => [
+          ...prev,
+          t("terminal", "themeChanged", lang).replace("{mode}", mode),
+        ]);
+      } else {
+        setLog((prev) => [...prev, t("terminal", "unknownTheme", lang)]);
+      }
+      return;
+    }
 
     if (commands[trimmed]) {
       commands[trimmed]();
