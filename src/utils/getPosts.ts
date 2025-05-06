@@ -1,5 +1,5 @@
 import matter from 'gray-matter';
-import { Language } from '../hooks/LanguageProvider';
+import type { Language } from '../hooks/LanguageProvider';
 
 export type Post = {
   slug: string;
