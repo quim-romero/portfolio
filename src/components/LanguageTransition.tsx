@@ -12,7 +12,9 @@ export default function LanguageTransition({ lang }: { lang: string }) {
   if (!visible) return null;
 
   return (
-    <div className="fixed top-6 right-6 z-50 bg-black/80 text-white px-4 py-2 rounded shadow-md animate-fade-in-out">
+    <div
+      className="fixed top-6 right-6 z-50 text-sm px-4 py-2 rounded shadow-md bg-light/90 dark:bg-dark/90 text-black dark:text-white animate-fade-in-out"
+    >
       {lang === 'en' ? 'Language: English' : 'Idioma: Español'}
     </div>
   );
