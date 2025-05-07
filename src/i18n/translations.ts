@@ -13,6 +13,8 @@ export type Language = keyof typeof translations;
 export type Section = keyof (typeof translations)["en"];
 
 export function t(section: Section, key: string, lang: Language): string {
-  const result = translations[lang]?.[section]?.[key];
-  return result || translations.en?.[section]?.[key] || `${section}.${key}`;
+  const sectionData = translations[lang]?.[section] as Record<string, string>;
+  const fallback = translations.en?.[section] as Record<string, string>;
+
+  return sectionData?.[key] || fallback?.[key] || `${section}.${key}`;
 }
