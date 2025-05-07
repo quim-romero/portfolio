@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
+import type { ReactNode } from "react";
+import { useLanguage } from "../hooks/LanguageProvider";
 
-export default function LanguageTransition({ lang }: { lang: string }) {
+type Props = {
+  children?: ReactNode;
+};
+
+export default function LanguageTransition({ children }: Props) {
+  const { lang } = useLanguage();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -9,15 +16,18 @@ export default function LanguageTransition({ lang }: { lang: string }) {
     return () => clearTimeout(timer);
   }, [lang]);
 
-  if (!visible) return null;
-
   return (
-    <div
-      role="status"
-      aria-live="polite"
-      className="fixed top-6 right-6 z-50 text-sm px-4 py-2 rounded shadow-md bg-light/90 dark:bg-dark/90 text-black dark:text-white animate-fade-in-out"
-    >
-      {lang === "en" ? "Language: English" : "Idioma: Español"}
-    </div>
+    <>
+      {visible && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed top-6 right-6 z-50 px-4 py-2 rounded shadow-md bg-black/90 text-white text-sm animate-fade-in-out"
+        >
+          {lang === "en" ? "Language: English" : "Idioma: Español"}
+        </div>
+      )}
+      {children}
+    </>
   );
 }
