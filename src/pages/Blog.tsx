@@ -18,17 +18,23 @@ export default function Post() {
 
   useEffect(() => {
     if (!slug) return;
-    import(`../posts/${lang}/${slug}.md?raw`)
-      .then((mod) => {
+
+    const loadPost = async () => {
+      try {
+        const mod = await import(`../posts/${lang}/${slug}.md?raw`);
         const parsed = matter(mod.default);
+        const html = await marked.parse(parsed.content);
+
         setTitle(parsed.data.title);
         setDate(parsed.data.date || "");
-        setContent(marked.parse(parsed.content));
-      })
-      .catch(() => {
+        setContent(html);
+      } catch {
         setTitle("Post not found");
-        setContent("# 404");
-      });
+        setContent("<h1>404</h1>");
+      }
+    };
+
+    loadPost();
   }, [slug, lang]);
 
   const formatDate = (dateStr: string) =>
