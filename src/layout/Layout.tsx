@@ -1,26 +1,34 @@
 import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Header from "../components/Header";
-import { useLanguage } from "../hooks/LanguageProvider";
-import LanguageTransition from "../components/LanguageTransition";
+import Footer from "../components/Footer";
+import { useDarkMode } from "../hooks/DarkModeContext";
 
 export default function Layout({ children }: { children: ReactNode }) {
-  const { lang } = useLanguage();
+  const [isDark] = useDarkMode();
+  const [theme, setTheme] = useState(isDark ? "dark" : "light");
+
+  useEffect(() => {
+    setTheme(isDark ? "dark" : "light");
+  }, [isDark]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-light text-text-base dark:bg-dark dark:text-text-light transition-colors duration-300">
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-brand text-white px-4 py-2 rounded"
-      >
-        Skip to content
-      </a>
-
-      <LanguageTransition lang={lang} />
-
+    <div className="relative min-h-screen flex flex-col transition-colors duration-300 bg-light dark:bg-dark text-text-base dark:text-text-light">
       <Header />
-      <main id="main" role="main" className="relative z-10 flex-grow">
-        {children}
-      </main>
+      <main className="flex-grow relative z-10">{children}</main>
+      <Footer />
+
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={theme}
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 0 }}
+          exit={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-50 pointer-events-none bg-light dark:bg-dark"
+        />
+      </AnimatePresence>
     </div>
   );
 }
