@@ -1,23 +1,19 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useRef,
-} from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 export type Language = "en" | "es";
 
 interface LanguageContextType {
   lang: Language;
   setLang: (lang: Language) => void;
-  prevLang?: Language;
 }
 
 const LanguageContext = createContext<LanguageContextType>({
   lang: "en",
   setLang: () => {},
 });
+
+const isValidLang = (value: unknown): value is Language =>
+  value === "en" || value === "es";
 
 const detectBrowserLanguage = (): Language => {
   if (typeof navigator !== "undefined") {
@@ -30,7 +26,9 @@ const detectBrowserLanguage = (): Language => {
 const getInitialLang = (): Language => {
   if (typeof window !== "undefined") {
     const stored = localStorage.getItem("lang");
-    if (stored === "es" || stored === "en") return stored;
+    if (isValidLang(stored)) {
+      return stored;
+    }
     const detected = detectBrowserLanguage();
     localStorage.setItem("lang", detected);
     return detected;
@@ -44,20 +42,13 @@ export const LanguageProvider = ({
   children: React.ReactNode;
 }) => {
   const [lang, setLang] = useState<Language>(() => getInitialLang());
-  const prevLangRef = useRef<Language | undefined>(undefined);
 
   useEffect(() => {
     localStorage.setItem("lang", lang);
   }, [lang]);
 
-  useEffect(() => {
-    prevLangRef.current = lang;
-  }, [lang]);
-
   return (
-    <LanguageContext.Provider
-      value={{ lang, setLang, prevLang: prevLangRef.current }}
-    >
+    <LanguageContext.Provider value={{ lang, setLang }}>
       {children}
     </LanguageContext.Provider>
   );
