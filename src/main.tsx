@@ -1,19 +1,33 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import "./index.css";
-import App from "./App.tsx";
-import { DarkModeProvider } from "./hooks/DarkModeContext";
-import { LanguageProvider } from "./hooks/LanguageProvider";
 
-createRoot(document.getElementById("root")!).render(
-  <HelmetProvider>
-    <LanguageProvider>
-      <DarkModeProvider>
-        <StrictMode>
-          <App />
-        </StrictMode>
-      </DarkModeProvider>
-    </LanguageProvider>
-  </HelmetProvider>
-);
+import { registerServiceWorker } from "./registerSW";
+import { LanguageProvider } from "./hooks/LanguageProvider";
+import { DarkModeProvider } from "./hooks/DarkModeContext";
+
+import App from "./App";
+import "./App.css";
+
+const rootElement = document.getElementById("root");
+
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <HelmetProvider>
+        <BrowserRouter>
+          <LanguageProvider>
+            <DarkModeProvider>
+              <App />
+            </DarkModeProvider>
+          </LanguageProvider>
+        </BrowserRouter>
+      </HelmetProvider>
+    </React.StrictMode>
+  );
+
+  registerServiceWorker();
+} else {
+  console.error("Element #root not found");
+}
