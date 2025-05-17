@@ -9,7 +9,7 @@ import { useLanguage } from "../hooks/LanguageProvider";
 import LanguageTransition from "../components/LanguageTransition";
 import { useDarkMode } from "../hooks/DarkModeContext";
 import { useEffect, useState } from "react";
-import emailjs from "@emailjs/browser";
+import { sendEmail } from "../utils/sendEmail";
 
 type FormValues = {
   name: string;
@@ -66,18 +66,11 @@ export default function Contact() {
 
     try {
       setSendError(false);
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        {
-          name: data.name,
-          email: data.email,
-          message: data.message,
-          title: "New contact from portfolio",
-          time: new Date().toLocaleString(),
-        },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      );
+      await sendEmail({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+      });
       reset();
     } catch (err) {
       console.error("EmailJS error:", err);
