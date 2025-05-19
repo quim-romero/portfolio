@@ -18,6 +18,7 @@ export default function Footer() {
     setTheme(isDark ? "dark" : "light");
   }, [isDark]);
 
+  // Keyboard trigger for easter egg
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.altKey && e.key.toLowerCase() === "q") {
@@ -32,7 +33,6 @@ export default function Footer() {
     <>
       <motion.footer
         role="contentinfo"
-        aria-label="Site Footer"
         className="relative bg-light dark:bg-dark border-t border-gray-200 dark:border-gray-800 px-6 py-10 text-sm text-gray-600 dark:text-gray-400 overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -40,6 +40,7 @@ export default function Footer() {
         transition={{ duration: 0.5 }}
       >
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
+          {/* Social icons */}
           <div className="flex gap-5 text-xl" aria-label="Social links">
             <a
               href="https://github.com/quim-romero"
@@ -68,6 +69,7 @@ export default function Footer() {
             </a>
           </div>
 
+          {/* Freelance availability + Easter egg */}
           <div className="text-center md:text-left space-y-1">
             <p>
               {t("footer", "freelanceShort", lang)}{" "}
@@ -83,6 +85,7 @@ export default function Footer() {
             </p>
           </div>
 
+          {/* Copyright */}
           <LanguageTransition>
             <div
               className="flex flex-wrap justify-center md:justify-end gap-4 text-sm font-medium"
@@ -98,6 +101,7 @@ export default function Footer() {
           </LanguageTransition>
         </div>
 
+        {/* Theme overlay */}
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={theme}
@@ -110,6 +114,7 @@ export default function Footer() {
         </AnimatePresence>
       </motion.footer>
 
+      {/* Modal */}
       {showStack && <StackModal onClose={() => setShowStack(false)} />}
     </>
   );
