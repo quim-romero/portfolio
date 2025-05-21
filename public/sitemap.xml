@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- HOME -->
+  <url>
+    <loc>https://quimromero.com/</loc>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quimromero.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://quimromero.com/" />
+  </url>
+
+  <!-- Static pages -->
+  <url>
+    <loc>https://quimromero.com/projects</loc>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quimromero.com/projects" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://quimromero.com/projects" />
+  </url>
+
+  <url>
+    <loc>https://quimromero.com/about</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quimromero.com/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://quimromero.com/about" />
+  </url>
+
+  <url>
+    <loc>https://quimromero.com/contact</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quimromero.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://quimromero.com/contact" />
+  </url>
+
+  <url>
+    <loc>https://quimromero.com/blog</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quimromero.com/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://quimromero.com/blog" />
+  </url>
+
+  <!-- Blog articles -->
+  <url>
+    <loc>https://quimromero.com/blog/freelance-services</loc>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quimromero.com/blog/freelance-services" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://quimromero.com/blog/freelance-services" />
+  </url>
+
+  <url>
+    <loc>https://quimromero.com/blog/my-process-from-start-to-finish</loc>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quimromero.com/blog/my-process-from-start-to-finish" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://quimromero.com/blog/my-process-from-start-to-finish" />
+  </url>
+
+  <url>
+    <loc>https://quimromero.com/blog/portfolio-design</loc>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quimromero.com/blog/portfolio-design" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://quimromero.com/blog/portfolio-design" />
+  </url>
+
+  <url>
+    <loc>https://quimromero.com/blog/nebula-terminal-experience</loc>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quimromero.com/blog/nebula-terminal-experience" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://quimromero.com/blog/nebula-terminal-experience" />
+  </url>
+
+  <url>
+    <loc>https://quimromero.com/blog/what-to-expect-working-with-me</loc>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://quimromero.com/blog/what-to-expect-working-with-me" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://quimromero.com/blog/what-to-expect-working-with-me" />
+  </url>
+
+</urlset>
