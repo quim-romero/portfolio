@@ -16,33 +16,67 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: 'novatech',
-    title: 'NovaTech Solutions',
-    description: 'Corporate SaaS site simulation with dynamic dashboards, real AI demos, and scalable architecture.',
+    id: "novatech",
+    title: "NovaTech Solutions",
+    description:
+      "Corporate SaaS site simulation with dynamic dashboards, real AI demos, and scalable architecture.",
     image: {
-      light: '/projects/novatech-light.png',
-      dark: '/projects/novatech-dark.png',
+      light: "/projects/novatech-light.gif",
+      dark: "/projects/novatech-dark.gif",
     },
     preview: {
-      light: '/previews/novatech-light.webm',
-      dark: '/previews/novatech-dark.webm',
+      light: "/previews/novatech-light.webm",
+      dark: "/previews/novatech-dark.webm",
     },
-    liveUrl: 'https://novatech.quimromero.com',
-    githubUrl: 'https://github.com/quim-romero/novatech',
+    liveUrl: "https://novatech.quimromero.com",
+    githubUrl: "https://github.com/quim-romero/novatech",
   },
   {
-    id: 'visionary-gallery',
-    title: 'Visionary Gallery',
-    description: 'Immersive SPA for digital art with real-time filters, persistent favorites, and theme support.',
+    id: "nebulaos",
+    title: "NebulaOS",
+    description:
+      "Experimental microsite with GSAP, interactive console demo, and futuristic animations.",
     image: {
-      light: '/projects/visionary-light.png',
-      dark: '/projects/visionary-dark.png',
+      light: "/projects/nebulaos-light.png",
+      dark: "/projects/nebulaos-dark.png",
     },
     preview: {
-      light: '/previews/visionary-light.webm',
-      dark: '/previews/visionary-dark.webm',
+      light: "/previews/nebulaos-light.webm",
+      dark: "/previews/nebulaos-dark.webm",
     },
-    liveUrl: 'https://visionary.quimromero.com',
-    githubUrl: 'https://github.com/quim-romero/visionary',
+    liveUrl: "https://nebulaos.quimromero.com",
+    githubUrl: "https://github.com/quim-romero/nebulaos",
+  },
+  {
+    id: "visionary-gallery",
+    title: "Visionary Gallery",
+    description:
+      "Immersive SPA for digital art with real-time filters, persistent favorites, and theme support.",
+    image: {
+      light: "/projects/visionary-light.png",
+      dark: "/projects/visionary-dark.png",
+    },
+    preview: {
+      light: "/previews/visionary-light.webm",
+      dark: "/previews/visionary-dark.webm",
+    },
+    liveUrl: "https://visionary.quimromero.com",
+    githubUrl: "https://github.com/quim-romero/visionary",
+  },
+  {
+    id: "trackforge",
+    title: "TrackForge",
+    description:
+      "Typed task management dashboard with real-time filters, productivity charts, and persistent settings.",
+    image: {
+      light: "/projects/trackforge-light.png",
+      dark: "/projects/trackforge-dark.png",
+    },
+    preview: {
+      light: "/previews/trackforge-light.webm",
+      dark: "/previews/trackforge-dark.webm",
+    },
+    liveUrl: "https://trackforge.quimromero.com",
+    githubUrl: "https://github.com/quim-romero/trackforge",
   },
 ];
