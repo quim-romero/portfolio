@@ -1,10 +1,11 @@
 import Hero from '../components/Hero'
+import Layout from '../components/Layout'
 
 const Home = () => {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <Layout>
       <Hero />
-    </main>
+    </Layout>
   )
 }
 
