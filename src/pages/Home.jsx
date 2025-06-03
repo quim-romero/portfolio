@@ -1,7 +1,9 @@
+import Hero from '../components/Hero'
+
 const Home = () => {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-background text-foreground">
-      <h1 className="text-3xl font-semibold">Portfolio Homepage</h1>
+    <main className="min-h-screen bg-background text-foreground">
+      <Hero />
     </main>
   )
 }
