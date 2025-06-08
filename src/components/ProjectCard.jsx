@@ -1,27 +1,41 @@
-import { Link } from 'react-router-dom'
-
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, onClick }) => {
   return (
-    <div className="bg-zinc-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+    <div
+      className="bg-zinc-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
+      onClick={onClick}
+    >
       <img
         src={project.thumbnail}
         alt={project.title}
-        className="w-full h-48 object-cover"
+        className="w-full h-48 object-cover object-top"
       />
       <div className="p-4">
         <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
         <p className="text-sm text-muted mb-4">{project.category}</p>
-        <div className="flex justify-between items-center text-sm">
-          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+
+        <div className="flex gap-4 mt-4">
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-primary text-white text-sm font-medium rounded hover:bg-indigo-600 transition"
+            onClick={(e) => e.stopPropagation()}
+          >
             Live Demo
           </a>
-          <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="text-muted hover:underline">
-            Code
+          <a
+            href={project.codeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-zinc-800 text-white text-sm font-medium rounded hover:bg-zinc-700 transition"
+            onClick={(e) => e.stopPropagation()}
+          >
+            View Code
           </a>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProjectCard
+export default ProjectCard;
