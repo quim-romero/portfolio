@@ -17,7 +17,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center px-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4"
           variants={overlayVariants}
           initial="hidden"
           animate="visible"
@@ -35,6 +35,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
             <button
               onClick={onClose}
               className="absolute top-4 right-4 text-white text-xl hover:text-muted"
+              aria-label="Close modal"
             >
               &times;
             </button>
@@ -45,7 +46,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
             <img
               src={project?.thumbnail}
               alt={project?.title}
-              className="w-full max-h-80 object-cover object-top rounded mb-4"
+              className="w-full max-h-[340px] object-cover object-top rounded mb-4"
             />
 
             <p className="text-sm text-zinc-300 mb-6">{project?.description}</p>

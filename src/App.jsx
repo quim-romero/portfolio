@@ -1,16 +1,47 @@
-import { Routes, Route } from 'react-router-dom'
-import Layout from './components/Layout'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
 
+import Layout from './components/Layout'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
 
+const pageVariants = {
+  initial: { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -10 },
+}
+
 const App = () => {
+  const location = useLocation()
+
   return (
     <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-      </Routes>
+      <AnimatePresence mode="wait" initial={false}>
+        <Routes location={location} key={location.pathname}>
+          <Route
+            path="/"
+            element={
+              <motion.div
+                {...pageVariants}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+              >
+                <Home />
+              </motion.div>
+            }
+          />
+          <Route
+            path="/projects"
+            element={
+              <motion.div
+                {...pageVariants}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+              >
+                <Projects />
+              </motion.div>
+            }
+          />
+        </Routes>
+      </AnimatePresence>
     </Layout>
   )
 }
