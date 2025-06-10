@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
+import About from './pages/About'
 
 const pageVariants = {
   initial: { opacity: 0, y: 10 },
@@ -37,6 +38,17 @@ const App = () => {
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
               >
                 <Projects />
+              </motion.div>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <motion.div
+                {...pageVariants}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+              >
+                <About />
               </motion.div>
             }
           />
