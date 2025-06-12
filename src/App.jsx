@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 
 const pageVariants = {
   initial: { opacity: 0, y: 10 },
@@ -61,6 +62,17 @@ const App = () => {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
                 <Contact />
+              </motion.div>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <motion.div
+                {...pageVariants}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <NotFound />
               </motion.div>
             }
           />
