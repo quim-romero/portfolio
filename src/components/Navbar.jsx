@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle'
 
 const Navbar = () => {
   return (
@@ -6,7 +7,8 @@ const Navbar = () => {
       <Link to="/" className="text-xl font-bold">
         Quim Romero
       </Link>
-      <nav className="space-x-4">
+
+      <nav className="flex items-center gap-4">
         <Link to="/projects" className="hover:underline">
           Projects
         </Link>
@@ -16,6 +18,7 @@ const Navbar = () => {
         <Link to="/contact" className="hover:underline">
           Contact
         </Link>
+        <ThemeToggle />
       </nav>
     </header>
   )
