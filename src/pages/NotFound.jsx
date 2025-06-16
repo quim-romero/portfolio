@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 const NotFound = () => {
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center text-center px-6">
+    <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-white dark:bg-background text-zinc-900 dark:text-foreground transition-colors duration-300">
       <motion.h1
         className="text-6xl font-extrabold text-primary mb-4"
         initial={{ opacity: 0, y: -10 }}
@@ -13,7 +13,7 @@ const NotFound = () => {
         404
       </motion.h1>
       <motion.p
-        className="text-xl text-muted mb-6"
+        className="text-xl text-muted dark:text-muted mb-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}

@@ -7,9 +7,11 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null)
 
   return (
-    <section className="min-h-screen px-6 py-12">
+    <section className="min-h-screen px-6 py-12 bg-white dark:bg-background text-zinc-900 dark:text-foreground transition-colors duration-300">
       <h1 className="text-4xl font-bold mb-4">Projects</h1>
-      <p className="text-muted mb-10">A selection of work I've crafted with care.</p>
+      <p className="text-muted dark:text-muted mb-10">
+        A selection of work I've crafted with care.
+      </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (

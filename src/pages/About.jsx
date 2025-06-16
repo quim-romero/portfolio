@@ -17,7 +17,7 @@ const techStack = [
 
 const About = () => {
   return (
-    <section className="min-h-screen px-6 py-16 max-w-4xl mx-auto">
+    <section className="min-h-screen px-6 py-16 max-w-4xl mx-auto bg-white dark:bg-background text-zinc-900 dark:text-foreground transition-colors duration-300">
       <motion.h1
         className="text-4xl font-bold mb-6"
         initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ const About = () => {
       </motion.h1>
 
       <motion.p
-        className="text-muted mb-10 leading-relaxed text-lg"
+        className="text-muted dark:text-muted mb-10 leading-relaxed text-lg"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -60,7 +60,7 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="text-4xl mb-2">{tech.icon}</div>
-            <span className="text-sm text-muted">{tech.name}</span>
+            <span className="text-sm text-muted dark:text-muted">{tech.name}</span>
           </motion.div>
         ))}
       </motion.div>

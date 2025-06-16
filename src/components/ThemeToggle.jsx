@@ -9,7 +9,11 @@ const ThemeToggle = () => {
     <button
       onClick={toggleTheme}
       aria-label="Toggle dark mode"
-      className="w-10 h-10 rounded-full flex items-center justify-center bg-zinc-800 hover:bg-zinc-700 transition-colors"
+      className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 ${
+        theme === 'dark'
+          ? 'bg-zinc-800 hover:bg-zinc-700'
+          : 'bg-zinc-100 hover:bg-zinc-200'
+      }`}
     >
       <motion.div
         key={theme}

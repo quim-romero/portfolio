@@ -25,7 +25,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="min-h-screen px-6 py-16 max-w-xl mx-auto">
+    <section className="min-h-screen px-6 py-16 max-w-xl mx-auto bg-white dark:bg-background text-zinc-900 dark:text-foreground transition-colors duration-300">
       <motion.h1
         className="text-4xl font-bold mb-6"
         initial={{ opacity: 0, y: 20 }}
@@ -36,7 +36,7 @@ const Contact = () => {
       </motion.h1>
 
       <motion.p
-        className="text-muted mb-10"
+        className="text-muted dark:text-muted mb-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -55,7 +55,7 @@ const Contact = () => {
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full bg-zinc-800 text-white px-4 py-3 rounded focus:outline-none focus:ring-2 focus:ring-primary transition"
+            className="w-full bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white px-4 py-3 rounded focus:outline-none focus:ring-2 focus:ring-primary transition"
           />
         </div>
 
@@ -69,7 +69,7 @@ const Contact = () => {
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full bg-zinc-800 text-white px-4 py-3 rounded focus:outline-none focus:ring-2 focus:ring-primary transition"
+            className="w-full bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white px-4 py-3 rounded focus:outline-none focus:ring-2 focus:ring-primary transition"
           />
         </div>
 
@@ -83,7 +83,7 @@ const Contact = () => {
             rows="5"
             value={formData.message}
             onChange={handleChange}
-            className="w-full bg-zinc-800 text-white px-4 py-3 rounded focus:outline-none focus:ring-2 focus:ring-primary transition resize-none"
+            className="w-full bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white px-4 py-3 rounded focus:outline-none focus:ring-2 focus:ring-primary transition resize-none"
           />
         </div>
 
@@ -97,7 +97,7 @@ const Contact = () => {
 
         {status === "success" && (
           <motion.p
-            className="text-green-400 mt-4"
+            className="text-green-500 dark:text-green-400 mt-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >

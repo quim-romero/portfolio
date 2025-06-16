@@ -1,7 +1,7 @@
 const ProjectCard = ({ project, onClick }) => {
   return (
     <div
-      className="bg-zinc-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
+      className="bg-white dark:bg-zinc-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-zinc-200 dark:border-zinc-800 cursor-pointer"
       onClick={onClick}
     >
       <img
@@ -11,7 +11,7 @@ const ProjectCard = ({ project, onClick }) => {
       />
       <div className="p-4">
         <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-        <p className="text-sm text-muted mb-4">{project.category}</p>
+        <p className="text-sm text-muted dark:text-muted mb-4">{project.category}</p>
 
         <div className="flex gap-4 mt-4">
           <a
@@ -27,7 +27,7 @@ const ProjectCard = ({ project, onClick }) => {
             href={project.codeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2 bg-zinc-800 text-white text-sm font-medium rounded hover:bg-zinc-700 transition"
+            className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white text-sm font-medium rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition"
             onClick={(e) => e.stopPropagation()}
           >
             View Code
@@ -35,7 +35,7 @@ const ProjectCard = ({ project, onClick }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProjectCard;
+export default ProjectCard

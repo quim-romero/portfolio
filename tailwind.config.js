@@ -13,6 +13,16 @@ export default {
         background: '#0f0f11',
         foreground: '#fafafa',
         muted: '#a1a1aa',
+        light: {
+          background: '#ffffff',
+          foreground: '#0f0f11',
+          muted: '#6b7280',
+        },
+        dark: {
+          background: '#0f0f11',
+          foreground: '#fafafa',
+          muted: '#a1a1aa',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui'],
@@ -22,6 +32,11 @@ export default {
       },
       transitionTimingFunction: {
         'soft-ease': 'cubic-bezier(0.4, 0, 0.2, 1)',
+      },
+      transitionProperty: {
+        'colors': 'background-color, border-color, color, fill, stroke',
+        'spacing': 'margin, padding',
+        'transform': 'transform',
       },
       keyframes: {
         fadeIn: {

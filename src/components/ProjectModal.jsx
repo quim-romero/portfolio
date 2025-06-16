@@ -25,7 +25,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
           onClick={onClose}
         >
           <motion.div
-            className="bg-zinc-900 rounded-xl max-w-2xl w-full p-6 relative text-white shadow-2xl"
+            className="bg-white dark:bg-zinc-900 rounded-xl max-w-2xl w-full p-6 relative text-zinc-900 dark:text-white shadow-2xl transition-colors duration-300"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -34,14 +34,14 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-white text-xl hover:text-muted"
+              className="absolute top-4 right-4 text-zinc-500 dark:text-white text-xl hover:text-muted"
               aria-label="Close modal"
             >
               &times;
             </button>
 
             <h2 className="text-2xl font-bold mb-2">{project?.title}</h2>
-            <p className="text-sm text-muted mb-4">{project?.category}</p>
+            <p className="text-sm text-muted dark:text-muted mb-4">{project?.category}</p>
 
             <img
               src={project?.thumbnail}
@@ -49,11 +49,14 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
               className="w-full max-h-[340px] object-cover object-top rounded mb-4"
             />
 
-            <p className="text-sm text-zinc-300 mb-6">{project?.description}</p>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300 mb-6">{project?.description}</p>
 
             <div className="flex flex-wrap gap-2 text-xs mb-4">
               {project?.tech?.map((tech, index) => (
-                <span key={index} className="bg-zinc-800 px-2 py-1 rounded">
+                <span
+                  key={index}
+                  className="bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-white px-2 py-1 rounded"
+                >
                   {tech}
                 </span>
               ))}
@@ -72,7 +75,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                 href={project?.codeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 bg-zinc-800 text-white text-sm font-medium rounded hover:bg-zinc-700 transition"
+                className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white text-sm font-medium rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition"
               >
                 View Code
               </a>
