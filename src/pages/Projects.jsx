@@ -7,7 +7,7 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null)
 
   return (
-    <section className="min-h-screen px-6 py-12 bg-white dark:bg-background text-zinc-900 dark:text-foreground transition-colors duration-300">
+    <section className="min-h-screen px-6 pt-28 pb-16 bg-white dark:bg-background text-zinc-900 dark:text-foreground transition-colors duration-300">
       <h1 className="text-4xl font-bold mb-4">Projects</h1>
       <p className="text-muted dark:text-muted mb-10">
         A selection of work I've crafted with care.

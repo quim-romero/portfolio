@@ -2,18 +2,25 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
-  const [isDark, setIsDark] = useState(document.documentElement.classList.contains("dark"));
+  const [isDark, setIsDark] = useState(() =>
+    typeof window !== "undefined"
+      ? document.documentElement.classList.contains("dark")
+      : false
+  );
 
   useEffect(() => {
+    const root = document.documentElement;
+
     const observer = new MutationObserver(() => {
-      const dark = document.documentElement.classList.contains("dark");
-      setIsDark(dark);
+      setIsDark(root.classList.contains("dark"));
     });
 
-    observer.observe(document.documentElement, {
+    observer.observe(root, {
       attributes: true,
       attributeFilter: ["class"],
     });
+
+    setIsDark(root.classList.contains("dark"));
 
     return () => observer.disconnect();
   }, []);
