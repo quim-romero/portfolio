@@ -67,7 +67,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                 href={project?.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 bg-primary text-white text-sm font-medium rounded hover:bg-indigo-600 transition"
+                className="px-4 py-2 bg-primary text-white text-sm font-medium rounded hover:bg-[#3a6551] transition"
               >
                 Live Demo
               </a>

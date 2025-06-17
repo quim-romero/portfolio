@@ -16,7 +16,6 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simulate sending
     setStatus("loading");
     setTimeout(() => {
       setStatus("success");
@@ -90,7 +89,9 @@ const Contact = () => {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="bg-primary text-white px-6 py-3 rounded font-medium hover:bg-indigo-600 transition"
+          className="px-6 py-3 rounded font-medium text-white 
+            bg-primary-light hover:bg-primary-lightHover 
+            dark:bg-primary dark:hover:bg-primary-dark transition"
         >
           {status === "loading" ? "Sending..." : "Send Message"}
         </button>
