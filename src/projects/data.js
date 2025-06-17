@@ -7,7 +7,7 @@ const projects = [
     thumbnail: '/images/taskflow.png',
     description: 'A high-end, animated landing page for a fictional productivity SaaS. Built with semantic HTML, modular SCSS, and GSAP animations.',
     tech: ['HTML5', 'SCSS (BEM)', 'JavaScript', 'GSAP'],
-    liveUrl: 'https://taskflow-landing-nu.vercel.app',
+    liveUrl: 'https://taskflow.quimromero.com',
     codeUrl: 'https://github.com/quim-romero/taskflow-landing',
   },
   {
@@ -18,7 +18,7 @@ const projects = [
     thumbnail: '/images/lumen.png',
     description: 'Elegant, animated microsite for a digital artist. Includes gallery with filters, dark mode toggle, and scroll animations using AOS.js.',
     tech: ['HTML5', 'CSS Grid', 'JavaScript', 'AOS.js'],
-    liveUrl: 'https://lumen-portfolio-kappa.vercel.app',
+    liveUrl: 'https://lumen.quimromero.com',
     codeUrl: 'https://github.com/quim-romero/lumen-portfolio',
   },
   {
@@ -29,7 +29,7 @@ const projects = [
     thumbnail: '/images/devsummit.png',
     description: 'Lightning-fast landing built with Tailwind CSS. Mobile-first layout, custom components, dark mode and GSAP interactions.',
     tech: ['Tailwind CSS', 'Alpine.js', 'GSAP'],
-    liveUrl: 'https://devsummit-ten.vercel.app',
+    liveUrl: 'https://devsummit.quimromero.com',
     codeUrl: 'https://github.com/quim-romero/devsummit-landing',
   },
   {
@@ -40,7 +40,7 @@ const projects = [
     thumbnail: '/images/visionary.png',
     description: 'Full SPA built with React to showcase digital artworks. Features filters, modals, lazy loading, routing, and animated transitions.',
     tech: ['React', 'React Router', 'Tailwind', 'Framer Motion'],
-    liveUrl: 'https://visionary-gallery.vercel.app',
+    liveUrl: 'https://visionary.quimromero.com',
     codeUrl: 'https://github.com/quim-romero/visionary-gallery',
   },
   {
@@ -51,7 +51,7 @@ const projects = [
     thumbnail: '/images/trackforge.png',
     description: 'Functional dashboard with task management, charts, filters, and global state. Built with React + TypeScript and Zustand.',
     tech: ['React', 'TypeScript', 'Tailwind CSS', 'Zustand', 'Chart.js'],
-    liveUrl: 'https://trackforge-dashboard.vercel.app',
+    liveUrl: 'https://trackforge.quimromero.com',
     codeUrl: 'https://github.com/quim-romero/trackforge-dashboard',
   },
   {
@@ -62,7 +62,7 @@ const projects = [
     thumbnail: '/images/nebulaos.png',
     description: 'Scroll-driven storytelling experience for a futuristic digital product. Uses Framer Motion, custom modals, and smooth scroll techniques.',
     tech: ['React', 'Tailwind CSS', 'Framer Motion', 'Lenis.js'],
-    liveUrl: 'https://nebulaos-landing.vercel.app',
+    liveUrl: 'https://nebulaos.quimromero.com',
     codeUrl: 'https://github.com/quim-romero/nebulaos-microsite',
   },
   {
@@ -73,7 +73,7 @@ const projects = [
     thumbnail: '/images/novatech.png',
     description: 'A complete company website with multiple pages, animated sections, routing, forms and responsive design. Built with React and Framer Motion.',
     tech: ['React', 'Tailwind CSS', 'Framer Motion', 'React Helmet'],
-    liveUrl: 'https://novatech-solutions.netlify.app',
+    liveUrl: 'https://novatech.quimromero.com',
     codeUrl: 'https://github.com/quim-romero/novatech-solutions',
   },
 ]
