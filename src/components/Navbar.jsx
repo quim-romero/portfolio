@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -14,7 +14,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
 
-  useState(() => {
+  useEffect(() => {
     setIsOpen(false)
   }, [location.pathname])
 
@@ -33,16 +33,19 @@ const Navbar = () => {
             {link.label}
           </Link>
         ))}
-        <ThemeToggle />
       </nav>
 
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle menu"
-        className="md:hidden z-50 text-zinc-900 dark:text-foreground"
-      >
-        {isOpen ? <X size={28} /> : <Menu size={28} />}
-      </button>
+      <div className="flex items-center gap-4 md:gap-6 z-50">
+        <ThemeToggle />
+
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
+          className="md:hidden text-zinc-900 dark:text-foreground"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (
@@ -65,9 +68,6 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <div className="mt-2">
-                <ThemeToggle />
-              </div>
             </div>
           </motion.div>
         )}
