@@ -1,5 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "emailjs-com";
+
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const USER_ID = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,12 +20,18 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setStatus("loading");
-    setTimeout(() => {
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-    }, 1200);
+
+    emailjs
+      .send(SERVICE_ID, TEMPLATE_ID, formData, USER_ID)
+      .then(() => {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      })
+      .catch((error) => {
+        console.error("EmailJS Error:", error);
+        setStatus("error");
+      });
   };
 
   return (
@@ -40,7 +51,8 @@ const Contact = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
       >
-        Whether you're hiring, building something ambitious, or just want to connect — I'd love to hear from you.
+        Whether you're hiring, building something ambitious, or just want to
+        connect — I'd love to hear from you.
       </motion.p>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -103,6 +115,15 @@ const Contact = () => {
             animate={{ opacity: 1 }}
           >
             Message sent successfully!
+          </motion.p>
+        )}
+        {status === "error" && (
+          <motion.p
+            className="text-red-500 dark:text-red-400 mt-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            Something went wrong. Please try again.
           </motion.p>
         )}
       </form>
