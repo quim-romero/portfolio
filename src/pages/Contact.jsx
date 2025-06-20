@@ -23,7 +23,16 @@ const Contact = () => {
     setStatus("loading");
 
     emailjs
-      .send(SERVICE_ID, TEMPLATE_ID, formData, USER_ID)
+      .send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          user_name: formData.name,
+          user_email: formData.email,
+          message: formData.message,
+        },
+        USER_ID
+      )
       .then(() => {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
