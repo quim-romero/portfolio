@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
@@ -8,11 +8,14 @@ const Hero = () => {
       : false
   );
 
+  const videoRef = useRef(null);
+
   useEffect(() => {
     const root = document.documentElement;
 
     const observer = new MutationObserver(() => {
-      setIsDark(root.classList.contains("dark"));
+      const dark = root.classList.contains("dark");
+      setIsDark(dark);
     });
 
     observer.observe(root, {
@@ -25,15 +28,21 @@ const Hero = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+  }, [isDark]);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0"
-        key={isDark ? "dark" : "light"}
       >
         <source
           src={isDark ? "/videos/hero-dark.mp4" : "/videos/hero-light.mp4"}

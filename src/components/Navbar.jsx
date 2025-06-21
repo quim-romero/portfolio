@@ -13,35 +13,40 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
+  const isHome = location.pathname === '/'
 
   useEffect(() => {
     setIsOpen(false)
   }, [location.pathname])
 
   return (
-    <header className="w-full fixed top-0 z-30 py-4 px-6 flex justify-between items-center 
+    <header className="w-full fixed top-0 z-30 py-4 px-6 flex items-center justify-between 
       bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md 
       text-zinc-900 dark:text-foreground transition-colors duration-300 border-b border-zinc-200 dark:border-zinc-800">
       
-      <Link to="/" className="text-xl font-bold z-50">
-        Quim Romero
-      </Link>
+      {!isHome && (
+        <Link to="/" className="text-xl font-bold z-50">
+          Quim Romero
+        </Link>
+      )}
 
-      <nav className="hidden md:flex items-center gap-4">
-        {navLinks.map((link) => (
-          <Link key={link.path} to={link.path} className="hover:underline transition">
-            {link.label}
-          </Link>
-        ))}
-      </nav>
-
-      <div className="flex items-center gap-4 md:gap-6 z-50">
+      <div className="hidden md:flex items-center gap-6 ml-auto">
+        <nav className="flex items-center gap-4">
+          {navLinks.map((link) => (
+            <Link key={link.path} to={link.path} className="hover:underline transition">
+              {link.label}
+            </Link>
+          ))}
+        </nav>
         <ThemeToggle />
+      </div>
 
+      <div className="flex items-center gap-4 md:hidden z-50 ml-auto">
+        <ThemeToggle />
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
-          className="md:hidden text-zinc-900 dark:text-foreground"
+          className="text-zinc-900 dark:text-foreground"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
