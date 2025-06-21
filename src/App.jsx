@@ -1,5 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
@@ -18,67 +20,72 @@ const App = () => {
   const location = useLocation();
 
   return (
-    <Layout>
-      <AnimatePresence mode="wait" initial={false}>
-        <Routes location={location} key={location.pathname}>
-          <Route
-            path="/"
-            element={
-              <motion.div
-                {...pageVariants}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <Home />
-              </motion.div>
-            }
-          />
-          <Route
-            path="/projects"
-            element={
-              <motion.div
-                {...pageVariants}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <Projects />
-              </motion.div>
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <motion.div
-                {...pageVariants}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <About />
-              </motion.div>
-            }
-          />
-          <Route
-            path="/contact"
-            element={
-              <motion.div
-                {...pageVariants}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <Contact />
-              </motion.div>
-            }
-          />
-          <Route
-            path="*"
-            element={
-              <motion.div
-                {...pageVariants}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <NotFound />
-              </motion.div>
-            }
-          />
-        </Routes>
-      </AnimatePresence>
-    </Layout>
+    <>
+      <Layout>
+        <AnimatePresence mode="wait" initial={false}>
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path="/"
+              element={
+                <motion.div
+                  {...pageVariants}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <Home />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/projects"
+              element={
+                <motion.div
+                  {...pageVariants}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <Projects />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <motion.div
+                  {...pageVariants}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <About />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <motion.div
+                  {...pageVariants}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <Contact />
+                </motion.div>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <motion.div
+                  {...pageVariants}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <NotFound />
+                </motion.div>
+              }
+            />
+          </Routes>
+        </AnimatePresence>
+      </Layout>
+
+      <Analytics />
+      <SpeedInsights />
+    </>
   );
 };
 
