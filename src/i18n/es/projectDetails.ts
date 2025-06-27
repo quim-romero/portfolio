@@ -65,4 +65,18 @@ export default {
       "Formulario de perfil editable con validación mediante Zod",
     ],
   },
+  lumina: {
+    title: "Lumina",
+    description:
+      "Tienda digital con checkout, formularios y animación premium.",
+    longDescription:
+      "Lumina es una landing page e-commerce construida como si lanzara mañana. Combina animaciones suaves, arquitectura escalable y un formulario funcional con validación y envío real. Ideal para demostrar habilidades reales de frontend con enfoque en producto.",
+    highlights: [
+      "Formulario validado con Zod + envío con EmailJS",
+      "Checkout funcional con Stripe (modo test)",
+      "Scroll suave y animaciones reactivas con Framer Motion",
+      "Modo oscuro/claro persistente",
+      "Arquitectura modular, escalable y real",
+    ],
+  },
 };

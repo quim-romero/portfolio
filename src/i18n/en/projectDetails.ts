@@ -64,4 +64,18 @@ export default {
       "Editable profile form with validation via Zod",
     ],
   },
+  lumina: {
+    title: "Lumina",
+    description:
+      "Digital storefront with real checkout, animated UI and production-grade forms.",
+    longDescription:
+      "Lumina is a modern digital goods e-commerce experience built as if launching tomorrow. Features smooth animations, a real contact form with validation and EmailJS delivery, Stripe test-mode checkout, and polished motion. Built to showcase frontend production thinking.",
+    highlights: [
+      "Validated contact form with Zod + EmailJS integration",
+      "Stripe-powered checkout (test mode)",
+      "Smooth scroll and animations using Framer Motion + Lenis",
+      "Dark/light theme with persistence",
+      "Scalable modular architecture built from scratch",
+    ],
+  },
 };
