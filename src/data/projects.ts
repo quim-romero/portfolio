@@ -48,6 +48,22 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/quim-romero/nebulaos",
   },
   {
+    id: "lumina",
+    title: "Lumina",
+    description:
+      "Premium e-commerce storefront with smooth animations, Stripe checkout, and contact form.",
+    image: {
+      light: "/projects/lumina-light.png",
+      dark: "/projects/lumina-dark.png",
+    },
+    preview: {
+      light: "/previews/lumina-light.webm",
+      dark: "/previews/lumina-dark.webm",
+    },
+    liveUrl: "https://lumina.quimromero.com",
+    githubUrl: "https://github.com/quim-romero/lumina",
+  },
+  {
     id: "visionary-gallery",
     title: "Visionary Gallery",
     description:
@@ -78,21 +94,5 @@ export const projects: Project[] = [
     },
     liveUrl: "https://trackforge.quimromero.com",
     githubUrl: "https://github.com/quim-romero/trackforge",
-  },
-  {
-    id: "lumina",
-    title: "Lumina",
-    description:
-      "Premium digital storefront with smooth animations, real Stripe checkout, and a validated contact form.",
-    image: {
-      light: "/projects/lumina-light.png",
-      dark: "/projects/lumina-dark.png",
-    },
-    preview: {
-      light: "/previews/lumina-light.webm",
-      dark: "/previews/lumina-dark.webm",
-    },
-    liveUrl: "https://lumina.quimromero.com",
-    githubUrl: "https://github.com/quim-romero/lumina",
   },
 ];

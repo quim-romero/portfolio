@@ -90,6 +90,41 @@ export const projectDetails: ProjectDetail[] = [
     githubUrl: "https://github.com/quim-romero/nebulaos",
   },
   {
+    id: "lumina",
+    title: "Lumina",
+    description:
+      "E-commerce moderno para productos digitales con checkout real y animaciones fluidas.",
+    longDescription:
+      "Lumina es una experiencia de tienda digital premium con scroll animado, checkout funcional con Stripe en modo test, validación en formularios con Zod y envío de mensajes con EmailJS. Todo envuelto en una interfaz pulida con scroll suave, dark mode persistente y arquitectura real.",
+    image: {
+      dark: "/screens/lumina-dark.png",
+      light: "/screens/lumina-light.png",
+    },
+    preview: {
+      dark: "/previews/lumina-preview-dark.mp4",
+      light: "/previews/lumina-preview-light.mp4",
+    },
+    tech: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Zod",
+      "EmailJS",
+      "Stripe",
+    ],
+    highlights: [
+      "Formulario de contacto funcional con validación Zod + EmailJS",
+      "Checkout con Stripe (modo test)",
+      "Animaciones suaves con Framer Motion y scroll smoothing con Lenis",
+      "Modo claro/oscuro persistente",
+      "Diseño responsive y microinteracciones personalizadas",
+      "Arquitectura modular orientada a producción",
+    ],
+    liveUrl: "https://lumina.quimromero.com",
+    githubUrl: "https://github.com/quim-romero/lumina",
+  },
+  {
     id: "visionary-gallery",
     title: "Visionary Gallery",
     description: "Curated SPA gallery for immersive digital art experiences.",
@@ -148,40 +183,5 @@ export const projectDetails: ProjectDetail[] = [
     ],
     liveUrl: "https://trackforge.quimromero.com",
     githubUrl: "https://github.com/quim-romero/trackforge",
-  },
-  {
-    id: "lumina",
-    title: "Lumina",
-    description:
-      "E-commerce moderno para productos digitales con checkout real y animaciones fluidas.",
-    longDescription:
-      "Lumina es una experiencia de tienda digital premium con scroll animado, checkout funcional con Stripe en modo test, validación en formularios con Zod y envío de mensajes con EmailJS. Todo envuelto en una interfaz pulida con scroll suave, dark mode persistente y arquitectura real.",
-    tech: [
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Zod",
-      "EmailJS",
-      "Stripe",
-    ],
-    highlights: [
-      "Formulario de contacto funcional con validación Zod + EmailJS",
-      "Checkout con Stripe (modo test)",
-      "Animaciones suaves con Framer Motion y scroll smoothing con Lenis",
-      "Modo claro/oscuro persistente",
-      "Diseño responsive y microinteracciones personalizadas",
-      "Arquitectura modular orientada a producción",
-    ],
-    image: {
-      dark: "/screens/lumina-dark.png",
-      light: "/screens/lumina-light.png",
-    },
-    preview: {
-      dark: "/videos/lumina-preview-dark.mp4",
-      light: "/videos/lumina-preview-light.mp4",
-    },
-    liveUrl: "https://lumina.quimromero.com",
-    githubUrl: "https://github.com/quim-romero/lumina",
   },
 ];
