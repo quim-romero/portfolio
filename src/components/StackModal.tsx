@@ -14,6 +14,9 @@ export default function StackModal({ onClose }: StackModalProps) {
     lang
   );
 
+  const githubLabel =
+    lang === "es" ? "Ver código en GitHub →" : "View source on GitHub →";
+
   return (
     <AnimatePresence>
       <motion.div
@@ -54,6 +57,17 @@ export default function StackModal({ onClose }: StackModalProps) {
               </ul>
             </div>
           ))}
+
+          <div className="pt-4 border-t border-gray-300 dark:border-gray-700">
+            <a
+              href="https://github.com/quim-romero/portfolio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand underline hover:text-brand-dark transition"
+            >
+              {githubLabel}
+            </a>
+          </div>
         </motion.div>
       </motion.div>
     </AnimatePresence>
