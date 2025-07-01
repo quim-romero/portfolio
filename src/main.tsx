@@ -8,7 +8,7 @@ import { LanguageProvider } from "./hooks/LanguageProvider";
 import { DarkModeProvider } from "./hooks/DarkModeContext";
 
 import App from "./App";
-import "./index.css";
+import "./App.css";
 
 const rootElement = document.getElementById("root");
 
