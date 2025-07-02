@@ -13,6 +13,14 @@ pids
 *.seed
 *.pid.lock
 
+# Testing and coverage
+coverage/
+.vitest/
+test-results/
+playwright-report/
+*.tsbuildinfo
+src/**/*.test.{ts,tsx}
+
 # Dependency directories
 node_modules/
 
@@ -46,3 +54,7 @@ out/
 
 # TypeScript
 tsconfig.tsbuildinfo
+
+# Cypress artifacts
+cypress/screenshots/
+cypress/videos/
