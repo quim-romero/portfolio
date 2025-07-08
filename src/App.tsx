@@ -2,11 +2,16 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
+import ArticleDetail from "./pages/ArticleDetail";
 import NotFound from "./pages/NotFound";
 
 import NebulaTerminal from "./components/NebulaTerminal";
@@ -130,6 +135,22 @@ export default function App() {
               }
             />
             <Route
+              path="/blog"
+              element={
+                <PageTransition>
+                  <Blog />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/blog/:slug"
+              element={
+                <PageTransition>
+                  <ArticleDetail />
+                </PageTransition>
+              }
+            />
+            <Route
               path="*"
               element={
                 <PageTransition>
@@ -140,6 +161,8 @@ export default function App() {
           </Routes>
         </AnimatePresence>
       </main>
+      <Analytics />
+      <SpeedInsights />
     </>
   );
 }
