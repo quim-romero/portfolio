@@ -7,6 +7,7 @@ export default function ThemeToggle() {
 
   return (
     <button
+      data-testid="floating-toggle-theme"
       onClick={() => setIsDark(!isDark)}
       className="fixed bottom-6 right-6 z-50 p-3 rounded-full shadow-lg transition-all duration-300
                  bg-primary text-white hover:scale-105 hover:shadow-xl dark:text-dark"

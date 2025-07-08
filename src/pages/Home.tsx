@@ -23,21 +23,13 @@ export default function Home() {
     let message = "";
 
     if (lang === "es") {
-      if (hour >= 6 && hour < 12) {
-        message = "Buenos días";
-      } else if (hour >= 12 && hour < 18) {
-        message = "Buenas tardes";
-      } else {
-        message = "Buenas noches";
-      }
+      if (hour >= 6 && hour < 12) message = "Buenos días";
+      else if (hour >= 12 && hour < 18) message = "Buenas tardes";
+      else message = "Buenas noches";
     } else {
-      if (hour >= 6 && hour < 12) {
-        message = "Good morning";
-      } else if (hour >= 12 && hour < 18) {
-        message = "Good afternoon";
-      } else {
-        message = "Good evening";
-      }
+      if (hour >= 6 && hour < 12) message = "Good morning";
+      else if (hour >= 12 && hour < 18) message = "Good afternoon";
+      else message = "Good evening";
     }
 
     setGreeting(message);
@@ -86,11 +78,18 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            <p
+              data-testid="greeting"
+              className="text-base md:text-lg text-gray-700 dark:text-gray-300 mb-2"
+            >
+              {greeting}
+            </p>
+
             <h1
               data-testid="header-title"
               className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white"
             >
-              {greeting}, {t("home", "title", lang)}
+              {t("home", "title", lang)}
             </h1>
 
             <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">

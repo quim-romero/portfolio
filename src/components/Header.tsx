@@ -64,6 +64,7 @@ export default function Header() {
 
           <div className="flex items-center space-x-2 ml-4">
             <button
+              data-testid="toggle-theme"
               onClick={() => setIsDark((prev) => !prev)}
               className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"
               aria-label={
@@ -76,6 +77,7 @@ export default function Header() {
             </button>
 
             <button
+              data-testid="toggle-language"
               onClick={toggleLang}
               className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"
               aria-label={lang === "es" ? "Cambiar idioma" : "Switch language"}
@@ -87,6 +89,7 @@ export default function Header() {
 
         <div className="md:hidden flex items-center gap-3">
           <button
+            data-testid="toggle-theme"
             onClick={() => setIsDark((prev) => !prev)}
             className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"
             aria-label={
@@ -99,6 +102,7 @@ export default function Header() {
           </button>
 
           <button
+            data-testid="toggle-language"
             onClick={toggleLang}
             className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"
             aria-label={lang === "es" ? "Cambiar idioma" : "Switch language"}
