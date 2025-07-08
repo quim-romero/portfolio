@@ -7,33 +7,16 @@ import LanguageTransition from "../components/LanguageTransition";
 import { useDarkMode } from "../hooks/DarkModeContext";
 import { useEffect, useState } from "react";
 import HeroBackground from "../components/HeroBackground";
+import GreetingBadge from "../components/GreetingBadge";
 
 export default function Home() {
   const { lang } = useLanguage();
   const [isDark] = useDarkMode();
   const [theme, setTheme] = useState(isDark ? "dark" : "light");
-  const [greeting, setGreeting] = useState("");
 
   useEffect(() => {
     setTheme(isDark ? "dark" : "light");
   }, [isDark]);
-
-  useEffect(() => {
-    const hour = new Date().getHours();
-    let message = "";
-
-    if (lang === "es") {
-      if (hour >= 6 && hour < 12) message = "Buenos días";
-      else if (hour >= 12 && hour < 18) message = "Buenas tardes";
-      else message = "Buenas noches";
-    } else {
-      if (hour >= 6 && hour < 12) message = "Good morning";
-      else if (hour >= 12 && hour < 18) message = "Good afternoon";
-      else message = "Good evening";
-    }
-
-    setGreeting(message);
-  }, [lang]);
 
   const pageTitle =
     lang === "es"
@@ -78,12 +61,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p
-              data-testid="greeting"
-              className="text-base md:text-lg text-gray-700 dark:text-gray-300 mb-2"
-            >
-              {greeting}
-            </p>
+            <div className="mb-3 md:mb-4">
+              <GreetingBadge />
+            </div>
 
             <h1
               data-testid="header-title"
