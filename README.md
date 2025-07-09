@@ -1,69 +1,102 @@
-# React + TypeScript + Vite
+# Quim Romero – Frontend Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Interfaces that think. Animations that feel.  
+> Real code. Obsessive detail. Product-first mindset.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
 
-## Expanding the ESLint configuration
+🌐 [https://quimromero.com](https://quimromero.com)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🧭 About this Project
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+This is more than a personal website — it's a **real product showcase**.  
+A full-stack frontend experience that reflects **how I actually work**.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+It includes:
+- Custom-built projects that simulate real-world use cases.
+- A live terminal interface (`NebulaOS`) for interactive exploration.
+- Seamless page transitions, theme switching, internationalization, and more.
+- Zero templates, zero page builders — just thoughtful code and purposeful design.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧠 Tech Stack
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Technology | Purpose |
+|------------|---------|
+| **React + TypeScript** | Component architecture and logic |
+| **Tailwind CSS** | Scalable atomic styling |
+| **Framer Motion** | Smooth, intuitive animations |
+| **Zustand** | Lightweight state management |
+| **i18n** | Full bilingual support (EN/ES) |
+| **EmailJS** | Serverless form submission |
+| **Vite** | Super fast dev environment |
+| **Cypress** | End-to-end testing |
+| **GitHub Actions** | Continuous Integration pipeline |
+
+---
+
+## 📦 Project Structure
+
+- `src/`
+  - `components/` – reusable, typed UI elements
+  - `features/` – scoped areas like Projects, About, Contact
+  - `hooks/` – custom behavior (theme, i18n, etc.)
+  - `context/` – global state control
+  - `data/` – structured multilingual content
+  - `styles/` – resets, font settings, design tokens
+- `cypress/` – end-to-end tests for navigation and UI flows
+- `public/` – icons, manifest, PWA config
+
+---
+
+## 🧪 End-to-End Testing
+
+This portfolio includes local end-to-end tests powered by Cypress.  
+Core flows like navigation, UI preferences, and contact form validation are covered and verified.
+
+Currently tested:
+
+   ✅ Home page: loader removal & headline rendering  
+   ✅ Theme & language toggling  
+   ✅ Projects page navigation and content check  
+   ✅ Contact form rendering, validation, and successful submission  
+
+> 🧰 Tests run locally via `npx cypress open` or `npx cypress run`. 
+
+> **Note:** CI integration (e.g., GitHub Actions) and additional test coverage are planned and will be added in the future.
+
+---
+
+## 📸 Screenshots
+
+| Home | Projects | Terminal |
+|------|----------|----------|
+| ![Home](./screenshots/home.png) | ![Projects](./screenshots/projects.png) | ![Terminal](./screenshots/terminal.png) |
+
+---
+
+## 📬 Get in Touch
+
+If you’re looking for a frontend engineer who combines **speed, structure, and UX precision**,  
+I’m open to freelance work and collaboration with product-driven teams.
+
+📧 quim@quimromero.com  
+🌐 [https://quimromero.com](https://www.quimromero.com)
+
+---
+
+## 💡 Notes
+
+- 100% custom-coded — no UI kits, no no-code tools.
+- Animations are tailor-made for each section.
+- Built with the same mindset I bring to production teams.
+
+---
+
+> _This is how I approach frontend:  
+> think like a designer, build like a developer, and deliver like it’s going live tomorrow._
