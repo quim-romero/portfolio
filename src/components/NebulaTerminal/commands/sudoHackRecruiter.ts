@@ -1,14 +1,14 @@
 import type { CommandContext } from "../commandRouter";
 
 export default function sudoHackRecruiter(raw: string, ctx: CommandContext) {
-  const id = Date.now();
+  const baseId = Date.now();
 
   if (!ctx.missionMode) {
     return {
       newHistory: [
-        { id, text: `$ ${raw}` },
+        { id: baseId, text: `$ ${raw}` },
         {
-          id: id + 1,
+          id: baseId + 1,
           text: "⛔ This command requires: init mission",
         },
       ],
@@ -34,9 +34,9 @@ export default function sudoHackRecruiter(raw: string, ctx: CommandContext) {
 
   return {
     newHistory: [
-      { id, text: `$ ${raw}` },
+      { id: baseId, text: `$ ${raw}` },
       ...output.map((line, i) => ({
-        id: id + i + 1,
+        id: baseId + i + 1,
         text: line,
       })),
     ],

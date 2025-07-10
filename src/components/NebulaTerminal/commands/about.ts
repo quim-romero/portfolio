@@ -1,23 +1,23 @@
 import type { CommandContext } from "../commandRouter";
 
 export default function about(raw: string, ctx: CommandContext) {
-  const id = Date.now();
+  const baseId = Date.now();
   const open = raw.includes("--open");
 
   const intro = [
-    "👋 Hola, soy Quim Romero.",
-    "Frontend Engineer obsesionado con la experiencia de usuario, el diseño funcional y el detalle técnico.",
+    "👋 Hey, I'm Quim Romero.",
+    "Frontend Engineer obsessed with UX, functional design, and technical detail.",
     "",
-    "🚀 Actualmente trabajando en interfaces web que combinan velocidad, estética y accesibilidad.",
-    "🧠 Fan del diseño de sistemas, animaciones con intención y codebase limpias.",
+    "🚀 Currently building interfaces that combine speed, aesthetics, and accessibility.",
+    "🧠 Fan of design systems, intentional animation, and clean codebases.",
     "",
-    "💡 Si quieres ver lo que hago: escribe `projects` o `scan skills`.",
+    "💡 Want to see what I do? Try `projects` or `scan skills`.",
   ];
 
   const history = [
-    { id, text: `$ ${raw}` },
+    { id: baseId, text: `$ ${raw}` },
     ...intro.map((text, i) => ({
-      id: id + i + 1,
+      id: baseId + i + 1,
       text,
     })),
   ];
@@ -28,8 +28,8 @@ export default function about(raw: string, ctx: CommandContext) {
     }, 1200);
 
     history.push({
-      id: id + intro.length + 1,
-      text: "🌐 Abriendo: /about...",
+      id: baseId + intro.length + 1,
+      text: "🌐 Opening: /about...",
     });
   }
 

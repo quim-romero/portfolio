@@ -1,16 +1,17 @@
 import type { CommandContext } from "../commandRouter";
 
 export default function scanSkills(raw: string, ctx: CommandContext) {
+  const baseId = Date.now();
+
   if (!ctx.missionMode) {
     return {
       newHistory: [
-        { id: Date.now(), text: `$ ${raw}` },
-        { id: Date.now() + 1, text: "⛔ This command requires: init mission" },
+        { id: baseId, text: `$ ${raw}` },
+        { id: baseId + 1, text: "⛔ This command requires: init mission" },
       ],
     };
   }
 
-  const id = Date.now();
   const skillOutput = [
     "🔍 Scanning skillset...",
     "🧠 Core: JavaScript | TypeScript | React | Next.js",
@@ -24,9 +25,9 @@ export default function scanSkills(raw: string, ctx: CommandContext) {
 
   return {
     newHistory: [
-      { id, text: `$ ${raw}` },
+      { id: baseId, text: `$ ${raw}` },
       ...skillOutput.map((text, i) => ({
-        id: id + i + 1,
+        id: baseId + i + 1,
         text,
       })),
     ],

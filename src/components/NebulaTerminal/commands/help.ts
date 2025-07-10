@@ -21,11 +21,13 @@ export default function help(raw: string, _ctx: CommandContext) {
     "   sudo hack-recruiter",
   ];
 
+  const baseId = Date.now();
+
   return {
     newHistory: [
-      { id: Date.now(), text: `$ ${raw}` },
-      ...helpText.map((text) => ({
-        id: Date.now() + Math.random(),
+      { id: baseId, text: `$ ${raw}` },
+      ...helpText.map((text, i) => ({
+        id: baseId + i + 1,
         text,
       })),
     ],

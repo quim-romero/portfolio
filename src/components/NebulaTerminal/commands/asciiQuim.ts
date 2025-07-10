@@ -1,11 +1,13 @@
 import type { CommandContext } from "../commandRouter";
 
 export default function asciiQuim(raw: string, ctx: CommandContext) {
+  const baseId = Date.now();
+
   if (!ctx.missionMode) {
     return {
       newHistory: [
-        { id: Date.now(), text: `$ ${raw}` },
-        { id: Date.now() + 1, text: "⛔ This command requires: init mission" },
+        { id: baseId, text: `$ ${raw}` },
+        { id: baseId + 1, text: "⛔ This command requires: init mission" },
       ],
     };
   }
@@ -32,8 +34,8 @@ $$ $$\$$ |$$ |  $$ |$$ |$$ | $$ | $$ |      $$ |  $$ |$$ |  $$ |$$ | $$ | $$ |$$
 
   return {
     newHistory: [
-      { id, text: `$ ${raw}` },
-      { id: id + 1, text: asciiArt },
+      { id: baseId, text: `$ ${raw}` },
+      { id: baseId + 1, text: asciiArt },
     ],
   };
 }

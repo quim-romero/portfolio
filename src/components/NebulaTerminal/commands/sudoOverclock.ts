@@ -1,7 +1,7 @@
 import type { CommandContext } from "../commandRouter";
 
 export default function sudoOverclock(raw: string, _ctx: CommandContext) {
-  const id = Date.now();
+  const baseId = Date.now();
 
   const event = new CustomEvent("nebula-glitch-activate");
   window.dispatchEvent(event);
@@ -16,9 +16,9 @@ export default function sudoOverclock(raw: string, _ctx: CommandContext) {
 
   return {
     newHistory: [
-      { id, text: `$ ${raw}` },
+      { id: baseId, text: `$ ${raw}` },
       ...lines.map((text, i) => ({
-        id: id + 1 + i,
+        id: baseId + i + 1,
         text,
       })),
     ],

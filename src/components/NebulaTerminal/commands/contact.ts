@@ -1,7 +1,7 @@
 import type { CommandContext } from "../commandRouter";
 
 export default function contact(raw: string, _ctx: CommandContext) {
-  const id = Date.now();
+  const baseId = Date.now();
 
   const contactLines = [
     "📬 Let’s connect!",
@@ -16,9 +16,9 @@ export default function contact(raw: string, _ctx: CommandContext) {
 
   return {
     newHistory: [
-      { id, text: `$ ${raw}` },
+      { id: baseId, text: `$ ${raw}` },
       ...contactLines.map((text, i) => ({
-        id: id + i + 1,
+        id: baseId + i + 1,
         text,
       })),
     ],

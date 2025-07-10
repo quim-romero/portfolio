@@ -2,7 +2,7 @@ import type { CommandContext } from "../commandRouter";
 import { projectDetails } from "../../../data/projectDetails";
 
 export default function projects(raw: string, _ctx: CommandContext) {
-  const id = Date.now();
+  const baseId = Date.now();
   const [command, param] = raw.trim().split(" ");
 
   // General list of projects
@@ -15,10 +15,10 @@ export default function projects(raw: string, _ctx: CommandContext) {
 
     return {
       newHistory: [
-        { id, text: `$ ${raw}` },
-        { id: id + 1, text: header },
+        { id: baseId, text: `$ ${raw}` },
+        { id: baseId + 1, text: header },
         ...projectLines.map((text, i) => ({
-          id: id + 2 + i,
+          id: baseId + 2 + i,
           text,
         })),
       ],
@@ -32,8 +32,8 @@ export default function projects(raw: string, _ctx: CommandContext) {
     if (!project) {
       return {
         newHistory: [
-          { id, text: `$ ${raw}` },
-          { id: id + 1, text: `❌ Project not found: "${param}"` },
+          { id: baseId, text: `$ ${raw}` },
+          { id: baseId + 1, text: `❌ Project not found: "${param}"` },
         ],
       };
     }
@@ -56,9 +56,9 @@ export default function projects(raw: string, _ctx: CommandContext) {
 
     return {
       newHistory: [
-        { id, text: `$ ${raw}` },
+        { id: baseId, text: `$ ${raw}` },
         ...lines.map((text, i) => ({
-          id: id + 1 + i,
+          id: baseId + 1 + i,
           text,
         })),
       ],
@@ -67,8 +67,8 @@ export default function projects(raw: string, _ctx: CommandContext) {
 
   return {
     newHistory: [
-      { id, text: `$ ${raw}` },
-      { id: id + 1, text: "❓ Command not recognized inside `projects`." },
+      { id: baseId, text: `$ ${raw}` },
+      { id: baseId + 1, text: "❓ Command not recognized inside `projects`." },
     ],
   };
 }
