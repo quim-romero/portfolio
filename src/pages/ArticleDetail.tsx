@@ -12,14 +12,12 @@ import { t } from "../i18n/translations";
 import { esBlogEntries } from "../i18n/es/blogEntries";
 
 import portfolioDesignRaw from "../blog/portfolio-design.md?raw";
-import nebulaTerminalRaw from "../blog/nebula-terminal-experience.md?raw";
 import freelanceServicesRaw from "../blog/freelance-services.md?raw";
 import myProcessRaw from "../blog/my-process-from-start-to-finish.md?raw";
 import whatToExpectRaw from "../blog/what-to-expect-working-with-me.md?raw";
 
 const articleMap: Record<string, string> = {
   "portfolio-design": portfolioDesignRaw,
-  "nebula-terminal-experience": nebulaTerminalRaw,
   "freelance-services": freelanceServicesRaw,
   "my-process-from-start-to-finish": myProcessRaw,
   "what-to-expect-working-with-me": whatToExpectRaw,

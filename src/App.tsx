@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 import ArticleDetail from "./pages/ArticleDetail";
 import NotFound from "./pages/NotFound";
+import NebulaArchive from "./pages/NebulaArchive";
 
 import NebulaTerminal from "./components/NebulaTerminal";
 import Loader from "./components/Loader";
@@ -102,7 +103,7 @@ export default function App() {
               path="/projects"
               element={
                 <PageTransition>
-                  <Projects onOpenTerminal={() => setOpenTerminal(true)} />
+                  <Projects />
                 </PageTransition>
               }
             />
@@ -151,6 +152,14 @@ export default function App() {
               element={
                 <PageTransition>
                   <NotFound />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/nebula-archive"
+              element={
+                <PageTransition>
+                  <NebulaArchive />
                 </PageTransition>
               }
             />

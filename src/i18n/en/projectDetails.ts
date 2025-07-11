@@ -67,7 +67,7 @@ export default {
   lumina: {
     title: "Lumina",
     description:
-      "Digital storefront with real checkout, animated UI and production-grade forms.",
+      "Digital storefront with real checkout, forms and animated UI.",
     longDescription:
       "Lumina is a modern digital goods e-commerce experience built as if launching tomorrow. Features smooth animations, a real contact form with validation and EmailJS delivery, Stripe test-mode checkout, and polished motion. Built to showcase frontend production thinking.",
     highlights: [

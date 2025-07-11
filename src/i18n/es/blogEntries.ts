@@ -1,5 +1,4 @@
 import portfolioDesignContent from './blog/portfolio-design';
-import nebulaTerminalContent from './blog/nebula-terminal-experience';
 import freelanceServicesContent from './blog/freelance-services';
 import myProcessContent from './blog/my-process-from-start-to-finish';
 import whatToExpectContent from './blog/what-to-expect-working-with-me';
@@ -19,13 +18,6 @@ export const esBlogEntries: Record<string, BlogEntry> = {
     date: '2025-07-21',
     tags: ['portafolio', 'diseño', 'pensamiento de producto', 'ux'],
     content: portfolioDesignContent,
-  },
-  'nebula-terminal-experience': {
-    title: 'NebulaOS Terminal: una experiencia interactiva en la web',
-    description: 'Cómo diseñé e implementé una terminal web animada, útil y diferente.',
-    date: '2025-07-22',
-    tags: ['ux', 'interacción', 'javascript', 'creatividad'],
-    content: nebulaTerminalContent,
   },
   'freelance-services': {
     title: 'Servicios freelance: qué ofrezco y cómo trabajar conmigo',

@@ -11,11 +11,7 @@ import { Code2, ExternalLink } from "lucide-react";
 import Tilt from "react-parallax-tilt";
 import MagnetButton from "../components/MagnetButton";
 
-export default function Projects({
-  onOpenTerminal,
-}: {
-  onOpenTerminal?: () => void;
-}) {
+export default function Projects() {
   const { lang } = useLanguage();
   const [isDark] = useDarkMode();
   const theme = isDark ? "dark" : "light";
@@ -163,17 +159,6 @@ export default function Projects({
                           >
                             <Code2 className="w-4 h-4" />
                             GitHub
-                          </MagnetButton>
-                        )}
-
-                        {project.id === "nebulaos" && onOpenTerminal && (
-                          <MagnetButton
-                            as="button"
-                            onClick={onOpenTerminal}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white transition duration-300"
-                            aria-label="Start interactive demo"
-                          >
-                            🚀 Start Demo
                           </MagnetButton>
                         )}
                       </div>
