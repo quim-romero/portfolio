@@ -2,7 +2,6 @@ import help from "./commands/help";
 import initMission from "./commands/initMission";
 import scanSkills from "./commands/scanSkills";
 import submitResume from "./commands/submitResume";
-import asciiQuim from "./commands/asciiQuim";
 import about from "./commands/about";
 import projects from "./commands/projects";
 import contact from "./commands/contact";
@@ -39,7 +38,6 @@ export function runCommand(
     "init mission": initMission,
     "scan skills": scanSkills,
     "submit resume": submitResume,
-    "ascii quim": asciiQuim,
     "sudo overclock": sudoOverclock,
     "sudo hack-recruiter": sudoHackRecruiter,
     theme,

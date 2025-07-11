@@ -17,8 +17,7 @@ export default function help(raw: string, _ctx: CommandContext) {
     "",
     "─ Mission mode (after init mission):",
     "   init mission      scan skills",
-    "   submit resume     ascii quim",
-    "   sudo hack-recruiter",
+    "   submit resume     sudo hack-recruiter",
   ];
 
   const baseId = Date.now();

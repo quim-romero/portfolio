@@ -15,7 +15,6 @@ export default function initMission(raw: string, ctx: CommandContext) {
         text: [
           "- scan skills",
           "- submit resume",
-          "- ascii quim",
           "- sudo hack-recruiter",
         ].join("\n"),
       },

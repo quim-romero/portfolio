@@ -67,11 +67,7 @@ export default function App() {
   useEffect(() => {
     if (!window.__hasLoggedEasterEgg) {
       console.log(
-        "%c👀 You opened the console. Curious mind detected.",
-        "color: cyan; font-size: 16px;"
-      );
-      console.log(
-        "%c🚀 Tip: Visit /projects/nebulaos and click 'Start Demo'. You won't regret it.",
+        "%c👀 Curious mind detected! legacy experiment at /nebula-archive",
         "color: cyan; font-size: 16px;"
       );
       window.__hasLoggedEasterEgg = true;
