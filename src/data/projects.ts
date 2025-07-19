@@ -101,8 +101,8 @@ export const projects: Project[] = [
     description:
       "Multi-step onboarding flow with validation, file uploads, and theme support.",
     image: {
-      light: "/projects/clientflow-light.png",
-      dark: "/projects/clientflow-dark.png",
+      light: "/projects/clientflow-light.gif",
+      dark: "/projects/clientflow-dark.gif",
     },
     preview: {
       light: "/previews/clientflow-light.webm",

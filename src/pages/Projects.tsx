@@ -105,7 +105,10 @@ export default function Projects() {
                           preload="none"
                           aria-hidden="true"
                           className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                            project.id === "trackforge" ? "object-top" : ""
+                            project.id === "trackforge" ||
+                            project.id === "clientflow"
+                              ? "object-top"
+                              : ""
                           }`}
                           onMouseEnter={(e) => e.currentTarget.play()}
                           onMouseLeave={(e) => {
