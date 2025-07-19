@@ -184,4 +184,39 @@ export const projectDetails: ProjectDetail[] = [
     liveUrl: "https://trackforge.quimromero.com",
     githubUrl: "https://github.com/quim-romero/trackforge",
   },
+  {
+    id: "clientflow",
+    title: "ClientFlow",
+    description:
+      "Multi-step onboarding flow with validation, file uploads, and theme support.",
+    longDescription:
+      "ClientFlow is a minimal and focused onboarding app for agencies, freelancers, and digital teams who need to gather client input with clarity and zero friction. It includes a progressive multi-step form with schema validation, file upload with previews and metadata, dark/light theme support, and persistent form state. Designed to feel smooth and intuitive across all devices.",
+    image: {
+      light: "/projects/clientflow-light.png",
+      dark: "/projects/clientflow-dark.png",
+    },
+    preview: {
+      light: "/previews/clientflow-light.webm",
+      dark: "/previews/clientflow-dark.webm",
+    },
+    tech: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Zod",
+      "React Hook Form",
+      "Zustand",
+    ],
+    highlights: [
+      "Multi-step form flow with progress tracking and validation",
+      "Robust schema validation using Zod + React Hook Form",
+      "File upload with preview, metadata, and responsive feedback",
+      "Light/dark theme support with persistent user preferences",
+      "Modular architecture using Zustand for state management",
+      "Responsive and accessible UI with smooth animations",
+    ],
+    liveUrl: "https://clientflow.quimromero.com",
+    githubUrl: "https://github.com/quim-romero/clientflow",
+  },
 ];

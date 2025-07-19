@@ -32,4 +32,9 @@ export default {
     description:
       "Panel de gestión de tareas tipado con filtros en tiempo real, gráficos de productividad y configuraciones persistentes.",
   },
+  clientflow: {
+    title: "ClientFlow",
+    description:
+      "Flujo de onboarding multistep con validación y carga de archivos.",
+  },
 };

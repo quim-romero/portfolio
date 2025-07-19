@@ -79,4 +79,19 @@ export default {
       "Arquitectura modular, escalable y real",
     ],
   },
+  clientflow: {
+    title: "ClientFlow",
+    description:
+      "Flujo de onboarding con formularios multistep, validación y carga de archivos.",
+    longDescription:
+      "ClientFlow es una app de onboarding pensada para agencias, freelancers y equipos digitales que necesitan recopilar información inicial de forma clara y sin fricción. Incluye formularios en varios pasos con validación por esquema, carga de archivos con vista previa, soporte para modo oscuro/claro y persistencia local del progreso del usuario. La experiencia es fluida, accesible y lista para producción.",
+    highlights: [
+      "Formulario multistep con navegación progresiva y persistencia de estado",
+      "Validación robusta usando Zod + React Hook Form",
+      "Carga de archivos con vista previa, metadatos y feedback visual",
+      "Soporte completo para modo claro/oscuro con persistencia local",
+      "Arquitectura modular con Zustand para control de pasos y datos",
+      "Diseño minimalista, responsivo y accesible, con animaciones suaves de Framer Motion",
+    ],
+  },
 };

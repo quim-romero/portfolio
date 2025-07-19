@@ -78,4 +78,19 @@ export default {
       "Scalable modular architecture built from scratch",
     ],
   },
+  clientflow: {
+    title: "ClientFlow",
+    description:
+      "Onboarding flow with multi-step forms, validation, and file upload.",
+    longDescription:
+      "ClientFlow is a minimal onboarding app designed for agencies, freelancers, and digital teams to collect client information efficiently and clearly. It features a multi-step form flow with schema-based validation, file uploads with previews and metadata, light/dark mode support, and persistent user progress. The experience is smooth, accessible, and production-ready.",
+    highlights: [
+      "Multi-step form flow with progressive navigation and state persistence",
+      "Robust validation using Zod + React Hook Form",
+      "File upload with preview, metadata display, and visual feedback",
+      "Full light/dark mode support with local preference storage",
+      "Modular architecture using Zustand for step control and data flow",
+      "Minimal, responsive and accessible design with Framer Motion animations",
+    ],
+  },
 };

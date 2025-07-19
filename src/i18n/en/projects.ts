@@ -32,4 +32,9 @@ export default {
     description:
       "Typed task management dashboard with real-time filters, productivity charts, and persistent settings.",
   },
+  clientflow: {
+    title: "ClientFlow",
+    description:
+      "Multi-step onboarding flow with validation and file uploads.",
+  },
 };

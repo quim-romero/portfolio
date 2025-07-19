@@ -95,4 +95,20 @@ export const projects: Project[] = [
     liveUrl: "https://trackforge.quimromero.com",
     githubUrl: "https://github.com/quim-romero/trackforge",
   },
+  {
+    id: "clientflow",
+    title: "ClientFlow",
+    description:
+      "Multi-step onboarding flow with validation, file uploads, and theme support.",
+    image: {
+      light: "/projects/clientflow-light.png",
+      dark: "/projects/clientflow-dark.png",
+    },
+    preview: {
+      light: "/previews/clientflow-light.webm",
+      dark: "/previews/clientflow-dark.webm",
+    },
+    liveUrl: "https://clientflow.quimromero.com",
+    githubUrl: "https://github.com/quim-romero/clientflow",
+  },
 ];
