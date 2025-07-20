@@ -7,6 +7,7 @@ export default {
   heading: "Featured Projects",
   subheading:
     "A curated showcase of real-world frontend skills — blending logic, animation, state management, and product vision.",
+  hint: "Tip: visuals adapt when switching themes.",
   novatech: {
     title: "NovaTech Solutions",
     description:
@@ -34,7 +35,6 @@ export default {
   },
   clientflow: {
     title: "ClientFlow",
-    description:
-      "Multi-step onboarding flow with validation and file uploads.",
+    description: "Multi-step onboarding flow with validation and file uploads.",
   },
 };

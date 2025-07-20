@@ -64,6 +64,10 @@ export default function Projects() {
             <p className="text-muted dark:text-gray-400 max-w-2xl mx-auto">
               {t("projects", "subheading", lang)}
             </p>
+
+            <p className="text-xs text-gray-500 dark:text-gray-500 mt-2 italic">
+              {t("projects", "hint", lang)}
+            </p>
           </motion.div>
 
           <AnimatePresence mode="wait">

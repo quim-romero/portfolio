@@ -7,6 +7,7 @@ export default {
   heading: "Proyectos destacados",
   subheading:
     "Una selección curada de habilidades frontend aplicadas al mundo real — combinando lógica, animación, gestión de estado y visión de producto.",
+  hint: "Pista: las imágenes cambian al alternar entre modo claro y oscuro.",
   novatech: {
     title: "NovaTech Solutions",
     description:
