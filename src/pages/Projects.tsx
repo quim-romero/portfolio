@@ -91,9 +91,8 @@ export default function Projects() {
                       <img
                         src={project.image[theme]}
                         alt={t("projectDetails", `${project.id}.title`, lang)}
-                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0 ${
-                          project.id === "trackforge" ? "object-top" : ""
-                        }`}
+                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0 $
+                        `}
                       />
                       {project.preview && (
                         <video
