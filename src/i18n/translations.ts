@@ -61,7 +61,7 @@ export function t(section: Section, keyPath: string, lang: Language): string {
 }
 
 /**
- * Returns a translated array (e.g. for lists or highlights).
+ * Returns a translated array.
  */
 export function tArray<T = string>(
   section: Section,

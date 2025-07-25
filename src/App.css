@@ -19,7 +19,7 @@ html {
   color: #ffffff;
 }
 
-/* Hide scrollbar (optional) */
+/* Hide scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
