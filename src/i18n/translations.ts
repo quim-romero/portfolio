@@ -8,6 +8,7 @@ import en_notFound from "./en/notFound";
 import en_footer from "./en/footer";
 import en_blogMeta from "./en/blogMeta";
 import en_article from "./en/article";
+import en_services from "./en/services";
 
 import es_header from "./es/header";
 import es_home from "./es/home";
@@ -19,6 +20,7 @@ import es_notFound from "./es/notFound";
 import es_footer from "./es/footer";
 import es_blogMeta from "./es/blogMeta";
 import es_article from "./es/article";
+import es_services from "./es/services";
 
 export const translations = {
   en: {
@@ -32,6 +34,7 @@ export const translations = {
     footer: en_footer,
     blogMeta: en_blogMeta,
     article: en_article,
+    services: en_services,
   },
   es: {
     header: es_header,
@@ -44,6 +47,7 @@ export const translations = {
     footer: es_footer,
     blogMeta: es_blogMeta,
     article: es_article,
+    services: es_services,
   },
 } as const;
 

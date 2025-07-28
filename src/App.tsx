@@ -8,6 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
+import Services from "./pages/Services";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
@@ -112,6 +113,14 @@ export default function App() {
               element={
                 <PageTransition>
                   <ProjectDetail />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/services"
+              element={
+                <PageTransition>
+                  <Services />
                 </PageTransition>
               }
             />

@@ -11,6 +11,7 @@ import LanguageTransition from "../components/LanguageTransition";
 const navItems = [
   { key: "home", path: "/" },
   { key: "projects", path: "/projects" },
+  { key: "services", path: "/services" },
   { key: "about", path: "/about" },
   { key: "contact", path: "/contact" },
   { key: "blog", path: "/blog" },
