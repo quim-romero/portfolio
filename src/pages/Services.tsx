@@ -1,16 +1,20 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Layout from "../layout/Layout";
 import { useLanguage } from "../hooks/LanguageProvider";
 import LanguageTransition from "../components/LanguageTransition";
 import { motion } from "framer-motion";
 import { t, tArray } from "../i18n/translations";
+import emailjs from "@emailjs/browser";
 
 type Pkg = {
   id: string;
   title: string;
   desc: string;
   priceFrom: string;
+  timeline: string;
+  features: string[];
+  deliverables: string[];
 };
 
 declare global {
@@ -18,6 +22,8 @@ declare global {
     dataLayer?: Array<Record<string, unknown>>;
   }
 }
+
+const canonical = "/services";
 
 const track = (event: string, data?: Record<string, unknown>) => {
   window?.dataLayer?.push({ event, ...data });
@@ -29,13 +35,16 @@ export default function Services() {
     lang === "es"
       ? "Servicios — Quim Romero (Frontend)"
       : "Services — Quim Romero (Frontend)";
-  const canonical = lang === "es" ? "/servicios" : "/services";
   const pageDescription = t("services", "metaDescription", lang);
-
-  const intro = t("services", "intro", lang);
   const heading = t("services", "heading", lang);
+  const intro = t("services", "intro", lang);
   const packages = tArray<Pkg>("services", "packages", lang);
+  const ctas = {
+    contact: t("services", "ctas.contact", lang),
+    emailText: t("services", "ctas.emailText", lang),
+  };
   const formLabels = {
+    title: t("services", "formTitle", lang),
     name: t("services", "form.name", lang),
     email: t("services", "form.email", lang),
     goal: t("services", "form.goal", lang),
@@ -43,36 +52,79 @@ export default function Services() {
     budgetOptions: tArray<string>("services", "form.budgetOptions", lang),
     submit: t("services", "form.submit", lang),
     success: t("services", "form.success", lang),
+    from: t("services", "from", lang),
   };
-  const ctas = {
-    contact: t("services", "ctas.contact", lang),
-    emailText: t("services", "ctas.emailText", lang),
+
+  useEffect(() => {
+    const pk = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (pk) emailjs.init(pk);
+  }, []);
+
+  useEffect(() => {
+    track("services_page_view", { lang, path: canonical });
+  }, [lang]);
+
+  const [openPkg, setOpenPkg] = useState<string | null>(null);
+  const toggle = (id: string) => {
+    const next = openPkg === id ? null : id;
+    setOpenPkg(next);
+    track("services_details_open", { lang, package: id, open: next === id });
   };
 
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    const formEl = e.currentTarget;
+
+    const bot = (
+      formEl.querySelector('input[name="website"]') as HTMLInputElement
+    )?.value;
+    if (bot) return;
+
+    setSending(true);
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formEl
+      );
+      track("services_form_submit_success", { lang });
+      setSent(true);
+      formEl.reset();
+    } catch (err) {
+      console.error(err);
+      track("services_form_submit_error", { lang });
+      alert(
+        lang === "es"
+          ? "Error al enviar. Prueba de nuevo."
+          : "Send failed. Try again."
+      );
+    } finally {
+      setSending(false);
+    }
+  };
 
   const normalizedOffers = useMemo(() => {
     return packages.map((p) => {
       const digits = (p.priceFrom || "").replace(/[^\d.,]/g, "");
       const normalized = digits.replace(",", ".");
       const numeric = parseFloat(normalized);
-      const base: any = {
+      const offer: any = {
         "@type": "Offer",
         priceCurrency: "EUR",
         url: `https://quimromero.com${canonical}#${p.id}`,
       };
-      if (!Number.isNaN(numeric) && numeric > 0) {
-        base.price = numeric;
-      }
+      if (!Number.isNaN(numeric) && numeric > 0) offer.price = numeric;
       return {
         "@type": "Service",
         name: p.title,
         description: p.desc,
-        offers: base,
+        offers: offer,
       };
     });
-  }, [packages, canonical]);
+  }, [packages]);
 
   const professionalServiceSchema = {
     "@context": "https://schema.org",
@@ -110,28 +162,8 @@ export default function Services() {
     ],
   };
 
-  const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
-    setSending(true);
-    const form = new FormData(e.currentTarget);
-    const payload = {
-      name: String(form.get("name") || ""),
-      email: String(form.get("email") || ""),
-      goal: String(form.get("goal") || ""),
-      budget: String(form.get("budget") || ""),
-    };
-
-    await new Promise((r) => setTimeout(r, 500));
-
-    track("services_form_submit", { lang, ...payload });
-    setSending(false);
-    setSent(true);
-    (e.currentTarget as HTMLFormElement).reset();
-  };
-
-  const onEmailClick = () => {
-    track("services_email_click", { lang });
-  };
+  const seeDetails = lang === "es" ? "Ver detalles" : "See details";
+  const hideDetails = lang === "es" ? "Ocultar detalles" : "Hide details";
 
   return (
     <Layout>
@@ -169,7 +201,8 @@ export default function Services() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <header className="mb-8">
+              {/* Header */}
+              <header className="mb-10">
                 <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
                   {heading}
                 </h1>
@@ -181,7 +214,7 @@ export default function Services() {
                   <a
                     href="mailto:quim@quimromero.com"
                     className="text-brand font-medium hover:underline"
-                    onClick={onEmailClick}
+                    onClick={() => track("services_email_click", { lang })}
                   >
                     quim@quimromero.com
                   </a>
@@ -189,9 +222,10 @@ export default function Services() {
                 </p>
               </header>
 
-              <section id="paquetes" aria-labelledby="packages">
+              {/* Packages */}
+              <section id="packages" aria-labelledby="packages-title">
                 <h2
-                  id="packages"
+                  id="packages-title"
                   className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white"
                 >
                   {t("services", "packagesTitle", lang)}
@@ -212,31 +246,67 @@ export default function Services() {
                       </p>
 
                       <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-                        {t("services", "from", lang)}{" "}
+                        {formLabels.from}{" "}
                         <span className="font-semibold">{pkg.priceFrom}</span>
+                        <span className="mx-2">·</span>
+                        <span>{pkg.timeline}</span>
                       </div>
 
-                      <div className="mt-6">
+                      <div className="mt-5 flex gap-3">
+                        <button
+                          type="button"
+                          onClick={() => toggle(pkg.id)}
+                          className="rounded-md px-3 py-2 text-sm font-medium border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+                        >
+                          {openPkg === pkg.id ? hideDetails : seeDetails}
+                        </button>
+
                         <a
-                          href="#contacto"
+                          href="#contact"
                           onClick={() =>
                             track("services_package_cta_click", {
                               lang,
                               package: pkg.id,
                             })
                           }
-                          className="inline-flex items-center justify-center w-full rounded-md px-4 py-2 font-semibold bg-brand text-black dark:text-white hover:brightness-110 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                          className="inline-flex items-center rounded-md px-4 py-2 font-semibold bg-brand text-black dark:text-white hover:brightness-110 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                         >
                           {ctas.contact}
                         </a>
                       </div>
+
+                      {openPkg === pkg.id && (
+                        <div className="mt-6 grid md:grid-cols-2 gap-6 text-sm">
+                          <div>
+                            <h4 className="font-semibold text-gray-900 dark:text-white">
+                              {lang === "es" ? "Incluye" : "Includes"}
+                            </h4>
+                            <ul className="mt-2 list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+                              {pkg.features.map((f, i) => (
+                                <li key={i}>{f}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900 dark:text-white">
+                              {lang === "es" ? "Entregables" : "Deliverables"}
+                            </h4>
+                            <ul className="mt-2 list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+                              {pkg.deliverables.map((d, i) => (
+                                <li key={i}>{d}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      )}
                     </article>
                   ))}
                 </div>
               </section>
 
+              {/* Contact Form */}
               <section
-                id="contacto"
+                id="contact"
                 aria-labelledby="contact-form"
                 className="mt-16"
               >
@@ -244,14 +314,27 @@ export default function Services() {
                   id="contact-form"
                   className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white"
                 >
-                  {t("services", "formTitle", lang)}
+                  {formLabels.title}
                 </h2>
 
                 <form
-                  className="grid md:grid-cols-2 gap-6"
                   onSubmit={onSubmit}
                   noValidate
+                  className="grid md:grid-cols-2 gap-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 shadow-sm"
                 >
+                  {/* Honeypot (anti-spam) */}
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="hidden"
+                  />
+
+                  {/* Hidden extras for EmailJS */}
+                  <input type="hidden" name="lang" value={lang} />
+                  <input type="hidden" name="page" value={canonical} />
+
                   <div className="flex flex-col">
                     <label
                       htmlFor="name"
@@ -347,6 +430,17 @@ export default function Services() {
             </motion.div>
           </LanguageTransition>
         </section>
+
+        {/* CTA in mobile */}
+        <div className="md:hidden fixed bottom-4 inset-x-0 px-6 pointer-events-none">
+          <a
+            href="#contact"
+            onClick={() => track("services_sticky_cta_click", { lang })}
+            className="pointer-events-auto block w-full text-center rounded-xl px-5 py-3 font-semibold bg-brand text-black dark:text-white shadow-lg hover:brightness-110 transition"
+          >
+            {ctas.contact}
+          </a>
+        </div>
       </main>
     </Layout>
   );
