@@ -87,7 +87,7 @@ export default function Services() {
     try {
       await emailjs.sendForm(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID_SERVICES,
         formEl
       );
       track("services_form_submit_success", { lang });
