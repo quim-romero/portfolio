@@ -1,4 +1,3 @@
-import React from "react";
 import type { Currency } from "../../services/pricing";
 
 type Lang = "es" | "en";
