@@ -8,12 +8,12 @@ import { t, tArray } from "../i18n/translations";
 
 import CurrencySwitcher from "../features/services/components/CurrencySwitcher";
 import PackageCard from "../features/services/components/PackageCard";
-import type { Pkg } from "../features/services/components/PackageCard";
 import PackageModal from "../features/services/components/PackageModal";
 import ServicesForm from "../features/services/components/ServicesForm";
 
 import type { Currency } from "../features/services/pricing";
 import { parsePriceEUR, formatPrice } from "../features/services/pricing";
+import type { Pkg } from "../features/services/components/PackageCard";
 
 import {
   trackPageView,
@@ -112,14 +112,6 @@ export default function Services() {
     [lang, heading]
   );
 
-  const labels = {
-    from: t("services", "from", lang),
-    seeDetails: lang === "es" ? "Ver detalles" : "See details",
-    includes: lang === "es" ? "Incluye" : "Includes",
-    deliverables: lang === "es" ? "Entregables" : "Deliverables",
-    close: lang === "es" ? "Cerrar" : "Close",
-  };
-
   const prepareFormForPackage = (pkg: Pkg) => {
     const form = document.getElementById(
       "services-form"
@@ -195,7 +187,7 @@ export default function Services() {
               <CurrencySwitcher
                 currency={currency}
                 onChange={setCurrency}
-                lang={lang}
+                label={t("services", "ui.currency", lang)}
                 className="mb-4"
               />
 
@@ -215,8 +207,8 @@ export default function Services() {
                       lang={lang}
                       currency={currency}
                       labels={{
-                        from: labels.from,
-                        seeDetails: labels.seeDetails,
+                        from: t("services", "from", lang),
+                        seeDetails: t("services", "ui.seeDetails", lang),
                         contact: ctas.contact,
                       }}
                       onOpenDetails={(p) => {
@@ -237,10 +229,10 @@ export default function Services() {
                 lang={lang}
                 currency={currency}
                 labels={{
-                  includes: labels.includes,
-                  deliverables: labels.deliverables,
-                  from: labels.from,
-                  close: labels.close,
+                  includes: t("services", "ui.includes", lang),
+                  deliverables: t("services", "ui.deliverables", lang),
+                  from: t("services", "from", lang),
+                  close: t("services", "ui.close", lang),
                   contact: ctas.contact,
                 }}
                 onClose={() => {

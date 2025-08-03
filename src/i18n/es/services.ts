@@ -11,6 +11,14 @@ export default {
   },
   packagesTitle: "Paquetes",
   from: "Desde",
+  ui: {
+    seeDetails: "Ver detalles",
+    hideDetails: "Ocultar detalles",
+    includes: "Incluye",
+    deliverables: "Entregables",
+    close: "Cerrar",
+    currency: "Moneda",
+  },
   packages: [
     {
       id: "landing",

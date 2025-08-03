@@ -1,17 +1,10 @@
 import type { Currency } from "../../services/pricing";
 
-type Lang = "es" | "en";
-
 type Props = {
   currency: Currency;
   onChange: (next: Currency) => void;
-  lang: Lang;
+  label: string;
   className?: string;
-};
-
-const LABELS: Record<Lang, { label: string }> = {
-  es: { label: "Moneda" },
-  en: { label: "Currency" },
 };
 
 const OPTIONS: Array<{ value: Currency; text: string }> = [
@@ -24,7 +17,7 @@ const OPTIONS: Array<{ value: Currency; text: string }> = [
 export default function CurrencySwitcher({
   currency,
   onChange,
-  lang,
+  label,
   className = "",
 }: Props) {
   const id = "currency-switcher";
@@ -32,7 +25,7 @@ export default function CurrencySwitcher({
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       <label htmlFor={id} className="text-sm text-gray-600 dark:text-gray-400">
-        {LABELS[lang].label}:
+        {label}:
       </label>
 
       <select
@@ -40,7 +33,7 @@ export default function CurrencySwitcher({
         value={currency}
         onChange={(e) => onChange(e.target.value as Currency)}
         className="rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2"
-        aria-label={LABELS[lang].label}
+        aria-label={label}
       >
         {OPTIONS.map((opt) => (
           <option key={opt.value} value={opt.value}>
