@@ -10,6 +10,7 @@ type Props = {
   pkg: Pkg | null;
   lang: Lang;
   currency: Currency;
+  rates: Record<Currency, number>;
   labels: {
     includes: string;
     deliverables: string;
@@ -25,6 +26,7 @@ export default function PackageModal({
   pkg,
   lang,
   currency,
+  rates,
   labels,
   onClose,
   onQuote,
@@ -33,17 +35,11 @@ export default function PackageModal({
 
   useEffect(() => {
     if (!pkg) return;
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-
     window.addEventListener("keydown", onKey);
     closeRef.current?.focus();
-
     return () => {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
@@ -51,7 +47,7 @@ export default function PackageModal({
   }, [pkg, onClose]);
 
   const price = pkg
-    ? formatPrice(parsePriceEUR(pkg.priceFrom), currency, lang)
+    ? formatPrice(parsePriceEUR(pkg.priceFrom), currency, lang, rates)
     : "";
 
   return (
@@ -139,7 +135,6 @@ export default function PackageModal({
               >
                 {labels.contact}
               </a>
-
               <button
                 onClick={onClose}
                 className="rounded-md px-3 py-2 text-sm font-medium border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
