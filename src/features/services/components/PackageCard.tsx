@@ -17,6 +17,7 @@ type Props = {
   pkg: Pkg;
   lang: Lang;
   currency: Currency;
+  rates: Record<Currency, number>;
   labels: {
     from: string;
     seeDetails: string;
@@ -31,13 +32,14 @@ export default function PackageCard({
   pkg,
   lang,
   currency,
+  rates,
   labels,
   onOpenDetails,
   onQuote,
   className = "",
 }: Props) {
   const amountEur = parsePriceEUR(pkg.priceFrom);
-  const priceLabel = formatPrice(amountEur, currency, lang);
+  const priceLabel = formatPrice(amountEur, currency, lang, rates);
 
   return (
     <article
