@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import type { Currency } from "../../services/pricing";
+import { formatPrice } from "../../services/pricing";
 import {
   initEmail,
   sendEmailForm,
@@ -16,16 +17,17 @@ type Lang = "es" | "en";
 type Props = {
   lang: Lang;
   currency: Currency;
+  rates: Record<Currency, number>;
   labels: {
     title: string;
     name: string;
     email: string;
     goal: string;
     budget: string;
-    budgetOptions: string[];
     submit: string;
     success: string;
   };
+  budgetBandsEUR?: number[];
   hiddenDefaults?: Record<string, string>;
   className?: string;
   onSuccess?: () => void;
@@ -35,7 +37,9 @@ type Props = {
 export default function ServicesForm({
   lang,
   currency,
+  rates,
   labels,
+  budgetBandsEUR,
   hiddenDefaults = {},
   className = "",
   onSuccess,
@@ -48,16 +52,69 @@ export default function ServicesForm({
     initEmail();
   }, []);
 
+  const bands = useMemo(() => {
+    const def = [1000, 3000, 6000, 10000];
+    return Array.isArray(budgetBandsEUR) && budgetBandsEUR.length === 4
+      ? budgetBandsEUR
+      : def;
+  }, [budgetBandsEUR]);
+
+  const budgetOptions = useMemo(() => {
+    const label = (v: number) => formatPrice(v, currency, lang, rates);
+    return [
+      {
+        value: "lt_0_1000",
+        label: `< ${label(bands[0])}`,
+        eur_min: 0,
+        eur_max: bands[0],
+      },
+      {
+        value: "bt_1000_3000",
+        label: `${label(bands[0])} – ${label(bands[1])}`,
+        eur_min: bands[0],
+        eur_max: bands[1],
+      },
+      {
+        value: "bt_3000_6000",
+        label: `${label(bands[1])} – ${label(bands[2])}`,
+        eur_min: bands[1],
+        eur_max: bands[2],
+      },
+      {
+        value: "bt_6000_10000",
+        label: `${label(bands[2])} – ${label(bands[3])}`,
+        eur_min: bands[2],
+        eur_max: bands[3],
+      },
+      {
+        value: "gt_10000",
+        label: `> ${label(bands[3])}`,
+        eur_min: bands[3],
+        eur_max: -1,
+      },
+    ];
+  }, [bands, currency, lang, rates]);
+
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     const formEl = e.currentTarget;
 
     if (isBot(formEl)) return;
 
+    const budgetSel =
+      formEl.querySelector<HTMLSelectElement>('select[name="budget"]')?.value ||
+      "";
+    const selected = budgetOptions.find((o) => o.value === budgetSel);
+
     stampHiddenFields(formEl, {
       lang,
       currency,
       timestamp: new Date().toISOString(),
+      budget_label: selected?.label || "",
+      budget_eur_min:
+        typeof selected?.eur_min === "number" ? String(selected?.eur_min) : "",
+      budget_eur_max:
+        typeof selected?.eur_max === "number" ? String(selected?.eur_max) : "",
       ...hiddenDefaults,
     });
 
@@ -125,6 +182,9 @@ export default function ServicesForm({
         />
         <input type="hidden" name="timestamp" defaultValue="" />
         <input type="hidden" name="title" defaultValue="Services" />
+        <input type="hidden" name="budget_label" defaultValue="" />
+        <input type="hidden" name="budget_eur_min" defaultValue="" />
+        <input type="hidden" name="budget_eur_max" defaultValue="" />
 
         <div className="flex flex-col">
           <label
@@ -193,9 +253,9 @@ export default function ServicesForm({
             <option value="" disabled hidden>
               —
             </option>
-            {labels.budgetOptions.map((opt, i) => (
-              <option key={i} value={opt}>
-                {opt}
+            {budgetOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
               </option>
             ))}
           </select>
