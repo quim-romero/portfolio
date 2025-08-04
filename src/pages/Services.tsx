@@ -187,28 +187,27 @@ export default function Services() {
                 </p>
               </header>
 
-              <div className="mb-4 flex items-center justify-between gap-3">
-                <CurrencySwitcher
-                  currency={currency}
-                  onChange={setCurrency}
-                  label={t("services", "ui.currency", lang)}
-                  className=""
-                />
-                {date && (
-                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                    {lang === "es" ? "Actualizado" : "Last update"}: {date}
-                    {fxLoading ? " …" : ""}
-                  </span>
-                )}
-              </div>
-
               <section id="packages" aria-labelledby="packages-title">
                 <h2
                   id="packages-title"
-                  className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white"
+                  className="text-2xl font-semibold mb-3 text-gray-900 dark:text-white"
                 >
                   {t("services", "packagesTitle", lang)}
                 </h2>
+
+                <div className="mb-6 flex items-center justify-between gap-3">
+                  <CurrencySwitcher
+                    currency={currency}
+                    onChange={setCurrency}
+                    label={t("services", "ui.currency", lang)}
+                  />
+                  {date && (
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      {lang === "es" ? "Actualizado" : "Last update"}: {date}
+                      {fxLoading ? " …" : ""}
+                    </span>
+                  )}
+                </div>
 
                 <div className="grid md:grid-cols-3 gap-6">
                   {packages.map((pkg) => (
