@@ -24,6 +24,7 @@ import {
 } from "../features/services/analytics";
 
 import { stampHiddenFields } from "../features/services/email";
+import { useFxRates } from "../features/services/fx";
 
 const canonical = "/services";
 
@@ -45,6 +46,8 @@ export default function Services() {
   const packages = tArray<Pkg>("services", "packages", lang);
 
   const [currency, setCurrency] = useState<Currency>("EUR");
+
+  const { rates, date, loading: fxLoading } = useFxRates();
 
   const [modalPkg, setModalPkg] = useState<Pkg | null>(null);
 
@@ -118,7 +121,7 @@ export default function Services() {
     ) as HTMLFormElement | null;
     if (!form) return;
     const baseEUR = parsePriceEUR(pkg.priceFrom);
-    const priceView = formatPrice(baseEUR, currency, lang);
+    const priceView = formatPrice(baseEUR, currency, lang, rates);
     stampHiddenFields(form, {
       package: pkg.id,
       price_eur: String(baseEUR),
@@ -184,12 +187,20 @@ export default function Services() {
                 </p>
               </header>
 
-              <CurrencySwitcher
-                currency={currency}
-                onChange={setCurrency}
-                label={t("services", "ui.currency", lang)}
-                className="mb-4"
-              />
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <CurrencySwitcher
+                  currency={currency}
+                  onChange={setCurrency}
+                  label={t("services", "ui.currency", lang)}
+                  className=""
+                />
+                {date && (
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                    {lang === "es" ? "Actualizado" : "Last update"}: {date}
+                    {fxLoading ? " …" : ""}
+                  </span>
+                )}
+              </div>
 
               <section id="packages" aria-labelledby="packages-title">
                 <h2
@@ -206,6 +217,7 @@ export default function Services() {
                       pkg={pkg}
                       lang={lang}
                       currency={currency}
+                      rates={rates}
                       labels={{
                         from: t("services", "from", lang),
                         seeDetails: t("services", "ui.seeDetails", lang),
@@ -228,6 +240,7 @@ export default function Services() {
                 pkg={modalPkg}
                 lang={lang}
                 currency={currency}
+                rates={rates}
                 labels={{
                   includes: t("services", "ui.includes", lang),
                   deliverables: t("services", "ui.deliverables", lang),
