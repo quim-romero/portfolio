@@ -24,7 +24,6 @@ export default {
       id: "landing",
       title: "Landing",
       desc: "1–3 sections, animated and optimized. Perfect for launches and quick validation.",
-      priceFrom: "€950",
       timeline: "1–2 weeks",
       features: [
         "UX/copy review and clear structure",
@@ -42,7 +41,6 @@ export default {
       id: "ecommerce",
       title: "Basic e-commerce",
       desc: "Catalog + Stripe Checkout. A solid base to start selling.",
-      priceFrom: "€1,900",
       timeline: "2–3 weeks",
       features: [
         "Catalog up to 20 products",
@@ -57,7 +55,6 @@ export default {
       id: "dashboard",
       title: "Dashboard",
       desc: "Data, filters and charts. Clear, accessible and performant.",
-      priceFrom: "€1,700",
       timeline: "2–3 weeks",
       features: [
         "Table with filters and empty states",
