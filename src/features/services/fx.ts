@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import type { Currency } from "./pricing";
 
 const FX_ENDPOINT =
-  "https://api.frankfurter.dev/v1/latest?base=EUR&symbols=USD,GBP,AUD";
+  "https://api.frankfurter.dev/v1/latest?base=EUR&symbols=USD,GBP,AUD,CAD,CHF";
 const STORAGE_KEY = "fx.v1";
 const MAX_AGE_MS = 1000 * 60 * 60 * 18;
 
@@ -11,6 +11,8 @@ const DEFAULT_RATES: Record<Currency, number> = {
   USD: 1.1,
   GBP: 0.85,
   AUD: 1.6,
+  CAD: 1.47,
+  CHF: 0.98,
 };
 
 export type FxSnapshot = {
@@ -54,6 +56,8 @@ async function fetchFx(): Promise<FxSnapshot> {
     USD: json.rates["USD"],
     GBP: json.rates["GBP"],
     AUD: json.rates["AUD"],
+    CAD: json.rates["CAD"],
+    CHF: json.rates["CHF"],
   } as FxSnapshot["rates"];
 
   return {
@@ -77,6 +81,8 @@ export function useFxRates() {
       USD: snap.rates.USD ?? DEFAULT_RATES.USD,
       GBP: snap.rates.GBP ?? DEFAULT_RATES.GBP,
       AUD: snap.rates.AUD ?? DEFAULT_RATES.AUD,
+      CAD: snap.rates.AUD ?? DEFAULT_RATES.CAD,
+      CHF: snap.rates.AUD ?? DEFAULT_RATES.CHF,
     });
     setDate(snap.date);
   }, []);
@@ -120,5 +126,7 @@ export function toCurrencyRecord(
     USD: snap.rates.USD ?? DEFAULT_RATES.USD,
     GBP: snap.rates.GBP ?? DEFAULT_RATES.GBP,
     AUD: snap.rates.AUD ?? DEFAULT_RATES.AUD,
+    CAD: snap.rates.AUD ?? DEFAULT_RATES.CAD,
+    CHF: snap.rates.AUD ?? DEFAULT_RATES.CHF,
   };
 }

@@ -1,4 +1,4 @@
-export type Currency = "EUR" | "USD" | "GBP" | "AUD";
+export type Currency = "EUR" | "USD" | "GBP" | "AUD" | "CAD" | "CHF";
 
 export const BASE_CURRENCY: Currency = "EUR";
 
@@ -7,6 +7,8 @@ export const RATES: Record<Currency, number> = {
   USD: 1.1,
   GBP: 0.85,
   AUD: 1.6,
+  CAD: 1.47,
+  CHF: 0.98,
 };
 
 export const setRates = (next: Partial<Record<Currency, number>>) => {

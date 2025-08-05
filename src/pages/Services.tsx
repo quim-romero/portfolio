@@ -299,21 +299,6 @@ export default function Services() {
           </LanguageTransition>
         </section>
 
-        <div className="md:hidden fixed bottom-4 inset-x-0 px-6 pointer-events-none">
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              const form = document.getElementById("contact");
-              if (form)
-                form.scrollIntoView({ behavior: "smooth", block: "start" });
-              trackStickyCta(lang);
-            }}
-            className="pointer-events-auto block w-full text-center rounded-xl px-5 py-3 font-semibold bg-brand text-black dark:text-white shadow-lg hover:brightness-110 transition"
-          >
-            {ctas.contact}
-          </a>
-        </div>
       </main>
     </Layout>
   );
