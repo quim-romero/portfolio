@@ -12,7 +12,7 @@ import PackageModal from "../features/services/components/PackageModal";
 import ServicesForm from "../features/services/components/ServicesForm";
 
 import type { Currency } from "../features/services/pricing";
-import { parsePriceEUR, formatPrice } from "../features/services/pricing";
+import { formatPrice } from "../features/services/pricing";
 import type { Pkg } from "../features/services/components/PackageCard";
 
 import {
@@ -25,6 +25,7 @@ import {
 
 import { stampHiddenFields } from "../features/services/email";
 import { useFxRates } from "../features/services/fx";
+import { getPriceEur } from "../features/services/prices";
 
 const canonical = "/services";
 
@@ -43,11 +44,31 @@ export default function Services() {
     emailText: t("services", "ctas.emailText", lang),
   };
 
-  const packages = tArray<Pkg>("services", "packages", lang);
+  type I18nPkg = Omit<Pkg, "priceFrom"> & { priceFrom?: string };
+  const packagesI18n = tArray<I18nPkg>("services", "packages", lang);
 
   const [currency, setCurrency] = useState<Currency>("EUR");
 
   const { rates, date, loading: fxLoading } = useFxRates();
+
+  const eurLabel = (v: number) =>
+    new Intl.NumberFormat(lang === "es" ? "es-ES" : "en-US", {
+      style: "currency",
+      currency: "EUR",
+      maximumFractionDigits: 0,
+    }).format(v);
+
+  const packages: Pkg[] = useMemo(
+    () =>
+      packagesI18n.map((p) => {
+        const base = getPriceEur(p.id);
+        return {
+          ...p,
+          priceFrom: eurLabel(base),
+        };
+      }),
+    [packagesI18n, lang]
+  );
 
   const [modalPkg, setModalPkg] = useState<Pkg | null>(null);
 
@@ -57,7 +78,7 @@ export default function Services() {
 
   const offerCatalog = useMemo(() => {
     return packages.map((p) => {
-      const priceEUR = parsePriceEUR(p.priceFrom);
+      const priceEUR = getPriceEur(p.id);
       const offer: any = {
         "@type": "Offer",
         priceCurrency: "EUR",
@@ -120,7 +141,7 @@ export default function Services() {
       "services-form"
     ) as HTMLFormElement | null;
     if (!form) return;
-    const baseEUR = parsePriceEUR(pkg.priceFrom);
+    const baseEUR = getPriceEur(pkg.id);
     const priceView = formatPrice(baseEUR, currency, lang, rates);
     stampHiddenFields(form, {
       package: pkg.id,
@@ -260,16 +281,17 @@ export default function Services() {
               <ServicesForm
                 lang={lang}
                 currency={currency}
+                rates={rates}
                 labels={{
                   title: t("services", "formTitle", lang),
                   name: t("services", "form.name", lang),
                   email: t("services", "form.email", lang),
                   goal: t("services", "form.goal", lang),
                   budget: t("services", "form.budget", lang),
-                  budgetOptions: tArray("services", "form.budgetOptions", lang),
                   submit: t("services", "form.submit", lang),
                   success: t("services", "form.success", lang),
                 }}
+                budgetBandsEUR={[1000, 3000, 6000, 10000]}
                 hiddenDefaults={{ page: canonical, package: "" }}
                 className="mt-16"
               />
