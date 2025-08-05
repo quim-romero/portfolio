@@ -9,7 +9,7 @@ import { useLanguage } from "../hooks/LanguageProvider";
 import LanguageTransition from "../components/LanguageTransition";
 import { useDarkMode } from "../hooks/DarkModeContext";
 import { useEffect, useState } from "react";
-import { sendEmail } from "../utils/sendEmail";
+import { sendEmailData, initEmail } from "../lib/email";
 
 type FormValues = {
   name: string;
@@ -25,6 +25,7 @@ export default function Contact() {
 
   useEffect(() => {
     setTheme(isDark ? "dark" : "light");
+    initEmail();
   }, [isDark]);
 
   const pageTitle =
@@ -66,7 +67,7 @@ export default function Contact() {
 
     try {
       setSendError(false);
-      await sendEmail({
+      await sendEmailData("contact", {
         name: data.name,
         email: data.email,
         message: data.message,

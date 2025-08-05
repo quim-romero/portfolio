@@ -11,9 +11,9 @@ const OPTIONS: Array<{ value: Currency; text: string }> = [
   { value: "EUR", text: "EUR (€)" },
   { value: "USD", text: "USD ($)" },
   { value: "GBP", text: "GBP (£)" },
-  { value: "AUD", text: "AUD (AUD$)" },
-  { value: "CAD", text: "CHF (CAD)" },
-  { value: "CHF", text: "CHF (CHF)" },
+  { value: "AUD", text: "AUD" },
+  { value: "CAD", text: "CAD" },
+  { value: "CHF", text: "CHF" },
 ];
 
 export default function CurrencySwitcher({

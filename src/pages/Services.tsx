@@ -20,10 +20,9 @@ import {
   trackEmailClick,
   trackPackageCta,
   trackDetailsOpen,
-  trackStickyCta,
 } from "../features/services/analytics";
 
-import { stampHiddenFields } from "../features/services/email";
+import { stampHiddenFields } from "../lib/email";
 import { useFxRates } from "../features/services/fx";
 import { getPriceEur } from "../features/services/prices";
 

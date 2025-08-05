@@ -6,7 +6,7 @@ import {
   sendEmailForm,
   isBot,
   stampHiddenFields,
-} from "../../services/email";
+} from "../../../lib/email";
 import {
   trackFormSubmitError,
   trackFormSubmitSuccess,

@@ -81,8 +81,8 @@ export function useFxRates() {
       USD: snap.rates.USD ?? DEFAULT_RATES.USD,
       GBP: snap.rates.GBP ?? DEFAULT_RATES.GBP,
       AUD: snap.rates.AUD ?? DEFAULT_RATES.AUD,
-      CAD: snap.rates.AUD ?? DEFAULT_RATES.CAD,
-      CHF: snap.rates.AUD ?? DEFAULT_RATES.CHF,
+      CAD: snap.rates.CAD ?? DEFAULT_RATES.CAD,
+      CHF: snap.rates.CHF ?? DEFAULT_RATES.CHF,
     });
     setDate(snap.date);
   }, []);
@@ -126,7 +126,7 @@ export function toCurrencyRecord(
     USD: snap.rates.USD ?? DEFAULT_RATES.USD,
     GBP: snap.rates.GBP ?? DEFAULT_RATES.GBP,
     AUD: snap.rates.AUD ?? DEFAULT_RATES.AUD,
-    CAD: snap.rates.AUD ?? DEFAULT_RATES.CAD,
-    CHF: snap.rates.AUD ?? DEFAULT_RATES.CHF,
+    CAD: snap.rates.CAD ?? DEFAULT_RATES.CAD,
+    CHF: snap.rates.CHF ?? DEFAULT_RATES.CHF,
   };
 }

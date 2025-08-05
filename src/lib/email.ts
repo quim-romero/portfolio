@@ -2,31 +2,27 @@ import emailjs from "@emailjs/browser";
 
 export type TemplateKey = "services" | "contact";
 
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as
+const PUB = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
+const SID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+const TPL_SERVICES = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_SERVICES as
   | string
   | undefined;
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as
+const TPL_CONTACT = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_CONTACT as
   | string
   | undefined;
-const EMAILJS_TEMPLATE_ID_SERVICES = import.meta.env
-  .VITE_EMAILJS_TEMPLATE_ID_SERVICES as string | undefined;
-const EMAILJS_TEMPLATE_ID_CONTACT = import.meta.env
-  .VITE_EMAILJS_TEMPLATE_ID_CONTACT as string | undefined;
 
 let initialized = false;
 
 export function initEmail() {
-  if (!initialized && EMAILJS_PUBLIC_KEY) {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
+  if (!initialized) {
+    if (!PUB) console.warn("[email] Missing VITE_EMAILJS_PUBLIC_KEY");
+    emailjs.init(PUB || "");
     initialized = true;
   }
 }
 
 function getTemplateId(key: TemplateKey): string {
-  const id =
-    key === "services"
-      ? EMAILJS_TEMPLATE_ID_SERVICES
-      : EMAILJS_TEMPLATE_ID_CONTACT;
+  const id = key === "services" ? TPL_SERVICES : TPL_CONTACT;
   if (!id) throw new Error(`Missing EmailJS template id for '${key}'.`);
   return id;
 }
@@ -36,8 +32,17 @@ export async function sendEmailForm(
   formEl: HTMLFormElement
 ): Promise<void> {
   initEmail();
-  if (!EMAILJS_SERVICE_ID) throw new Error("Missing EmailJS service id.");
-  await emailjs.sendForm(EMAILJS_SERVICE_ID, getTemplateId(key), formEl);
+  if (!SID) throw new Error("Missing EmailJS service id.");
+  await emailjs.sendForm(SID, getTemplateId(key), formEl);
+}
+
+export async function sendEmailData(
+  key: TemplateKey,
+  data: Record<string, unknown>
+): Promise<void> {
+  initEmail();
+  if (!SID) throw new Error("Missing EmailJS service id.");
+  await emailjs.send(SID, getTemplateId(key), data);
 }
 
 export function isBot(formEl: HTMLFormElement): boolean {
