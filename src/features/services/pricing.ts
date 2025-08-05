@@ -34,11 +34,8 @@ export const formatPrice = (
   }).format(convert(amountEur, currency, rates));
 
 export const parsePriceEUR = (label: string): number => {
-  const digits = (label || "")
-    .replace(/[^\d.,]/g, "")
-    .replace(/\./g, "")
-    .replace(",", ".");
-  const n = parseFloat(digits);
+  const onlyDigits = (label || "").replace(/[^\d]/g, "");
+  const n = parseInt(onlyDigits, 10);
   return Number.isNaN(n) ? 0 : n;
 };
 
