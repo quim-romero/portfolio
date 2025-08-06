@@ -74,7 +74,7 @@ export default function Footer() {
             <p>
               {t("footer", "freelanceShort", lang)}{" "}
               <a
-                href="/contact"
+                href="/services"
                 className="text-brand font-medium hover:underline"
               >
                 {t("footer", "freelanceContact", lang)}

@@ -9,6 +9,7 @@ import en_footer from "./en/footer";
 import en_blogMeta from "./en/blogMeta";
 import en_article from "./en/article";
 import en_services from "./en/services";
+import en_privacy from "./en/privacy";
 
 import es_header from "./es/header";
 import es_home from "./es/home";
@@ -21,6 +22,7 @@ import es_footer from "./es/footer";
 import es_blogMeta from "./es/blogMeta";
 import es_article from "./es/article";
 import es_services from "./es/services";
+import es_privacy from "./es/privacy";
 
 export const translations = {
   en: {
@@ -35,6 +37,7 @@ export const translations = {
     blogMeta: en_blogMeta,
     article: en_article,
     services: en_services,
+    privacy: en_privacy,
   },
   es: {
     header: es_header,
@@ -48,6 +51,7 @@ export const translations = {
     blogMeta: es_blogMeta,
     article: es_article,
     services: es_services,
+    privacy: es_privacy,
   },
 } as const;
 

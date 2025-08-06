@@ -15,6 +15,7 @@ import Blog from "./pages/Blog";
 import ArticleDetail from "./pages/ArticleDetail";
 import NotFound from "./pages/NotFound";
 import NebulaArchive from "./pages/NebulaArchive";
+import Privacy from "./pages/Privacy";
 
 import NebulaTerminal from "./components/NebulaTerminal";
 import Loader from "./components/Loader";
@@ -169,6 +170,14 @@ export default function App() {
               element={
                 <PageTransition>
                   <NebulaArchive />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/privacy"
+              element={
+                <PageTransition>
+                  <Privacy />
                 </PageTransition>
               }
             />
