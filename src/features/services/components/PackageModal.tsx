@@ -54,7 +54,7 @@ export default function PackageModal({
     <AnimatePresence>
       {pkg && (
         <motion.div
-          className="fixed inset-0 z-[60] flex items-end md:items-center justify-center"
+          className="fixed inset-0 z-[60] flex items-center justify-center p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -69,10 +69,10 @@ export default function PackageModal({
           />
 
           <motion.div
-            className="relative w-full md:max-w-2xl bg-white dark:bg-gray-900 rounded-t-2xl md:rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-800"
-            initial={{ y: 24, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 24, opacity: 0 }}
+            className="relative w-full max-w-2xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-800 max-h-[85vh] overflow-y-auto"
+            initial={{ opacity: 0, y: 8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.98 }}
           >
             <button
               ref={closeRef}
@@ -120,7 +120,7 @@ export default function PackageModal({
               </div>
             </div>
 
-            <div className="mt-6 flex gap-3">
+            <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <a
                 href="#contact"
                 onClick={(e) => {
@@ -131,7 +131,7 @@ export default function PackageModal({
                     form.scrollIntoView({ behavior: "smooth", block: "start" });
                   onClose();
                 }}
-                className="inline-flex items-center rounded-md px-4 py-2 font-semibold bg-brand text-black dark:text-white hover:brightness-110 transition"
+                className="inline-flex items-center justify-center rounded-md px-4 py-2 font-semibold bg-brand text-black dark:text-white hover:brightness-110 transition"
               >
                 {labels.contact}
               </a>

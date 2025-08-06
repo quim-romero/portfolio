@@ -74,13 +74,6 @@ export default {
     email: "Email",
     goal: "Goal / What you need",
     budget: "Approx. budget",
-    budgetOptions: [
-      "< €1,000",
-      "€1,000 – €3,000",
-      "€3,000 – €6,000",
-      "€6,000 – €10,000",
-      "> €10,000",
-    ],
     submit: "Send",
     success: "Got it! I’ll get back to you soon.",
   },
