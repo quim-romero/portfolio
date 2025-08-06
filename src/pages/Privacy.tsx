@@ -35,8 +35,8 @@ export default function Privacy() {
     "dataWeProcess.bullets",
     lang
   ).map(subVars);
-  const dwpTech = t("privacy", "dataWeProcess.techNote", lang);
-  const dwpSeeCookies = t("privacy", "dataWeProcess.seeCookies", lang);
+  {/*const dwpTech = t("privacy", "dataWeProcess.techNote", lang);
+  const dwpSeeCookies = t("privacy", "dataWeProcess.seeCookies", lang);*/}
 
   const purposesTitle = t("privacy", "purposes.title", lang);
   const purposesBullets = tArray<string>("privacy", "purposes.bullets", lang);
