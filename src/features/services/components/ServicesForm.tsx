@@ -261,6 +261,112 @@ export default function ServicesForm({
           </select>
         </div>
 
+        <div className="flex flex-col">
+          <label
+            htmlFor="timeline"
+            className="text-sm font-medium text-gray-800 dark:text-gray-200"
+          >
+            {lang === "es" ? "Plazo" : "Timeline"}
+          </label>
+          <select
+            id="timeline"
+            name="timeline"
+            required
+            defaultValue=""
+            className="mt-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2"
+          >
+            <option value="" disabled hidden>
+              —
+            </option>
+            <option value="asap">ASAP</option>
+            <option value="2_4w">
+              {lang === "es" ? "2–4 semanas" : "2–4 weeks"}
+            </option>
+            <option value="1_3m">
+              {lang === "es" ? "1–3 meses" : "1–3 months"}
+            </option>
+          </select>
+        </div>
+
+        <div className="md:col-span-2 flex items-start gap-2">
+          <input
+            id="consent"
+            name="consent"
+            type="checkbox"
+            value="yes"
+            required
+            className="mt-1 h-4 w-4 rounded border-gray-300 dark:border-gray-700"
+          />
+          <label
+            htmlFor="consent"
+            className="text-sm text-gray-700 dark:text-gray-300"
+          >
+            {lang === "es" ? (
+              <>
+                Acepto la{" "}
+                <a href="/privacy" className="underline">
+                  Política de Privacidad
+                </a>
+                .
+              </>
+            ) : (
+              <>
+                I agree to the{" "}
+                <a href="/privacy" className="underline">
+                  Privacy Policy
+                </a>
+                .
+              </>
+            )}
+          </label>
+        </div>
+
+        <details className="md:col-span-2 mt-2 rounded-xl border border-gray-200 dark:border-gray-800">
+          <summary className="cursor-pointer select-none px-4 py-3 text-sm font-medium text-gray-800 dark:text-gray-200">
+            {lang === "es"
+              ? "Más detalles (opcional)"
+              : "More details (optional)"}
+          </summary>
+          <div className="p-4 grid md:grid-cols-2 gap-6">
+            <div className="flex flex-col">
+              <label
+                htmlFor="website_url"
+                className="text-sm font-medium text-gray-800 dark:text-gray-200"
+              >
+                {lang === "es" ? "Web / URL" : "Website / URL"}
+              </label>
+              <input
+                id="website_url"
+                name="website_url"
+                type="url"
+                placeholder="https://…"
+                pattern="https?://.*"
+                className="mt-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2"
+              />
+            </div>
+
+            <div className="md:col-span-2 flex flex-col">
+              <label
+                htmlFor="references"
+                className="text-sm font-medium text-gray-800 dark:text-gray-200"
+              >
+                {lang === "es" ? "Referencias / Enlaces" : "References / Links"}
+              </label>
+              <textarea
+                id="references"
+                name="references"
+                rows={3}
+                placeholder={
+                  lang === "es"
+                    ? "Pega enlaces de referencia…"
+                    : "Paste reference links…"
+                }
+                className="mt-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2"
+              />
+            </div>
+          </div>
+        </details>
+
         <div className="md:col-span-2">
           <button
             type="submit"
