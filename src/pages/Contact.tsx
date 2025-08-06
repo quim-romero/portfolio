@@ -39,13 +39,6 @@ export default function Contact() {
       ? "¿Tienes una idea, producto o startup? Contáctame para trabajar juntos en interfaces modernas con React, Tailwind y animación."
       : "Got a project or idea? Reach out and let’s collaborate on modern interfaces with React, Tailwind, and motion UI.";
 
-  type FormValues = {
-    name: string;
-    email: string;
-    message: string;
-    consent: boolean;
-  };
-
   const schema: yup.ObjectSchema<FormValues> = yup
     .object({
       name: yup.string().required(t("contact", "form.nameRequired", lang)),
