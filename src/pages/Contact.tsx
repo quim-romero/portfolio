@@ -15,6 +15,7 @@ type FormValues = {
   name: string;
   email: string;
   message: string;
+  consent: boolean;
 };
 
 export default function Contact() {
@@ -38,14 +39,34 @@ export default function Contact() {
       ? "¿Tienes una idea, producto o startup? Contáctame para trabajar juntos en interfaces modernas con React, Tailwind y animación."
       : "Got a project or idea? Reach out and let’s collaborate on modern interfaces with React, Tailwind, and motion UI.";
 
-  const schema = yup.object({
-    name: yup.string().required(t("contact", "form.nameRequired", lang)),
-    email: yup
-      .string()
-      .email(t("contact", "form.invalidEmail", lang))
-      .required(t("contact", "form.emailRequired", lang)),
-    message: yup.string().required(t("contact", "form.messageRequired", lang)),
-  });
+  type FormValues = {
+    name: string;
+    email: string;
+    message: string;
+    consent: boolean;
+  };
+
+  const schema: yup.ObjectSchema<FormValues> = yup
+    .object({
+      name: yup.string().required(t("contact", "form.nameRequired", lang)),
+      email: yup
+        .string()
+        .email(t("contact", "form.invalidEmail", lang))
+        .required(t("contact", "form.emailRequired", lang)),
+      message: yup
+        .string()
+        .required(t("contact", "form.messageRequired", lang)),
+      consent: yup
+        .boolean()
+        .oneOf(
+          [true],
+          lang === "es"
+            ? "Debes aceptar la Política de Privacidad."
+            : "You must accept the Privacy Policy."
+        )
+        .required(),
+    })
+    .required();
 
   const {
     register,
@@ -53,7 +74,13 @@ export default function Contact() {
     reset,
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm<FormValues>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver<FormValues, any, FormValues>(schema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+      consent: false,
+    },
   });
 
   const onSubmit = async (data: FormValues) => {
@@ -71,6 +98,9 @@ export default function Contact() {
         name: data.name,
         email: data.email,
         message: data.message,
+        consent: data.consent ? "yes" : "no",
+        page: "/contact",
+        timestamp: new Date().toISOString(),
       });
       reset();
     } catch (err) {
@@ -118,7 +148,6 @@ export default function Contact() {
                 aria-label="Contact form"
                 className="space-y-6"
               >
-                {/* Name */}
                 <div>
                   <label
                     htmlFor="name"
@@ -141,7 +170,6 @@ export default function Contact() {
                   )}
                 </div>
 
-                {/* Email */}
                 <div>
                   <label
                     htmlFor="email"
@@ -164,7 +192,6 @@ export default function Contact() {
                   )}
                 </div>
 
-                {/* Message */}
                 <div>
                   <label
                     htmlFor="message"
@@ -187,7 +214,43 @@ export default function Contact() {
                   )}
                 </div>
 
-                {/* Submit Button */}
+                <div className="flex items-start gap-2">
+                  <input
+                    id="consent"
+                    type="checkbox"
+                    {...register("consent")}
+                    aria-invalid={!!errors.consent}
+                    className="mt-1 h-4 w-4 rounded border-gray-300 dark:border-gray-700"
+                  />
+                  <label
+                    htmlFor="consent"
+                    className="text-sm text-gray-700 dark:text-gray-300"
+                  >
+                    {lang === "es" ? (
+                      <>
+                        Acepto la{" "}
+                        <a href="/privacy" className="underline">
+                          Política de Privacidad
+                        </a>
+                        .
+                      </>
+                    ) : (
+                      <>
+                        I agree to the{" "}
+                        <a href="/privacy" className="underline">
+                          Privacy Policy
+                        </a>
+                        .
+                      </>
+                    )}
+                  </label>
+                </div>
+                {errors.consent && (
+                  <p className="text-sm text-red-500 -mt-4">
+                    {errors.consent.message as string}
+                  </p>
+                )}
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -202,7 +265,6 @@ export default function Contact() {
                   )}
                 </button>
 
-                {/* Success */}
                 {isSubmitSuccessful && !sendError && (
                   <motion.p
                     initial={{ opacity: 0 }}
@@ -215,7 +277,6 @@ export default function Contact() {
                   </motion.p>
                 )}
 
-                {/* Error */}
                 {sendError && (
                   <motion.p
                     initial={{ opacity: 0 }}
