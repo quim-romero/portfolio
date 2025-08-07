@@ -261,6 +261,7 @@ export default function ServicesForm({
           </select>
         </div>
 
+        {/* Timeline (obligatorio) */}
         <div className="flex flex-col">
           <label
             htmlFor="timeline"
@@ -278,13 +279,32 @@ export default function ServicesForm({
             <option value="" disabled hidden>
               —
             </option>
-            <option value="asap">ASAP</option>
-            <option value="2_4w">
-              {lang === "es" ? "2–4 semanas" : "2–4 weeks"}
-            </option>
-            <option value="1_3m">
-              {lang === "es" ? "1–3 meses" : "1–3 months"}
-            </option>
+            {(lang === "es"
+              ? [
+                  { value: "flexible", label: "Sin fecha fija / Flexible" },
+                  { value: "0_2w", label: "En 0–2 semanas" },
+                  { value: "2_4w", label: "En 2–4 semanas" },
+                  { value: "1_3m", label: "En 1–3 meses" },
+                  {
+                    value: "specific",
+                    label: "Fecha concreta (indícala en detalles)",
+                  },
+                ]
+              : [
+                  { value: "flexible", label: "No fixed date / Flexible" },
+                  { value: "0_2w", label: "Within 0–2 weeks" },
+                  { value: "2_4w", label: "Within 2–4 weeks" },
+                  { value: "1_3m", label: "Within 1–3 months" },
+                  {
+                    value: "specific",
+                    label: "Specific date (mention in details)",
+                  },
+                ]
+            ).map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
           </select>
         </div>
 
