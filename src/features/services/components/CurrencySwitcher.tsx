@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Currency } from "../../services/pricing";
+import { useLanguage } from "../../../hooks/LanguageProvider";
 
 type Props = {
   currency: Currency;
@@ -12,16 +13,34 @@ type Props = {
 const OPTIONS: Array<{
   value: Currency;
   code: string;
-  name: string;
   flag: string;
 }> = [
-  { value: "EUR", code: "EUR", name: "Euro", flag: "🇪🇺" },
-  { value: "USD", code: "USD", name: "US Dollar", flag: "🇺🇸" },
-  { value: "GBP", code: "GBP", name: "British Pound", flag: "🇬🇧" },
-  { value: "CHF", code: "CHF", name: "Swiss Franc", flag: "🇨🇭" },
-  { value: "AUD", code: "AUD", name: "Australian Dollar", flag: "🇦🇺" },
-  { value: "CAD", code: "CAD", name: "Canadian Dollar", flag: "🇨🇦" },
+  { value: "EUR", code: "EUR", flag: "🇪🇺" },
+  { value: "USD", code: "USD", flag: "🇺🇸" },
+  { value: "GBP", code: "GBP", flag: "🇬🇧" },
+  { value: "CHF", code: "CHF", flag: "🇨🇭" },
+  { value: "AUD", code: "AUD", flag: "🇦🇺" },
+  { value: "CAD", code: "CAD", flag: "🇨🇦" },
 ];
+
+const NAMES: Record<"en" | "es", Record<Currency, string>> = {
+  en: {
+    EUR: "Euro",
+    USD: "US Dollar",
+    GBP: "British Pound",
+    CHF: "Swiss Franc",
+    AUD: "Australian Dollar",
+    CAD: "Canadian Dollar",
+  },
+  es: {
+    EUR: "Euro",
+    USD: "Dólar estadounidense",
+    GBP: "Libra esterlina",
+    CHF: "Franco suizo",
+    AUD: "Dólar australiano",
+    CAD: "Dólar canadiense",
+  },
+};
 
 export default function CurrencySwitcher({
   currency,
@@ -29,6 +48,9 @@ export default function CurrencySwitcher({
   label,
   className = "",
 }: Props) {
+  const { lang } = useLanguage();
+  const dict = lang === "es" ? NAMES.es : NAMES.en;
+
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
@@ -98,7 +120,7 @@ export default function CurrencySwitcher({
           aria-live="polite"
         >
           <span className="text-base leading-none">{current.flag}</span>
-          <span className="font-medium">{current.name}</span>
+          <span className="font-medium">{dict[current.value]}</span>
         </div>
       </div>
 
@@ -125,7 +147,7 @@ export default function CurrencySwitcher({
             }}
             style={{ transformOrigin: "left center" }}
           >
-            <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-lg p-2 min-w-[220px]">
+            <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-lg p-2 min-w-[300px]">
               <ul className="flex flex-col">
                 {OPTIONS.map((opt) => {
                   const selected = opt.value === currency;
@@ -141,13 +163,13 @@ export default function CurrencySwitcher({
                             ? "bg-brand text-black dark:text-white"
                             : "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-gray-100",
                         ].join(" ")}
-                        title={`${opt.flag} ${opt.name}`}
+                        title={`${opt.flag} ${dict[opt.value]}`}
                       >
-                        <span className="flex items-center gap-2">
+                        <span className="flex items-center gap-2 md:whitespace-nowrap">
                           <span className="text-base leading-none">
                             {opt.flag}
                           </span>
-                          <span className="font-medium">{opt.name}</span>
+                          <span className="font-medium">{dict[opt.value]}</span>
                           <span className="opacity-70">· {opt.code}</span>
                         </span>
                         {selected && <span aria-hidden="true">✓</span>}
@@ -186,13 +208,13 @@ export default function CurrencySwitcher({
                           ? "bg-brand text-black dark:text-white"
                           : "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-gray-100",
                       ].join(" ")}
-                      title={`${opt.flag} ${opt.name}`}
+                      title={`${opt.flag} ${dict[opt.value]}`}
                     >
-                      <span className="flex items-center gap-2">
+                      <span className="flex items-center gap-2 md:whitespace-nowrap">
                         <span className="text-base leading-none">
                           {opt.flag}
                         </span>
-                        <span className="font-medium">{opt.name}</span>
+                        <span className="font-medium">{dict[opt.value]}</span>
                         <span className="opacity-70">· {opt.code}</span>
                       </span>
                       {selected && <span aria-hidden="true">✓</span>}
