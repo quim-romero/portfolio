@@ -229,7 +229,7 @@ export default function Services() {
                   )}
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-3 gap-6 items-stretch">
                   {packages.map((pkg) => (
                     <PackageCard
                       key={pkg.id}
@@ -297,7 +297,6 @@ export default function Services() {
             </motion.div>
           </LanguageTransition>
         </section>
-
       </main>
     </Layout>
   );

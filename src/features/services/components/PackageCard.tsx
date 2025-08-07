@@ -45,27 +45,30 @@ export default function PackageCard({
     <article
       id={pkg.id}
       className={[
-        "rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm hover:shadow-md transition-shadow",
+        "h-full flex flex-col rounded-2xl border border-gray-200 dark:border-gray-800",
+        "bg-white dark:bg-gray-900 p-6 shadow-sm hover:shadow-md transition-shadow",
         className,
       ].join(" ")}
     >
-      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-        {pkg.title}
-      </h3>
+      <header>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+          {pkg.title}
+        </h3>
+      </header>
 
-      <p className="mt-2 text-gray-700 dark:text-gray-300">{pkg.desc}</p>
+      <p className="mt-3 text-gray-700 dark:text-gray-300">{pkg.desc}</p>
 
-      <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+      <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
         {labels.from} <span className="font-semibold">{priceLabel}</span>
         <span className="mx-2">·</span>
         <span>{pkg.timeline}</span>
-      </div>
+      </p>
 
-      <div className="mt-5 flex gap-3">
+      <div className="mt-auto pt-4 flex gap-3">
         <button
           type="button"
           onClick={() => onOpenDetails(pkg)}
-          className="rounded-md px-3 py-2 text-sm font-medium border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+          className="rounded-md px-4 py-2 text-sm font-medium border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
         >
           {labels.seeDetails}
         </button>
@@ -75,9 +78,9 @@ export default function PackageCard({
           onClick={(e) => {
             e.preventDefault();
             onQuote(pkg);
-            const form = document.getElementById("contact");
-            if (form)
-              form.scrollIntoView({ behavior: "smooth", block: "start" });
+            document
+              .getElementById("contact")
+              ?.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
           className="inline-flex items-center rounded-md px-4 py-2 font-semibold bg-brand text-black dark:text-white hover:brightness-110 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
         >
