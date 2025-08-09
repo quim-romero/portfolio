@@ -6,7 +6,6 @@ export default {
 
   downloadCV: "Download CV",
 
-  // Content
   intro:
     "I’m a Frontend developer specialized in React and TypeScript. I build fast, accessible, conversion-oriented interfaces. I’m comfortable across motion and performance, and I work with real metrics (Lighthouse, axe) and CI/CD so every delivery is verifiable. I’ve built landings, Stripe-powered stores, and dashboards with filters and charts; I enjoy designing clear flows and micro-interactions that add value without distracting.",
 

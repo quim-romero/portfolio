@@ -101,21 +101,48 @@ export default function ServicesForm({
 
     if (isBot(formEl)) return;
 
+    if (!formEl.checkValidity()) {
+      formEl.reportValidity();
+      return;
+    }
+
     const budgetSel =
       formEl.querySelector<HTMLSelectElement>('select[name="budget"]')?.value ||
       "";
     const selected = budgetOptions.find((o) => o.value === budgetSel);
 
+    const PROTECT_KEYS = new Set(["package", "price_eur", "price_view"]);
+    const safeDefaults = Object.fromEntries(
+      Object.entries(hiddenDefaults).filter(
+        ([k, v]) =>
+          !PROTECT_KEYS.has(k) && typeof v === "string" && v.trim().length > 0
+      )
+    );
+
+    const idInput = formEl.querySelector<HTMLInputElement>(
+      'input[name="submission_id"]'
+    );
+    const submissionId =
+      idInput?.value ||
+      (typeof crypto !== "undefined" && "randomUUID" in crypto
+        ? (crypto.randomUUID as () => string)()
+        : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`);
+
     stampHiddenFields(formEl, {
+      ...safeDefaults,
       lang,
       currency,
       timestamp: new Date().toISOString(),
       budget_label: selected?.label || "",
       budget_eur_min:
-        typeof selected?.eur_min === "number" ? String(selected?.eur_min) : "",
+        typeof selected?.eur_min === "number" ? String(selected.eur_min) : "",
       budget_eur_max:
-        typeof selected?.eur_max === "number" ? String(selected?.eur_max) : "",
-      ...hiddenDefaults,
+        typeof selected?.eur_max === "number" ? String(selected.eur_max) : "",
+      submission_id: submissionId,
+      title: "Services",
+      page:
+        formEl.querySelector<HTMLInputElement>('input[name="page"]')?.value ??
+        "/services",
     });
 
     try {
@@ -151,7 +178,6 @@ export default function ServicesForm({
       <form
         id="services-form"
         onSubmit={onSubmit}
-        noValidate
         className="grid md:grid-cols-2 gap-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 shadow-sm"
       >
         <input
@@ -162,6 +188,7 @@ export default function ServicesForm({
           className="hidden"
         />
 
+        <input type="hidden" name="submission_id" defaultValue="" />
         <input type="hidden" name="lang" defaultValue={lang} />
         <input type="hidden" name="currency" defaultValue={currency} />
         <input type="hidden" name="page" defaultValue="/services" />
@@ -261,7 +288,6 @@ export default function ServicesForm({
           </select>
         </div>
 
-        {/* Timeline (obligatorio) */}
         <div className="flex flex-col">
           <label
             htmlFor="timeline"

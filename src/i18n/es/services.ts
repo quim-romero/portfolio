@@ -78,7 +78,7 @@ export default {
     goal: "Objetivo / Qué necesitas",
     budget: "Presupuesto aproximado",
     submit: "Enviar",
-    success: "¡Recibido! Te respondo pronto.",
+    success: "¡Recibido! Te respondo en menos de 24 horas.",
   },
   breadcrumbHome: "Inicio",
 };

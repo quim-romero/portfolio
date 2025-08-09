@@ -47,21 +47,54 @@ export async function sendEmailData(
 
 export function isBot(formEl: HTMLFormElement): boolean {
   const hp = formEl.querySelector<HTMLInputElement>('input[name="website"]');
-  return !!hp && hp.value.trim().length > 0;
+  if (hp && hp.value.trim().length > 0) return true;
+
+  const hpTime = formEl.querySelector<HTMLInputElement>(
+    'input[name="hp_time"]'
+  );
+  if (hpTime) {
+    const started = parseInt(hpTime.value, 10);
+    if (!Number.isNaN(started)) {
+      const deltaMs = Date.now() - started;
+      if (deltaMs < 1500) return true;
+    }
+  }
+  return false;
 }
+
+export function ensureHiddenInput(
+  formEl: HTMLFormElement,
+  name: string
+): HTMLInputElement {
+  let input = formEl.querySelector<HTMLInputElement>(`input[name="${name}"]`);
+  if (!input) {
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = name;
+    formEl.appendChild(input);
+  }
+  return input;
+}
+
+type StampOptions = {
+  overwriteWithEmpty?: boolean;
+};
 
 export function stampHiddenFields(
   formEl: HTMLFormElement,
-  fields: Record<string, string>
+  fields: Record<string, string>,
+  opts: StampOptions = {}
 ) {
+  const { overwriteWithEmpty = false } = opts;
+
   Object.entries(fields).forEach(([name, value]) => {
-    let input = formEl.querySelector<HTMLInputElement>(`input[name="${name}"]`);
-    if (!input) {
-      input = document.createElement("input");
-      input.type = "hidden";
-      input.name = name;
-      formEl.appendChild(input);
+    const input = ensureHiddenInput(formEl, name);
+    const incoming = typeof value === "string" ? value : String(value ?? "");
+
+    if (!overwriteWithEmpty && incoming === "" && input.value.trim() !== "") {
+      return;
     }
-    input.value = value;
+
+    input.value = incoming;
   });
 }

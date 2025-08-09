@@ -75,7 +75,7 @@ export default {
     goal: "Goal / What you need",
     budget: "Approx. budget",
     submit: "Send",
-    success: "Got it! I’ll get back to you soon.",
+    success: "Got it! I’ll get back to you within 24 hours.",
   },
   breadcrumbHome: "Home",
 };

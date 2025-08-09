@@ -6,7 +6,6 @@ export default {
 
   downloadCV: "Descargar CV",
 
-  // Contenido
   intro:
     "Soy desarrollador Frontend especializado en React y TypeScript. Construyo interfaces rápidas, accesibles y orientadas a conversión. Me muevo cómodo entre animación y rendimiento, y trabajo con métricas reales (Lighthouse, axe) y CI/CD para que cada entrega sea comprobable. He creado landings, tiendas con Stripe y dashboards con filtros y gráficos; disfruto diseñando flujos claros y microinteracciones que suman, no distraen.",
 

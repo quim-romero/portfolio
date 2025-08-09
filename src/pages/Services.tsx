@@ -291,7 +291,7 @@ export default function Services() {
                   success: t("services", "form.success", lang),
                 }}
                 budgetBandsEUR={[1000, 3000, 6000, 10000]}
-                hiddenDefaults={{ page: canonical, package: "" }}
+                hiddenDefaults={{ page: canonical }}
                 className="mt-16"
               />
             </motion.div>
