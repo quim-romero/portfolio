@@ -91,8 +91,8 @@ export const projectDetails: ProjectDetail[] = [
       light: "/projects/lumina-light.png",
     },
     preview: {
-      dark: "/previews/lumina-preview-dark.webm",
-      light: "/previews/lumina-preview-light.webm",
+      light: "/previews/lumina-light.webm",
+      dark: "/previews/lumina-dark.webm",
     },
     tech: [
       "React",
