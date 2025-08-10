@@ -94,4 +94,8 @@ export default {
       "Diseño minimalista, responsivo y accesible, con animaciones suaves de Framer Motion",
     ],
   },
+  lighthouse: {
+    heading: "Auditoría Lighthouse",
+    captionPrefix: "Rendimiento comprobado con Lighthouse · Build en producción",
+  },
 };

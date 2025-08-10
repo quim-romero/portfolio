@@ -190,11 +190,47 @@ export default function ProjectDetail() {
             <h2 className="text-xl font-semibold mb-3 text-text-base dark:text-white">
               {t("projectDetails", "featuresTitle", lang)}
             </h2>
-            <ul className="list-disc list-inside text-muted dark:text-gray-300 mb-6 space-y-2">
+            <ul className="list-disc list-inside text-muted dark:text-gray-300 mb-10 space-y-2">
               {highlights.map((point, i) => (
                 <li key={i}>{point}</li>
               ))}
             </ul>
+
+            <h2 className="text-xl font-semibold mb-3 text-text-base dark:text-white">
+              {t("projectDetails", "lighthouse.heading", lang)}
+            </h2>
+
+            <figure className="mb-6">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={`${id}-lh-${theme}`}
+                  src={`/lighthouse/${id}-${theme}.png`}
+                  alt={`Lighthouse audit summary for ${title}`}
+                  className="rounded-lg shadow-md w-full max-w-xl mx-auto"
+                  loading="lazy"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  onError={(e) => {
+                    const el = e.currentTarget as HTMLImageElement & {
+                      dataset: { triedCommon?: string; triedGlobal?: string };
+                    };
+                    if (!el.dataset.triedCommon) {
+                      el.src = `/lighthouse/${id}.png`;
+                      el.dataset.triedCommon = "1";
+                    } else if (!el.dataset.triedGlobal) {
+                      el.src = `/lighthouse/fallback.png`;
+                      el.dataset.triedGlobal = "1";
+                    }
+                  }}
+                />
+              </AnimatePresence>
+
+              <figcaption className="text-sm text-gray-500 dark:text-gray-400 text-center mt-2">
+                {t("projectDetails", "lighthouse.captionPrefix", lang)}
+              </figcaption>
+            </figure>
           </motion.div>
         </LanguageTransition>
       </section>
