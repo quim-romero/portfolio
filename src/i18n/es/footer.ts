@@ -13,45 +13,19 @@ export default {
       },
       {
         title: "🎨 UI y Animación",
-        items: [
-          "Tailwind CSS",
-          "Framer Motion",
-          "GSAP",
-          "Lucide React",
-          "Heroicons",
-        ],
-      },
-      {
-        title: "🌓 Temas y Experiencia de Usuario",
-        items: [
-          "Modo oscuro/claro con persistencia",
-          "Transiciones suaves",
-          "Accesibilidad con ARIA",
-        ],
-      },
-      {
-        title: "🌍 Multilenguaje",
-        items: ["Soporte EN/ES", "Traducción contextual con React"],
-      },
-      {
-        title: "🧪 Testing",
-        items: ["Cypress", "Vitest", "GitHub Actions (CI/CD)"],
-      },
-      {
-        title: "📝 Formularios",
-        items: ["React Hook Form", "Yup", "EmailJS"],
+        items: ["Tailwind CSS", "Framer Motion", "GSAP"],
       },
       {
         title: "🧰 Arquitectura",
-        items: ["Zustand (estado global)", "Componentes modulares tipados"],
+        items: ["Zustand", "Componentes modulares"],
       },
       {
-        title: "🛰️ Offline y PWA",
-        items: ["Service Worker personalizado", "Manifest.json + offline.html"],
+        title: "📈 Rendimiento",
+        items: ["UX optimizada", "Lazy loading"],
       },
       {
-        title: "📈 Performance y Analytics",
-        items: ["@vercel/analytics", "Lazy loading", "Scroll y UX suave"],
+        title: "🔗 Más",
+        items: ["Stack completo en GitHub →"],
       },
     ],
   },
