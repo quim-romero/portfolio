@@ -195,18 +195,22 @@ export default function ProjectDetail() {
                 <li key={i}>{point}</li>
               ))}
             </ul>
-
             <h2 className="text-xl font-semibold mb-3 text-text-base dark:text-white">
               {t("projectDetails", "lighthouse.heading", lang)}
             </h2>
 
-            <figure className="mb-6">
+            <figure className="mb-6 relative w-full max-w-xl group overflow-hidden rounded-lg">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={`${id}-lh-${theme}`}
                   src={`/lighthouse/${id}-${theme}.png`}
                   alt={`Lighthouse audit summary for ${title}`}
-                  className="rounded-lg shadow-md w-full max-w-xl mx-auto"
+                  className="
+                    w-full rounded-lg shadow-md
+                    transform-gpu transition-transform duration-300 ease-out
+                    group-hover:scale-105 group-focus-within:scale-105
+                    will-change-transform
+                  "
                   loading="lazy"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -227,7 +231,24 @@ export default function ProjectDetail() {
                 />
               </AnimatePresence>
 
-              <figcaption className="text-sm text-gray-500 dark:text-gray-400 text-center mt-2">
+              <span
+                tabIndex={0}
+                aria-label={t(
+                  "projectDetails",
+                  "lighthouse.captionPrefix",
+                  lang
+                )}
+                className="absolute inset-0 outline-none"
+              />
+
+              <figcaption
+                className="
+                  pointer-events-none absolute inset-0 flex items-center justify-center
+                  px-4 text-center text-white font-semibold text-sm md:text-base
+                  opacity-0 group-hover:opacity-100 group-focus-within:opacity-100
+                  transition-opacity duration-200 bg-black/40
+                "
+              >
                 {t("projectDetails", "lighthouse.captionPrefix", lang)}
               </figcaption>
             </figure>
