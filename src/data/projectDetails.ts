@@ -87,12 +87,12 @@ export const projectDetails: ProjectDetail[] = [
     longDescription:
       "Lumina es una experiencia de tienda digital premium con scroll animado, checkout funcional con Stripe en modo test, validación en formularios con Zod y envío de mensajes con EmailJS. Todo envuelto en una interfaz pulida con scroll suave, dark mode persistente y arquitectura real.",
     image: {
-      dark: "/screens/lumina-dark.png",
-      light: "/screens/lumina-light.png",
+      dark: "/projects/lumina-dark.png",
+      light: "/projects/lumina-light.png",
     },
     preview: {
-      dark: "/previews/lumina-preview-dark.mp4",
-      light: "/previews/lumina-preview-light.mp4",
+      dark: "/previews/lumina-preview-dark.webm",
+      light: "/previews/lumina-preview-light.webm",
     },
     tech: [
       "React",
