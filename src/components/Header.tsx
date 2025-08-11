@@ -7,6 +7,7 @@ import { useDarkMode } from "../hooks/DarkModeContext";
 import { useLanguage } from "../hooks/LanguageProvider";
 import { t } from "../i18n/translations";
 import LanguageTransition from "../components/LanguageTransition";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const navItems = [
   { key: "home", path: "/" },
@@ -20,14 +21,12 @@ const navItems = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDark, setIsDark] = useDarkMode();
-  const { lang, setLang } = useLanguage();
+  const { lang } = useLanguage();
   const [theme, setTheme] = useState(isDark ? "dark" : "light");
 
   useEffect(() => {
     setTheme(isDark ? "dark" : "light");
   }, [isDark]);
-
-  const toggleLang = () => setLang(lang === "en" ? "es" : "en");
 
   return (
     <header
@@ -73,18 +72,12 @@ export default function Header() {
                   ? "Cambiar a modo claro u oscuro"
                   : "Toggle dark mode"
               }
+              type="button"
             >
               {isDark ? <FiSun /> : <FiMoon />}
             </button>
 
-            <button
-              data-testid="toggle-language"
-              onClick={toggleLang}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"
-              aria-label={lang === "es" ? "Cambiar idioma" : "Switch language"}
-            >
-              <span className="text-xl">{lang === "en" ? "🇬🇧" : "🇪🇸"}</span>
-            </button>
+            <LanguageSwitcher />
           </div>
         </nav>
 
@@ -98,23 +91,18 @@ export default function Header() {
                 ? "Cambiar a modo claro u oscuro"
                 : "Toggle dark mode"
             }
+            type="button"
           >
             {isDark ? <FiSun /> : <FiMoon />}
           </button>
 
-          <button
-            data-testid="toggle-language"
-            onClick={toggleLang}
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"
-            aria-label={lang === "es" ? "Cambiar idioma" : "Switch language"}
-          >
-            <span className="text-xl">{lang === "en" ? "🇬🇧" : "🇪🇸"}</span>
-          </button>
+          <LanguageSwitcher />
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="text-text-base dark:text-text-light"
             aria-label={lang === "es" ? "Menú móvil" : "Toggle mobile menu"}
+            type="button"
           >
             {menuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
           </button>
