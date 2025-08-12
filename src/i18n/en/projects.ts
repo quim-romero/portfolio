@@ -2,39 +2,40 @@ export default {
   meta: {
     title: "Projects – Quim Romero",
     description:
-      "Explore modern frontend projects by Quim Romero. From immersive dashboards to interactive digital galleries, built with React, TypeScript, motion, and design precision.",
+      "Discover SaaS and business tools by Quim Romero. From productivity dashboards to e-commerce and onboarding apps, built with React, TypeScript, and modern frontend architecture.",
   },
   heading: "Featured Projects",
   subheading:
-    "A curated showcase of real-world frontend skills — blending logic, animation, state management, and product vision.",
+    "A selection of real-world SaaS demos — showcasing business logic, smooth UX, state management, and production-ready design.",
   hint: "Tip: visuals adapt when switching themes.",
   novatech: {
     title: "NovaTech Solutions",
     description:
-      "Corporate SaaS site simulation with dynamic dashboards, real AI demos, and scalable architecture.",
+      "Corporate SaaS demo with interactive dashboards, validated forms, and an AI showcase.",
   },
   nebulaos: {
     title: "NebulaOS",
     description:
-      "Experimental microsite with GSAP, interactive console demo, and futuristic animations.",
+      "Conceptual microsite with interactive console, GSAP animations, and futuristic design.",
   },
   lumina: {
     title: "Lumina",
-    description: "Modern digital store with Stripe checkout and animated UI.",
+    description:
+      "Premium digital storefront with Stripe checkout, validated forms, and polished motion.",
   },
-
   "visionary-gallery": {
     title: "Visionary Gallery",
     description:
-      "Immersive SPA for digital art with real-time filters, persistent favorites, and theme support.",
+      "Immersive gallery SPA with category filters, persistent favorites, and accessible lightbox.",
   },
   trackforge: {
     title: "TrackForge",
     description:
-      "Typed task management dashboard with real-time filters, productivity charts, and persistent settings.",
+      "Productivity dashboard SaaS with task CRUD, weekly analytics, and persistent user preferences.",
   },
   clientflow: {
     title: "ClientFlow",
-    description: "Multi-step onboarding flow with validation and file uploads.",
+    description:
+      "Onboarding flow app with multi-step forms, schema validation, and file uploads.",
   },
 };

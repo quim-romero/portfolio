@@ -19,7 +19,7 @@ export const projects: Project[] = [
     id: "trackforge",
     title: "TrackForge",
     description:
-      "Typed task management dashboard with real-time filters, productivity charts, and persistent settings.",
+      "Productivity dashboard SaaS with task CRUD, weekly analytics, and persistent user preferences.",
     image: {
       light: "/projects/trackforge-light.png",
       dark: "/projects/trackforge-dark.png",
@@ -35,7 +35,7 @@ export const projects: Project[] = [
     id: "nebulaos",
     title: "NebulaOS",
     description:
-      "Experimental microsite with GSAP, interactive console demo, and futuristic animations.",
+      "Conceptual microsite with interactive console, GSAP animations, and futuristic design.",
     image: {
       light: "/projects/nebulaos-light.png",
       dark: "/projects/nebulaos-dark.png",
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     id: "lumina",
     title: "Lumina",
     description:
-      "Premium e-commerce storefront with smooth animations, Stripe checkout, and contact form.",
+      "Premium digital storefront with Stripe checkout, validated forms, and polished motion.",
     image: {
       light: "/projects/lumina-light.png",
       dark: "/projects/lumina-dark.png",
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     id: "clientflow",
     title: "ClientFlow",
     description:
-      "Multi-step onboarding flow with validation, file uploads, and theme support.",
+      "Onboarding flow app with multi-step forms, schema validation, and file uploads.",
     image: {
       light: "/projects/clientflow-light.gif",
       dark: "/projects/clientflow-dark.gif",
@@ -83,7 +83,7 @@ export const projects: Project[] = [
     id: "visionary-gallery",
     title: "Visionary Gallery",
     description:
-      "Immersive SPA for digital art with real-time filters, persistent favorites, and theme support.",
+      "Immersive gallery SPA with category filters, persistent favorites, and accessible lightbox.",
     image: {
       light: "/projects/visionary-light.png",
       dark: "/projects/visionary-dark.png",
@@ -99,7 +99,7 @@ export const projects: Project[] = [
     id: "novatech",
     title: "NovaTech Solutions",
     description:
-      "Corporate SaaS site simulation with dynamic dashboards, real AI demos, and scalable architecture.",
+      "Corporate SaaS demo with interactive dashboards, validated forms, and an AI showcase.",
     image: {
       light: "/projects/novatech-light.gif",
       dark: "/projects/novatech-dark.gif",

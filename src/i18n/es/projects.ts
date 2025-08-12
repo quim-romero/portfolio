@@ -2,40 +2,41 @@ export default {
   meta: {
     title: "Proyectos – Quim Romero",
     description:
-      "Explora proyectos frontend modernos de Quim Romero. Desde paneles interactivos hasta galerías digitales inmersivas, construidos con React, TypeScript, animaciones y precisión en el diseño.",
+      "Descubre herramientas SaaS y soluciones digitales creadas por Quim Romero. Desde paneles de productividad hasta e-commerce y apps de onboarding, desarrolladas con React, TypeScript y arquitectura frontend moderna.",
   },
   heading: "Proyectos destacados",
   subheading:
-    "Una selección curada de habilidades frontend aplicadas al mundo real — combinando lógica, animación, gestión de estado y visión de producto.",
-  hint: "Pista: las imágenes cambian al alternar entre modo claro y oscuro.",
+    "Una selección de demos SaaS aplicadas al mundo real — mostrando lógica de negocio, UX fluida, gestión de estado y diseño listo para producción.",
+  hint: "Pista: las visuales se adaptan al cambiar entre temas.",
+
   novatech: {
     title: "NovaTech Solutions",
     description:
-      "Simulación de sitio SaaS corporativo con paneles dinámicos, demostraciones reales de IA y arquitectura escalable.",
+      "Demo SaaS corporativa con paneles interactivos, formularios validados y una muestra de IA.",
   },
   nebulaos: {
     title: "NebulaOS",
     description:
-      "Micrositio experimental con GSAP, consola interactiva simulada y animaciones futuristas.",
+      "Micrositio conceptual con consola interactiva, animaciones GSAP y diseño futurista.",
   },
   lumina: {
     title: "Lumina",
     description:
-      "Tienda digital moderna con pago Stripe y animaciones fluidas.",
+      "Tienda digital premium con checkout de Stripe, formularios validados y animaciones pulidas.",
   },
   "visionary-gallery": {
     title: "Visionary Gallery",
     description:
-      "SPA inmersiva para arte digital con filtros en tiempo real, sistema de favoritos persistente y soporte para temas.",
+      "Galería SPA inmersiva con filtros por categoría, sistema de favoritos persistente y lightbox accesible.",
   },
   trackforge: {
     title: "TrackForge",
     description:
-      "Panel de gestión de tareas tipado con filtros en tiempo real, gráficos de productividad y configuraciones persistentes.",
+      "Panel de productividad tipo SaaS con CRUD de tareas, analíticas semanales y preferencias de usuario persistentes.",
   },
   clientflow: {
     title: "ClientFlow",
     description:
-      "Flujo de onboarding multistep con validación y carga de archivos.",
+      "Aplicación de onboarding con formularios multistep, validación por esquemas y subida de archivos.",
   },
 };

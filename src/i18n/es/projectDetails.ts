@@ -5,97 +5,99 @@ export default {
   novatech: {
     title: "NovaTech Solutions",
     description:
-      "Sitio SaaS corporativo con paneles reales y visualizaciones interactivas.",
+      "Plataforma SaaS corporativa con paneles interactivos, formularios y demo de IA.",
     longDescription:
-      "NovaTech Solutions es una simulación realista de un producto SaaS corporativo enfocado en IA, nube y ciberseguridad. Presenta una arquitectura multipágina con rutas protegidas, paneles animados, un blog funcional y formularios validados, todo envuelto en una interfaz pulida con modo oscuro, diseño responsivo y experiencia de usuario con movimiento. Este proyecto enfatiza la presentación del producto, la accesibilidad y una estructura frontend profesional.",
+      "NovaTech Solutions es una simulación de un sitio SaaS corporativo enfocado en IA, nube y ciberseguridad. Incluye paneles animados, formularios validados, rutas protegidas, estructura SEO-ready y hasta una demo de IA para análisis de sentimientos. Construido como un showcase multipágina de nivel profesional.",
     highlights: [
-      "Arquitectura multipágina con rutas semánticas y diseños independientes",
-      "Paneles animados con datos en tiempo real (CPU, amenazas, actividad)",
-      "Formulario de contacto validado con Yup + React Hook Form",
-      "Tema oscuro/claro persistente con experiencia de usuario accesible",
-      "Optimizado para SEO con React Helmet y metadatos por página",
-      "Demostración de IA: análisis de sentimientos con retroalimentación animada",
+      "Arquitectura multipágina con rutas protegidas",
+      "Paneles interactivos con Chart.js y Recharts",
+      "Formularios validados con Yup + React Hook Form",
+      "Optimización SEO con React Helmet",
+      "Modo oscuro/claro persistente y accesible",
+      "Demo de IA: análisis de sentimientos con resultados animados",
     ],
   },
 
   nebulaos: {
     title: "NebulaOS",
     description:
-      "Micrositio experimental con consola animada y diseño modular.",
+      "Micrositio experimental con consola interactiva y animaciones futuristas.",
     longDescription:
-      "NebulaOS es una página de aterrizaje conceptual que simula el lanzamiento de un sistema operativo futurista. Integra animaciones avanzadas con GSAP y Framer Motion, una consola interactiva simulada, modales animados usando AnimatePresence y componentes de interfaz altamente estilizados. Su diseño modular, navegación responsiva y efectos de brillo/desplazamiento muestran animación moderna, narrativa visual y precisión frontend.",
+      "NebulaOS es un micrositio conceptual que simula el lanzamiento de un sistema operativo futurista. Combina animaciones avanzadas con GSAP y Framer Motion, una consola interactiva simulada, modales animados y un diseño modular de componentes. Ideal como demo para landings creativas o presentaciones experimentales de SaaS.",
     highlights: [
-      "Animaciones fluidas con GSAP y transiciones direccionales mediante Framer Motion",
-      "Consola interactiva con salida simulada y soporte para gestos",
-      "Modales animados impulsados por AnimatePresence",
-      "Navegación por gestos y menú móvil animado",
-      "Interfaz modular con componentes reutilizables de UI",
-      "Estética futurista con efectos de brillo y tipografía personalizada (Orbitron, Inter)",
+      "Animaciones avanzadas con GSAP y transiciones direccionales",
+      "Consola interactiva simulada con soporte de gestos",
+      "Modales animados con AnimatePresence",
+      "Navegación por gestos y menú responsivo animado",
+      "Interfaz modular con componentes reutilizables",
+      "Estética futurista con efectos glow y tipografía personalizada",
     ],
   },
 
   "visionary-gallery": {
     title: "Visionary Gallery",
     description:
-      "Galería SPA curada para experiencias inmersivas de arte digital.",
+      "Galería digital inmersiva con filtros en tiempo real, favoritos y lightbox accesible.",
     longDescription:
-      "Visionary Gallery es una aplicación de una sola página moderna que simula una galería de arte digital elegante. Soporta filtros de categoría en tiempo real, un sistema de favoritos con persistencia en localStorage, un modal tipo lightbox con animaciones suaves y una interfaz responsiva que se adapta al tema. Las obras de arte varían desde bucles glitch hasta renders 3D atmosféricos, todo presentado dentro de una arquitectura limpia y un flujo de navegación fluido.",
+      "Visionary Gallery es una experiencia de galería digital curada. Soporta filtrado dinámico de obras, sistema de favoritos persistente, navegación accesible en lightbox y una interfaz responsiva adaptable a tema oscuro/claro. Diseñado como demo tipo SaaS para catálogos, marketplaces visuales y portfolios artísticos.",
     highlights: [
-      "Sistema de favoritos persistente usando Zustand + localStorage",
-      "Filtrado de categorías en tiempo real con interfaz reactiva",
-      "Modal ampliado de obras de arte con animaciones suaves de Framer Motion",
-      "Soporte para tema claro/oscuro con almacenamiento de preferencias locales",
-      "Diseño responsivo orientado a móviles con desplazamiento animado",
-      "Arquitectura clara de componentes con separación entre UI y lógica",
+      "Sistema de favoritos persistente con Zustand + localStorage",
+      "Filtrado dinámico en tiempo real por categoría",
+      "Lightbox accesible con navegación por teclado",
+      "Curator mode para edición simulada",
+      "Soporte de tema oscuro/claro con preferencias guardadas",
+      "SPA responsiva con transiciones suaves y mobile-first",
     ],
   },
 
   trackforge: {
     title: "TrackForge",
     description:
-      "Panel de productividad con lógica en TypeScript y estado persistente.",
+      "Panel de productividad tipo SaaS con gestión de tareas, filtros y analíticas semanales.",
     longDescription:
-      "TrackForge es un panel de gestión de tareas robusto enfocado en la productividad y una arquitectura frontend realista. Construido completamente con TypeScript y Zustand, soporta operaciones CRUD completas, filtros dinámicos, estadísticas semanales con Chart.js, validación de formularios con Zod y preferencias de usuario persistentes, todo en una interfaz limpia, responsiva y accesible.",
+      "TrackForge es un panel de productividad construido como un SaaS realista. Permite crear, editar y gestionar tareas con operaciones CRUD completas, aplicar filtros dinámicos, mostrar estadísticas semanales, iniciar sesión con autenticación sin contraseña y guardar preferencias de usuario. Diseñado para equipos pequeños que necesitan claridad, métricas y una interfaz personalizable.",
     highlights: [
-      "Estado global tipado con Zustand + persistencia en localStorage",
-      "Filtros en tiempo real por prioridad y estado",
-      "Gráficos de productividad semanales con Chart.js",
-      "Preferencias de tema y densidad persistentes",
-      "Animaciones con Framer Motion y ajustes configurables",
-      "Formulario de perfil editable con validación mediante Zod",
+      "Gestión completa de tareas (CRUD) con Supabase en el backend",
+      "Filtros dinámicos por estado y prioridad",
+      "Gráficos semanales de productividad con Chart.js",
+      "Autenticación sin contraseña con Supabase Auth",
+      "Preferencias persistentes de tema, densidad y animaciones",
+      "Interfaz accesible, responsiva y animada con Framer Motion",
     ],
   },
   lumina: {
     title: "Lumina",
     description:
-      "Tienda digital con checkout, formularios y animación premium.",
+      "Tienda digital moderna con checkout de Stripe, formularios validados y experiencia animada.",
     longDescription:
-      "Lumina es una landing page e-commerce construida como si lanzara mañana. Combina animaciones suaves, arquitectura escalable y un formulario funcional con validación y envío real. Ideal para demostrar habilidades reales de frontend con enfoque en producto.",
+      "Lumina es una demo de e-commerce para productos digitales. Incluye un flujo de compra real con Stripe (modo test), formularios de contacto validados con EmailJS, transiciones animadas en la interfaz y un modo claro/oscuro persistente. Construido para mostrar una experiencia lista para producción con integraciones reales.",
     highlights: [
-      "Formulario validado con Zod + envío con EmailJS",
-      "Checkout funcional con Stripe (modo test)",
-      "Scroll suave y animaciones reactivas con Framer Motion",
-      "Modo oscuro/claro persistente",
-      "Arquitectura modular, escalable y real",
+      "Checkout funcional con Stripe en modo test",
+      "Formulario de contacto validado con Zod + EmailJS",
+      "Animaciones suaves con Framer Motion y efectos de scroll",
+      "Persistencia de tema oscuro/claro",
+      "Diseño responsivo con microinteracciones",
+      "Arquitectura modular y escalable orientada a producción",
     ],
   },
   clientflow: {
     title: "ClientFlow",
     description:
-      "Flujo de onboarding con formularios multistep, validación y carga de archivos.",
+      "Aplicación de onboarding multistep con validación, subida de archivos y progreso persistente.",
     longDescription:
-      "ClientFlow es una app de onboarding pensada para agencias, freelancers y equipos digitales que necesitan recopilar información inicial de forma clara y sin fricción. Incluye formularios en varios pasos con validación por esquema, carga de archivos con vista previa, soporte para modo oscuro/claro y persistencia local del progreso del usuario. La experiencia es fluida, accesible y lista para producción.",
+      "ClientFlow es una solución de onboarding para agencias y freelancers que necesitan recopilar información de clientes de manera clara y sin fricción. Incluye formularios en varios pasos con validación por esquemas, carga de archivos con vista previa y metadatos, persistencia del progreso y soporte para tema claro/oscuro. La experiencia es responsiva, intuitiva y lista para producción.",
     highlights: [
-      "Formulario multistep con navegación progresiva y persistencia de estado",
-      "Validación robusta usando Zod + React Hook Form",
-      "Carga de archivos con vista previa, metadatos y feedback visual",
-      "Soporte completo para modo claro/oscuro con persistencia local",
-      "Arquitectura modular con Zustand para control de pasos y datos",
-      "Diseño minimalista, responsivo y accesible, con animaciones suaves de Framer Motion",
+      "Formulario multistep con validación en cada paso",
+      "Validación basada en esquemas con React Hook Form + Zod",
+      "Subida de archivos con vista previa y feedback visual",
+      "Persistencia del estado del formulario entre sesiones",
+      "Soporte de tema oscuro/claro con preferencias guardadas",
+      "Interfaz accesible, responsiva y animada con Framer Motion",
     ],
   },
   lighthouse: {
     heading: "Auditoría Lighthouse",
-    captionPrefix: "Rendimiento comprobado con Lighthouse · Build en producción",
+    captionPrefix:
+      "Rendimiento comprobado con Lighthouse · Build en producción",
   },
 };

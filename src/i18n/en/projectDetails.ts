@@ -5,92 +5,94 @@ export default {
   novatech: {
     title: "NovaTech Solutions",
     description:
-      "Corporate SaaS site with real dashboards and interactive visualizations.",
+      "Corporate SaaS platform demo with dashboards, forms and AI showcase.",
     longDescription:
-      "NovaTech Solutions is a realistic simulation of a corporate SaaS product focused on AI, cloud, and cybersecurity. It features a multipage architecture with protected routes, animated dashboards, a functional blog, and validated forms — all wrapped in a polished UI with dark mode, responsive design, and motion UX. This project emphasizes product presentation, accessibility, and professional frontend structure.",
+      "NovaTech Solutions is a simulation of a corporate SaaS site for AI, cloud and security services. It includes animated dashboards, validated forms, protected routes, SEO-ready structure and even an AI demo for sentiment analysis. Built as a professional multipage SaaS showcase.",
     highlights: [
-      "Multipage architecture with semantic routes and independent layouts",
-      "Animated dashboards with real-time data (CPU, threats, activity)",
-      "Validated contact form with Yup + React Hook Form",
-      "Persistent dark/light theme with accessible UX",
-      "SEO-ready with React Helmet and per-page metadata",
-      "AI demo: sentiment analysis with animated feedback",
+      "Multipage architecture with protected routes",
+      "Interactive dashboards with Chart.js and Recharts",
+      "Validated forms with Yup + React Hook Form",
+      "SEO optimization with React Helmet",
+      "Dark/light mode with accessible UI",
+      "AI demo: sentiment analysis with animated results",
     ],
   },
 
   nebulaos: {
     title: "NebulaOS",
     description:
-      "Experimental microsite with animated console and modular design.",
+      "Experimental microsite with interactive console and futuristic animations.",
     longDescription:
-      "NebulaOS is a conceptual landing page that simulates the launch of a futuristic operating system. It integrates advanced animations with GSAP and Framer Motion, a simulated interactive console, animated modals using AnimatePresence, and highly styled UI components. Its modular design, responsive navigation, and glow/scroll effects showcase modern animation, visual storytelling, and frontend precision.",
+      "NebulaOS is a conceptual microsite that simulates a futuristic operating system. It combines GSAP and Framer Motion animations, an interactive console, animated modals and modular UI design. Perfect as a demo for creative landings or experimental SaaS presentations.",
     highlights: [
-      "Smooth animations with GSAP and directional transitions via Framer Motion",
-      "Interactive console with simulated output and gesture support",
-      "Animated modals powered by AnimatePresence",
-      "Gesture-based navigation and animated mobile menu",
+      "GSAP-powered animations with directional transitions",
+      "Interactive console simulation with output and gestures",
+      "Animated modals with AnimatePresence",
+      "Gesture-based navigation and responsive menu",
       "Modular interface with reusable UI components",
-      "Futuristic aesthetic with glow effects and custom typography (Orbitron, Inter)",
+      "Futuristic style with glow effects and custom fonts",
     ],
   },
 
   "visionary-gallery": {
     title: "Visionary Gallery",
-    description: "Curated SPA gallery for immersive digital art experiences.",
+    description:
+      "Immersive gallery SPA with real-time filters, favorites and lightbox.",
     longDescription:
-      "Visionary Gallery is a modern single-page app simulating an elegant digital art gallery. It supports real-time category filters, a favorites system with localStorage persistence, a lightbox-style modal with soft animations, and a responsive, theme-adaptive interface. Artworks range from glitch loops to atmospheric 3D renders — all displayed within a clean architecture and smooth navigation flow.",
+      "Visionary Gallery is a curated digital gallery experience. It supports real-time filtering, a persistent favorites system, accessible lightbox navigation and a responsive, theme-adaptive interface. Designed as a SaaS-style demo for catalogs, art platforms and marketplaces.",
     highlights: [
-      "Persistent favorites system using Zustand + localStorage",
-      "Real-time category filtering with reactive UI",
-      "Expanded artwork modal with soft Framer Motion animations",
-      "Dark/light theme support with local preference storage",
-      "Mobile-first responsive design with animated scroll",
-      "Clear component architecture with UI/logic separation",
+      "Favorites system with Zustand + localStorage persistence",
+      "Real-time filtering by category",
+      "Accessible lightbox with keyboard navigation",
+      "Curator mode for mock editing",
+      "Dark/light mode with saved preferences",
+      "Mobile-first responsive SPA with smooth transitions",
     ],
   },
 
   trackforge: {
     title: "TrackForge",
     description:
-      "Productivity dashboard with TypeScript logic and persistent state.",
+      "Productivity dashboard SaaS for task management, filters and weekly analytics.",
     longDescription:
-      "TrackForge is a robust task management dashboard focused on productivity and real-world frontend architecture. Built entirely with TypeScript and Zustand, it supports full CRUD, dynamic filters, weekly stats via Chart.js, form validation with Zod, and persistent user preferences — all in a clean, responsive, and accessible UI.",
+      "TrackForge is a focused productivity dashboard built as a real SaaS demo. It supports full CRUD for tasks, dynamic filters, weekly performance charts, passwordless login and persistent user settings. Designed for small teams that need clarity, data visualization and a customizable UI.",
     highlights: [
-      "Typed global state with Zustand + localStorage persistence",
-      "Real-time filters by priority and status",
-      "Weekly productivity charts with Chart.js",
-      "Persistent theme and density preferences",
-      "Framer Motion animations with toggle settings",
-      "Editable profile form with validation via Zod",
+      "Full CRUD task management with Supabase backend",
+      "Dynamic filters by status and priority",
+      "Weekly analytics charts powered by Chart.js",
+      "Passwordless authentication with Supabase Auth",
+      "Persistent theme, density and motion preferences",
+      "Clean, responsive and accessible UI with Framer Motion animations",
     ],
   },
   lumina: {
     title: "Lumina",
     description:
-      "Digital storefront with real checkout, forms and animated UI.",
+      "Digital storefront SaaS with Stripe checkout, forms and animated UX.",
     longDescription:
-      "Lumina is a modern digital goods e-commerce experience built as if launching tomorrow. Features smooth animations, a real contact form with validation and EmailJS delivery, Stripe test-mode checkout, and polished motion. Built to showcase frontend production thinking.",
+      "Lumina is a modern e-commerce demo for digital products. It includes a real checkout flow with Stripe (test mode), validated contact forms with EmailJS, animated UI transitions, and persistent dark/light mode. Built to demonstrate production-ready UX and integrations.",
     highlights: [
-      "Validated contact form with Zod + EmailJS integration",
-      "Stripe-powered checkout (test mode)",
-      "Smooth scroll and animations using Framer Motion + Lenis",
-      "Dark/light theme with persistence",
-      "Scalable modular architecture built from scratch",
+      "Stripe-powered checkout in test mode",
+      "Validated contact form with Zod + EmailJS",
+      "Smooth animations with Framer Motion and scroll effects",
+      "Dark/light theme persistence",
+      "Responsive design with microinteractions",
+      "Scalable architecture oriented to production",
     ],
   },
   clientflow: {
     title: "ClientFlow",
     description:
-      "Onboarding flow with multi-step forms, validation, and file upload.",
+      "Multi-step onboarding app with validation, uploads and progress persistence.",
     longDescription:
-      "ClientFlow is a minimal onboarding app designed for agencies, freelancers, and digital teams to collect client information efficiently and clearly. It features a multi-step form flow with schema-based validation, file uploads with previews and metadata, light/dark mode support, and persistent user progress. The experience is smooth, accessible, and production-ready.",
+      "ClientFlow is an onboarding solution for agencies and freelancers to collect client data smoothly. It features a multi-step form with schema validation, file uploads with previews, progress persistence, and light/dark theme support. The experience is responsive, intuitive and designed for real-world workflows.",
     highlights: [
-      "Multi-step form flow with progressive navigation and state persistence",
-      "Robust validation using Zod + React Hook Form",
-      "File upload with preview, metadata display, and visual feedback",
-      "Full light/dark mode support with local preference storage",
-      "Modular architecture using Zustand for step control and data flow",
-      "Minimal, responsive and accessible design with Framer Motion animations",
+      "Progressive multi-step form with validation on each step",
+      "Schema validation using React Hook Form + Zod",
+      "File upload with preview, metadata and visual feedback",
+      "Persistent form state across sessions",
+      "Dark/light theme with saved user preferences",
+      "Responsive, accessible and animated interface",
     ],
   },
   lighthouse: {
