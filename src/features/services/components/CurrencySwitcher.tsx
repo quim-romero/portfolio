@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import ReactCountryFlag from "react-country-flag";
 import type { Currency } from "../../services/pricing";
 import { useLanguage } from "../../../hooks/LanguageProvider";
 
@@ -13,14 +14,14 @@ type Props = {
 const OPTIONS: Array<{
   value: Currency;
   code: string;
-  flag: string;
+  flagCode: string;
 }> = [
-  { value: "EUR", code: "EUR", flag: "🇪🇺" },
-  { value: "USD", code: "USD", flag: "🇺🇸" },
-  { value: "GBP", code: "GBP", flag: "🇬🇧" },
-  { value: "CHF", code: "CHF", flag: "🇨🇭" },
-  { value: "AUD", code: "AUD", flag: "🇦🇺" },
-  { value: "CAD", code: "CAD", flag: "🇨🇦" },
+  { value: "EUR", code: "EUR", flagCode: "EU" },
+  { value: "USD", code: "USD", flagCode: "US" },
+  { value: "GBP", code: "GBP", flagCode: "GB" },
+  { value: "CHF", code: "CHF", flagCode: "CH" },
+  { value: "AUD", code: "AUD", flagCode: "AU" },
+  { value: "CAD", code: "CAD", flagCode: "CA" },
 ];
 
 const NAMES: Record<"en" | "es", Record<Currency, string>> = {
@@ -84,6 +85,21 @@ export default function CurrencySwitcher({
     btnRef.current?.focus();
   };
 
+  const Flag = ({ code, title }: { code: string; title: string }) => (
+    <ReactCountryFlag
+      svg
+      countryCode={code}
+      title={title}
+      aria-label={title}
+      style={{
+        width: "1.15em",
+        height: "1.15em",
+        borderRadius: "2px",
+        boxShadow: "0 0 0 1px rgba(0,0,0,0.05)",
+      }}
+    />
+  );
+
   return (
     <div ref={rootRef} className={`relative ${className}`}>
       <div className="flex items-center gap-3">
@@ -119,7 +135,9 @@ export default function CurrencySwitcher({
           className="inline-flex items-center gap-2 text-sm text-gray-800 dark:text-gray-200"
           aria-live="polite"
         >
-          <span className="text-base leading-none">{current.flag}</span>
+          <span className="text-base leading-none">
+            <Flag code={current.flagCode} title={dict[current.value]} />
+          </span>
           <span className="font-medium">{dict[current.value]}</span>
         </div>
       </div>
@@ -163,11 +181,11 @@ export default function CurrencySwitcher({
                             ? "bg-brand text-black dark:text-white"
                             : "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-gray-100",
                         ].join(" ")}
-                        title={`${opt.flag} ${dict[opt.value]}`}
+                        title={`${dict[opt.value]} (${opt.code})`}
                       >
                         <span className="flex items-center gap-2 md:whitespace-nowrap">
                           <span className="text-base leading-none">
-                            {opt.flag}
+                            <Flag code={opt.flagCode} title={dict[opt.value]} />
                           </span>
                           <span className="font-medium">{dict[opt.value]}</span>
                           <span className="opacity-70">· {opt.code}</span>
@@ -208,11 +226,11 @@ export default function CurrencySwitcher({
                           ? "bg-brand text-black dark:text-white"
                           : "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-gray-100",
                       ].join(" ")}
-                      title={`${opt.flag} ${dict[opt.value]}`}
+                      title={`${dict[opt.value]} (${opt.code})`}
                     >
                       <span className="flex items-center gap-2 md:whitespace-nowrap">
                         <span className="text-base leading-none">
-                          {opt.flag}
+                          <Flag code={opt.flagCode} title={dict[opt.value]} />
                         </span>
                         <span className="font-medium">{dict[opt.value]}</span>
                         <span className="opacity-70">· {opt.code}</span>

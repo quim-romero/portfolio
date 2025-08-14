@@ -242,7 +242,7 @@ export default function Services() {
                   )}
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6 items-stretch">
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-6 items-stretch">
                   {packages.map((pkg) => (
                     <PackageCard
                       key={pkg.id}
