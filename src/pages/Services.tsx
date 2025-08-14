@@ -25,120 +25,64 @@ import { stampHiddenFields } from "../lib/email";
 import { useFxRates } from "../features/services/fx";
 import { getPriceEur } from "../features/services/prices";
 
+import { t, tArray } from "../i18n/translations";
+
 const canonical = "/services";
 
 export default function Services() {
   const { lang } = useLanguage();
 
-  const heading = "Services — SaaS & Business Tools";
-  const pageTitle = "Services — Quim Romero (SaaS & Business Tools)";
-  const pageDescription =
-    "Development of Dashboards & Internal Tools, Multi‑step Onboarding Apps, Stripe E‑commerce, and premium animated Landing Pages.";
+  // i18n texts
+  const heading = t("services", "heading", lang);
+  const pageTitle = t("services", "metaTitle", lang);
+  const pageDescription = t("services", "metaDescription", lang);
+  const intro = t("services", "intro", lang);
 
-  const intro =
-    "I build business‑oriented web applications: dashboards & internal tools, advanced multi‑step forms, lightweight Stripe shops, and premium animated landing pages. Fast delivery, clean code, and polished UX.";
+  const contactCta = t("services", "ctas.contact", lang);
+  const emailText = t("services", "ctas.emailText", lang);
 
-  const ctas = {
-    contact: "Get a quote",
-    emailText: "Have a project? Email me at",
+  const packagesTitle = t("services", "packagesTitle", lang);
+  const fromLabel = t("services", "from", lang);
+
+  const ui = {
+    seeDetails: t("services", "ui.seeDetails", lang),
+    hideDetails: t("services", "ui.hideDetails", lang),
+    includes: t("services", "ui.includes", lang),
+    deliverables: t("services", "ui.deliverables", lang),
+    close: t("services", "ui.close", lang),
+    currency: t("services", "ui.currency", lang),
+    fxLastUpdate: t("services", "ui.fxLastUpdate", lang),
   };
 
   const [currency, setCurrency] = useState<Currency>("EUR");
   const { rates, date, loading: fxLoading } = useFxRates();
 
   const eurLabel = (v: number) =>
-    new Intl.NumberFormat("en-US", {
+    new Intl.NumberFormat(lang === "es" ? "es-ES" : "en-US", {
       style: "currency",
       currency: "EUR",
       maximumFractionDigits: 0,
     }).format(v);
 
-  const basePackages: Array<Omit<Pkg, "priceFrom">> = useMemo(() => {
-    return [
-      {
-        id: "dashboards",
-        title: "SaaS Dashboards / Internal Tools",
-        desc: "Admin dashboards and internal tools with authentication, data management, and charts. Ideal for SMEs and startups needing to see and act on their data.",
-        timeline: "Typical delivery: 2–3 weeks",
-        features: [
-          "Authentication and basic roles",
-          "Core entities CRUD",
-          "Charts (Chart.js/Recharts)",
-          "Filters & search",
-          "Responsive & accessible UI",
-        ],
-        deliverables: [
-          "Operational dashboard + usage guide",
-          "Source code & deployment",
-          "1 revision round included",
-        ],
-      },
-      {
-        id: "onboarding",
-        title: "Onboarding Apps / Multi‑step Forms",
-        desc: "Advanced intake forms for clients or employees: steps, Zod validation, state persistence, and file uploads.",
-        timeline: "Typical delivery: ~2 weeks",
-        features: [
-          "React Hook Form + Zod validation",
-          "State persistence (Zustand)",
-          "File uploads with previews",
-          "Final review screen + submit",
-          "Light/Dark theme",
-        ],
-        deliverables: [
-          "Production‑ready multi‑step flow",
-          "Source code & deployment",
-          "1 revision round included",
-        ],
-      },
-      {
-        id: "ecommerce-stripe",
-        title: "Lightweight E‑commerce with Stripe",
-        desc: "Stripe checkout (test/production), a lightweight catalog and email confirmations for a smooth buying experience.",
-        timeline: "Typical delivery: 2–3 weeks",
-        features: [
-          "Stripe Checkout (test & live)",
-          "Catalog & product detail",
-          "Simple cart",
-          "Validated contact form",
-          "Fast, responsive UI",
-        ],
-        deliverables: [
-          "Functional shop with Stripe",
-          "Source code & deployment",
-          "1 revision round included",
-        ],
-      },
-      {
-        id: "landing-animated",
-        title: "Premium animated landing pages",
-        desc: "Conversion‑oriented landing page with animations (Framer Motion/GSAP), accessible and SEO‑ready.",
-        timeline: "Typical delivery: 5–7 days",
-        features: [
-          "UX sections + base copy",
-          "Animations & transitions",
-          "Forms & basic tracking",
-          "Basic SEO meta & OpenGraph",
-          "Responsive design",
-        ],
-        deliverables: [
-          "Deployed landing ready for campaigns",
-          "Source code",
-          "1 revision round included",
-        ],
-      },
-    ];
-  }, []);
+  // Packages from i18n
+  const i18nPackages = tArray<{
+    id: string;
+    title: string;
+    desc: string;
+    timeline: string;
+    features: string[];
+    deliverables: string[];
+  }>("services", "packages", lang);
 
   const packages: Pkg[] = useMemo(() => {
-    return basePackages.map((p) => {
+    return i18nPackages.map((p) => {
       const base = getPriceEur(p.id);
       return {
         ...p,
         priceFrom: eurLabel(base),
       };
     });
-  }, [basePackages]);
+  }, [i18nPackages, lang]);
 
   const [modalPkg, setModalPkg] = useState<Pkg | null>(null);
 
@@ -190,7 +134,7 @@ export default function Services() {
         {
           "@type": "ListItem",
           position: 1,
-          name: "Home",
+          name: t("services", "breadcrumbHome", lang),
           item: "https://quimromero.com/",
         },
         {
@@ -201,7 +145,7 @@ export default function Services() {
         },
       ],
     }),
-    [heading]
+    [heading, lang]
   );
 
   const prepareFormForPackage = (pkg: Pkg) => {
@@ -210,7 +154,7 @@ export default function Services() {
     ) as HTMLFormElement | null;
     if (!form) return;
     const baseEUR = getPriceEur(pkg.id);
-    const priceView = formatPrice(baseEUR, currency, "en", rates);
+    const priceView = formatPrice(baseEUR, currency, lang, rates);
     stampHiddenFields(form, {
       package: pkg.id,
       price_eur: String(baseEUR),
@@ -223,7 +167,7 @@ export default function Services() {
   return (
     <Layout>
       <Helmet>
-        <html lang="en" />
+        <html lang={lang} />
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
         <meta name="robots" content="index, follow" />
@@ -264,7 +208,7 @@ export default function Services() {
                   {intro}
                 </p>
                 <p className="mt-3 text-gray-700 dark:text-gray-400">
-                  {ctas.emailText}{" "}
+                  {emailText}{" "}
                   <a
                     href="mailto:quim@quimromero.com"
                     className="text-brand font-medium hover:underline"
@@ -281,18 +225,18 @@ export default function Services() {
                   id="packages-title"
                   className="text-2xl font-semibold mb-3 text-gray-900 dark:text-white"
                 >
-                  Services
+                  {packagesTitle}
                 </h2>
 
                 <div className="mb-6 flex items-center justify-between gap-3">
                   <CurrencySwitcher
                     currency={currency}
                     onChange={setCurrency}
-                    label={"Currency"}
+                    label={ui.currency}
                   />
                   {date && (
                     <span className="text-xs text-gray-500 dark:text-gray-400">
-                      Last update: {date}
+                      {ui.fxLastUpdate}: {date}
                       {fxLoading ? " …" : ""}
                     </span>
                   )}
@@ -303,21 +247,21 @@ export default function Services() {
                     <PackageCard
                       key={pkg.id}
                       pkg={pkg}
-                      lang={"en"}
+                      lang={lang}
                       currency={currency}
                       rates={rates}
                       labels={{
-                        from: "From",
-                        seeDetails: "See details",
-                        contact: ctas.contact,
+                        from: fromLabel,
+                        seeDetails: ui.seeDetails,
+                        contact: contactCta,
                       }}
                       onOpenDetails={(p) => {
                         setModalPkg(p);
-                        trackDetailsOpen("en", p.id, true);
+                        trackDetailsOpen(lang, p.id, true);
                       }}
                       onQuote={(p) => {
                         prepareFormForPackage(p);
-                        trackPackageCta("en", p.id, "card");
+                        trackPackageCta(lang, p.id, "card");
                       }}
                     />
                   ))}
@@ -326,38 +270,38 @@ export default function Services() {
 
               <PackageModal
                 pkg={modalPkg}
-                lang={"en"}
+                lang={lang}
                 currency={currency}
                 rates={rates}
                 labels={{
-                  includes: "Includes",
-                  deliverables: "Deliverables",
-                  from: "From",
-                  close: "Close",
-                  contact: ctas.contact,
+                  includes: ui.includes,
+                  deliverables: ui.deliverables,
+                  from: fromLabel,
+                  close: ui.close,
+                  contact: contactCta,
                 }}
                 onClose={() => {
-                  if (modalPkg) trackDetailsOpen("en", modalPkg.id, false);
+                  if (modalPkg) trackDetailsOpen(lang, modalPkg.id, false);
                   setModalPkg(null);
                 }}
                 onQuote={(p) => {
                   prepareFormForPackage(p);
-                  trackPackageCta("en", p.id, "modal");
+                  trackPackageCta(lang, p.id, "modal");
                 }}
               />
 
               <ServicesForm
-                lang={"en"}
+                lang={lang}
                 currency={currency}
                 rates={rates}
                 labels={{
-                  title: "Tell me about your project",
-                  name: "Name",
-                  email: "Email",
-                  goal: "Goal",
-                  budget: "Budget",
-                  submit: "Send",
-                  success: "Thanks! I’ll get back to you shortly.",
+                  title: t("services", "formTitle", lang),
+                  name: t("services", "form.name", lang),
+                  email: t("services", "form.email", lang),
+                  goal: t("services", "form.goal", lang),
+                  budget: t("services", "form.budget", lang),
+                  submit: t("services", "form.submit", lang),
+                  success: t("services", "form.success", lang),
                 }}
                 budgetBandsEUR={[1000, 3000, 6000, 10000]}
                 hiddenDefaults={{ page: canonical }}
