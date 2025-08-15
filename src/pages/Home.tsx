@@ -51,7 +51,14 @@ export default function Home() {
         id="main"
         role="main"
         aria-label="Homepage hero section"
-        className="relative min-h-screen flex items-center justify-center px-6 text-center bg-light dark:bg-dark text-text-base dark:text-text-light overflow-hidden transition-colors duration-300"
+        className="
+          relative
+          min-h-[100svh]      /* alto real, incluye safe viewport en móviles */
+          flex items-center justify-center
+          px-6 text-center
+          bg-light dark:bg-dark text-text-base dark:text-text-light
+          overflow-hidden transition-colors duration-300
+        "
       >
         <HeroBackground />
 
@@ -60,6 +67,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="relative z-10 max-w-md sm:max-w-lg md:max-w-2xl mx-auto px-2"
           >
             <div className="mb-3 md:mb-4">
               <GreetingBadge />
@@ -67,12 +75,12 @@ export default function Home() {
 
             <h1
               data-testid="header-title"
-              className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white leading-tight"
             >
               {t("home", "title", lang)}
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 mx-auto mt-2">
               {t("home", "subtitle", lang)}
             </p>
 
