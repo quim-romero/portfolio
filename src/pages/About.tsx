@@ -7,6 +7,7 @@ import { useDarkMode } from "../hooks/DarkModeContext";
 import { useEffect, useState } from "react";
 import { FiDownload } from "react-icons/fi";
 import { t, tArray } from "../i18n/translations";
+import { Icon } from "@iconify/react";
 
 export default function About() {
   const { lang } = useLanguage();
@@ -136,25 +137,43 @@ export default function About() {
                   {t("about", "toolsHeading", lang)}
                 </h2>
                 <div
-                  className="grid grid-cols-5 grid-rows-2 gap-6 mt-6 items-center"
+                  className="grid grid-cols-6 grid-rows-2 gap-6 mt-6 items-center"
                   role="list"
                   aria-label="Technologies I use"
                 >
-                  {techList.slice(0, 10).map(({ name, id }) => (
+                  {[
+                    { name: "JavaScript", icon: "logos:javascript" },
+                    { name: "TypeScript", icon: "logos:typescript-icon" },
+                    { name: "Next.js", icon: "akar-icons:nextjs-fill" },
+                    { name: "Tailwind CSS", icon: "logos:tailwindcss-icon" },
+                    { name: "Figma", icon: "logos:figma" },
+                    { name: "Framer Motion", icon: "logos:framer" },
+                    { name: "Vite", icon: "logos:vitejs" },
+                    { name: "React", icon: "logos:react" },
+                    { name: "Zustand", icon: "devicon:zustand" },
+                    { name: "Cypress", icon: "logos:cypress-icon" },
+                    { name: "Vitest", icon: "logos:vitest" },
+                    { name: "Playwright", icon: "devicon:playwright" },
+                  ].map(({ name, icon }) => (
                     <div
-                      key={id}
+                      key={name}
                       className="flex flex-col items-center text-center"
                     >
-                      <img
-                        src={
-                          id === "zustand-custom"
-                            ? "/icons/zustand.png"
-                            : `https://api.iconify.design/logos/${id}.svg`
-                        }
-                        alt={`${name} logo`}
-                        className="h-10 w-10 mb-2 object-contain"
-                        loading="lazy"
-                      />
+                      {icon.startsWith("/") ? (
+                        <img
+                          src={icon}
+                          alt={`${name} logo`}
+                          className="h-10 w-10 mb-2 object-contain"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <Icon
+                          icon={icon}
+                          width={40}
+                          height={40}
+                          className="mb-2"
+                        />
+                      )}
                       <span className="text-sm text-gray-700 dark:text-gray-300">
                         {name}
                       </span>

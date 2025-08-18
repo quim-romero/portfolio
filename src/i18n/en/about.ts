@@ -24,16 +24,4 @@ export default {
   ],
 
   toolsHeading: "Tools & Technologies",
-  tech: [
-    { name: "JavaScript", id: "javascript" },
-    { name: "Tailwind CSS", id: "tailwindcss-icon" },
-    { name: "Figma", id: "figma" },
-    { name: "Framer Motion", id: "framer" },
-    { name: "Vite", id: "vitejs" },
-    { name: "TypeScript", id: "typescript-icon" },
-    { name: "React", id: "react" },
-    { name: "Zustand", id: "zustand-custom" },
-    { name: "Cypress", id: "cypress-icon" },
-    { name: "Vitest", id: "vitest" },
-  ],
 };
