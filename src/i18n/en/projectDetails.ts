@@ -21,7 +21,7 @@ export default {
   nebulaos: {
     title: "NebulaOS",
     description:
-      "Experimental microsite with interactive console and futuristic animations.",
+      "Experimental microsite featuring an interactive console and sleek, futuristic animations.",
     longDescription:
       "NebulaOS is a conceptual microsite that simulates a futuristic operating system. It combines GSAP and Framer Motion animations, an interactive console, animated modals and modular UI design. Perfect as a demo for creative landings or experimental SaaS presentations.",
     highlights: [
