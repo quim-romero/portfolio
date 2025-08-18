@@ -29,7 +29,6 @@ export default function About() {
   const intro = t("about", "intro", lang);
   const howIWork = tArray("about", "howIWork", lang);
   const valueAdd = tArray("about", "valueAdd", lang);
-  const techList = tArray<{ name: string; id: string }>("about", "tech", lang);
 
   return (
     <Layout>
