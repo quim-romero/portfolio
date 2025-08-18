@@ -23,10 +23,6 @@ export default {
         title: "📈 Rendimiento",
         items: ["UX optimizada", "Lazy loading"],
       },
-      {
-        title: "🔗 Más",
-        items: ["Stack completo en GitHub →"],
-      },
     ],
   },
 };
