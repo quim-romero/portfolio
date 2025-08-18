@@ -7,7 +7,6 @@ const home = {
   title: "Bienvenido a Mi Portafolio",
   subtitle:
     "Descubre mis mejores trabajos frontend — hechos con precisión, creatividad y código limpio.",
-  note: 'Actualmente abierto a proyectos freelance. <a href="/about" class="text-brand underline">Más info →</a>',
 };
 
 export default home;

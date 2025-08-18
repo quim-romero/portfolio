@@ -53,7 +53,7 @@ export default function Home() {
         aria-label="Homepage hero section"
         className="
           relative
-          min-h-[100svh]      /* alto real, incluye safe viewport en móviles */
+          min-h-[100svh]
           flex items-center justify-center
           px-6 text-center
           bg-light dark:bg-dark text-text-base dark:text-text-light
@@ -84,10 +84,6 @@ export default function Home() {
               {t("home", "subtitle", lang)}
             </p>
 
-            <p
-              className="text-sm text-muted dark:text-gray-400 mt-4"
-              dangerouslySetInnerHTML={{ __html: t("home", "note", lang) }}
-            />
           </motion.div>
         </LanguageTransition>
 
