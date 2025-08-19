@@ -9,62 +9,190 @@ export default function GreetingBadge() {
   const [greeting, setGreeting] = useState("");
   const [period, setPeriod] = useState<Period>("night");
 
+  const getPeriod = (hour: number): Period => {
+    if (hour >= 6 && hour < 12) return "morning";
+    if (hour >= 12 && hour < 18) return "afternoon";
+    if (hour >= 18 && hour < 22) return "evening";
+    return "night";
+  };
+
+  const greetingsMap: Record<string, Record<Period, string>> = {
+    es: {
+      morning: "Buenos días",
+      afternoon: "Buenas tardes",
+      evening: "Buenas noches",
+      night: "Buenas noches",
+    },
+    en: {
+      morning: "Good morning",
+      afternoon: "Good afternoon",
+      evening: "Good evening",
+      night: "Good night",
+    },
+  };
+
   useEffect(() => {
-    const h = new Date().getHours();
-    const p: Period =
-      h >= 6 && h < 12
-        ? "morning"
-        : h >= 12 && h < 18
-        ? "afternoon"
-        : h >= 18 && h < 22
-        ? "evening"
-        : "night";
+    const updateGreeting = () => {
+      const hour = new Date().getHours();
+      const currentPeriod = getPeriod(hour);
+      setPeriod(currentPeriod);
+      setGreeting(greetingsMap[lang][currentPeriod]);
+    };
 
-    setPeriod(p);
-
-    if (lang === "es") {
-      setGreeting(
-        p === "morning"
-          ? "Buenos días"
-          : p === "afternoon"
-          ? "Buenas tardes"
-          : "Buenas noches"
-      );
-    } else {
-      setGreeting(
-        p === "morning"
-          ? "Good morning"
-          : p === "afternoon"
-          ? "Good afternoon"
-          : "Good evening"
-      );
-    }
+    updateGreeting();
+    const interval = setInterval(updateGreeting, 60 * 1000);
+    return () => clearInterval(interval);
   }, [lang]);
 
   const Icon = useMemo(() => {
-    if (period === "morning" || period === "afternoon") {
-      return (
-        <svg
-          className="w-3.5 h-3.5 md:w-4 md:h-4"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zM1 13h3v-2H1v2zm10-9h2V1h-2v3z" />
-          <circle cx="12" cy="12" r="5" />
-        </svg>
-      );
+    switch (period) {
+      case "morning":
+        return (
+          <svg
+            className="w-3.5 h-3.5 md:w-4 md:h-4"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line
+              x1="12"
+              y1="1"
+              x2="12"
+              y2="4"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <line
+              x1="12"
+              y1="20"
+              x2="12"
+              y2="23"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <line
+              x1="4.22"
+              y1="4.22"
+              x2="6.34"
+              y2="6.34"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <line
+              x1="17.66"
+              y1="17.66"
+              x2="19.78"
+              y2="19.78"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <line
+              x1="1"
+              y1="12"
+              x2="4"
+              y2="12"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <line
+              x1="20"
+              y1="12"
+              x2="23"
+              y2="12"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <line
+              x1="4.22"
+              y1="19.78"
+              x2="6.34"
+              y2="17.66"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <line
+              x1="17.66"
+              y1="6.34"
+              x2="19.78"
+              y2="4.22"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        );
+
+      case "afternoon":
+        return (
+          <svg
+            className="w-3.5 h-3.5 md:w-4 md:h-4"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line
+              x1="12"
+              y1="2"
+              x2="12"
+              y2="5"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <line
+              x1="12"
+              y1="19"
+              x2="12"
+              y2="22"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <line
+              x1="2"
+              y1="12"
+              x2="5"
+              y2="12"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <line
+              x1="19"
+              y1="12"
+              x2="22"
+              y2="12"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        );
+
+      case "evening":
+        return (
+          <svg
+            className="w-3.5 h-3.5 md:w-4 md:h-4"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 1 0 21 12.79z" />
+          </svg>
+        );
+
+      case "night":
+        return (
+          <svg
+            className="w-3.5 h-3.5 md:w-4 md:h-4"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <polygon points="12,2 14.09,8.26 20.9,8.27 15.5,12.97 17,19 12,15.5 7,19 8.5,12.97 3.1,8.27 9.91,8.26" />
+          </svg>
+        );
+
+      default:
+        return null;
     }
-    return (
-      <svg
-        className="w-3.5 h-3.5 md:w-4 md:h-4"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 1 0 21 12.79z" />
-      </svg>
-    );
   }, [period]);
 
   return (
