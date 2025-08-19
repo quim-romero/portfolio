@@ -20,7 +20,7 @@ export default function GreetingBadge() {
     es: {
       morning: "Buenos días",
       afternoon: "Buenas tardes",
-      evening: "Buenas noches",
+      evening: "Buenas tardes",
       night: "Buenas noches",
     },
     en: {
